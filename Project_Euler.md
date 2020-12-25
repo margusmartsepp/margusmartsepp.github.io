@@ -1,6 +1,6 @@
 # Problem 1
-## .NET 5 C# 
-- [x] Loops
+## .NET 5 C# ✓
+- [x] Loops ~3d
     ```csharp
     int Problem1_ForLoop(int size) {
         int sum = 0;
@@ -32,7 +32,7 @@
     int ArithmeticProgression(int nr) => nr * (nr + 1) / 2;
     int Problem1_ArithmeticProgression(int size) =>  
         3 * ArithmeticProgression(size/3)
-        + 5 * ArithmeticProgression(size/5);
-        - 15 * ArithmeticProgression(size/15);;
+        + 5 * ArithmeticProgression(size/5)
+        - 15 * ArithmeticProgression(size/15);
     Problem1_ArithmeticProgression(1000)
     ```
