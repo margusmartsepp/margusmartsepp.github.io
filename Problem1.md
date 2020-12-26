@@ -4,7 +4,7 @@ There area a lot of ways to solve a task. Different languages will enable differ
 # Problem 1
 - Arithmetic progression sums
 ## .NET 5 C# 
-- [x] Loops | 0.25 ±0.05 s
+- [x] ### Loops | 0.25 ±0.05 s
     ```csharp
     int Problem1_ForLoop(int size) {
         int sum = 0;
