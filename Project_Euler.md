@@ -2,7 +2,7 @@ Back to [Main](README.md).
 
 # Problem 1
 ## .NET 5 C# ✓
-- [x] Loops ~3d
+- [x] ### Loops ~3d
     ```csharp
     int Problem1_ForLoop(int size) {
         int sum = 0;
