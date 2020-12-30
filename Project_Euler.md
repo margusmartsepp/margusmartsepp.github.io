@@ -38,3 +38,23 @@ Back to [Main](README.md).
         - 15 * ArithmeticProgression(size/15);
     Problem1_ArithmeticProgression(1000)
     ```
+# HackerRank
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+class Solution {
+    int Problem1_LinqAccumulator(int size) => Enumerable.Range(1, size)
+        .Aggregate(0, (total, nr) => nr % 3 == 0 || nr % 5 == 0 ? total + nr : total);
+
+    static void Main(String[] args) {
+        int t = Convert.ToInt32(Console.ReadLine());
+        for(int a0 = 0; a0 < t; a0++){
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(Problem1_ArithmeticProgression(n));
+        }
+    }
+}
+```
