@@ -38,6 +38,7 @@ Back to [Main](README.md).
         - 15 * ArithmeticProgression(size/15);
     Problem1_ArithmeticProgression(1000)
     ```
+<<<<<<< HEAD
 # HackerRank
 ```csharp
 using System;
@@ -58,3 +59,5 @@ class Solution {
     }
 }
 ```
+=======
+>>>>>>> b87b3bd1e113ac73549c58e2eb4c801238081580
