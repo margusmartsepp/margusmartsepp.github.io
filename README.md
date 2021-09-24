@@ -6,7 +6,7 @@
 
 Margus started with his first programming language in 2001 Spring and has been accumulating knowledge since. He loves efficient code and intelligent solutions.
 
-[![linkedin](https://appicons.about.me/linkedin/32x32.png)](www.linkedin.com/in/margus-martsepp)
+[![linkedin](https://appicons.about.me/linkedin/32x32.png)](https://www.linkedin.com/in/margus-martsepp)
 [![facebook](https://appicons.about.me/facebook/32x32.png)](https://www.facebook.com/MARTSEPPMARGUS)
 
 # Problems
