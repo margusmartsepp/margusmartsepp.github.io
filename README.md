@@ -13,14 +13,14 @@ Margus started with his first programming language in 2001 Spring and has been a
 - Microsoft
   - [x] 70-483 Programming in C#
 - PluralSight
-  - [x] C#: Expert | VERIFIED 1.13.2019 | 94th percentile
+  - [x] C#: Expert - VERIFIED 1.13.2019 - 94th percentile
 - HackerRank
   - [x] [Problem Solving (Basic) Certificate](https://www.hackerrank.com/certificates/7e5318a6fd54)
   - [x] [C# (Basic) Certificate](https://www.hackerrank.com/certificates/8455af5cf52f)
   - [x] [Java (Basic) Certificate](https://www.hackerrank.com/certificates/d6bff7e9e024)
   - [x] [Python (Basic) Certificate](https://www.hackerrank.com/certificates/81022243befb)
 
-# Problems
+## Problemsets
 - [Project Euler - Java](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/ProjectEulerJava.md) Aug 28 - Sep 9, 2009
 - [LeetCode - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/LeetCodeC%23.md) Sep 20 - Sep 24, 2021
 
