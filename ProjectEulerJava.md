@@ -1,3 +1,15 @@
+##### Table of Contents 
+- [Problem 1: Add all the natural numbers below one thousand that are multiples of 3 or 5.](#problem-1--add-all-the-natural-numbers-below-one-thousand-that-are-multiples-of-3-or-5)
+- [Problem 2: Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.](#problem-2--find-the-sum-of-all-the-even-valued-terms-in-the-fibonacci-sequence-which-do-not-exceed-four-million)
+- [Problem 3: Find the largest prime factor of a composite number.](#problem-3--find-the-largest-prime-factor-of-a-composite-number)
+- [Problem 4: Find the largest palindrome made from the product of two 3-digit numbers.](#problem-4--find-the-largest-palindrome-made-from-the-product-of-two-3-digit-numbers)
+- [Problem 5: What is the smallest number divisible by each of the numbers 1 to 20?](#problem-5--what-is-the-smallest-number-divisible-by-each-of-the-numbers-1-to-20-)
+- [Problem 6: What is the difference between the sum of the squares and the square of the sums?](#problem-6--what-is-the-difference-between-the-sum-of-the-squares-and-the-square-of-the-sums-)
+- [Problem 7: Find the 10001st prime.](#problem-7--find-the-10001st-prime)
+- [Problem 8: Discover the largest product of five consecutive digits in the 1000-digit number.](#problem-8--discover-the-largest-product-of-five-consecutive-digits-in-the-1000-digit-number)
+- [Problem 9: Find the only Pythagorean triplet, {a, b, c}, for which a + b+ c = 1000.](#problem-9--find-the-only-pythagorean-triplet---a--b--c---for-which-a---b--c---1000)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 ### Problem 1: Add all the natural numbers below one thousand that are multiples of 3 or 5.
 Time: ~0.001 s
 ```java
