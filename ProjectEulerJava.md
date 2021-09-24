@@ -1501,3 +1501,761 @@ public class Problem_29 {
 	}
 }
 ```
+### Problem 30: Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
+Time: ~662 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+public class Problem_30 {
+	public static void main(String[] args) {
+		int EXP = 5, i = 10, s = 0, t = 0;
+		long max = (long) (Math.pow(9.0, EXP) * (EXP - 1));
+
+		for (int n = i; n < max; t += (s == n ? s : 0), n++, s = 0)
+			for (i = n; i > 0; i /= 10)
+				s += Math.pow((i % 10), EXP);
+
+		System.out.println(t);
+	}
+}
+```
+### Problem 31: Investigating combinations of English currency denominations.
+Time: ~1 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+public class Problem_31 {
+	public static void main(String[] args) {
+		int target = 200, coins[] = { 1, 2, 5, 10, 20, 50, 100, 200 };
+		int ways[] = new int[target + 1];
+		ways[0] = 1;
+
+		for (int coin : coins)
+			for (int i = coin; i < target + 1; i++)
+				ways[i] += ways[i - coin];
+
+		System.out.println(ways[target]);
+	}
+}
+```
+### Problem 32: Find the sum of all numbers that can be written as pandigital products.
+Time: ~66 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Problem_32 {
+	static final int nbrs = 9;
+
+	static boolean isPandigital(String s) {
+		return isPandigital(s, nbrs);
+	}
+
+	static boolean isPandigital(String s, int nr) {
+		if (s.length() != nr)
+			return false;
+
+		Set<Character> set = new HashSet<Character>();
+		for (int i = 0; i < nr; i++)
+			set.add(s.charAt(i));
+
+		if (set.size() != nr)
+			return false;
+		if (set.contains('0'))
+			return false;
+		return true;
+	}
+
+	public static void main(String[] args) {
+		Set<Integer> set = new HashSet<Integer>();
+		int sum = 0;
+
+		for (int i = 2, n = 1234; i < 100; i++, n = i > nbrs ? 123 : 1234)
+			for (int j = n; j < (int) (10000 / i + 1); j++)
+				if (isPandigital("" + i + j + (i * j)))
+					set.add(i * j);
+
+		for (Integer val : set)
+			sum += val;
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 33: Discover all the fractions with an unorthodox cancelling method.
+Time: ~1 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+public class Problem_33 {
+	public static void main(String[] args) {
+		int d = 1;
+		double ii;
+
+		for (int i = 1; i < 10; i++)
+			for (int j = 1; j < i; j++)
+				for (double k = 1; k < j; k++) {
+					ii = (i * 10 + j) / (k * 10 + i);
+					if (ii == j / k)
+						d *= ii;
+				}
+
+		System.out.println(d);
+	}
+}
+```
+### Problem 34: Find the sum of all numbers which are equal to the sum of the factorial of their digits.
+Time: ~175 ms
+```
+package margusmartseppcode.From_30_to_39;
+
+public class Problem_34 {
+
+	public static void main(String[] args) {
+		int fact[] = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };
+		int s = 0, sum = 0;
+
+		for (int i = 10; i < fact[9] + 1; i++, sum = 0) {
+			for (char c : ("" + i).toCharArray())
+				sum += fact[Character.getNumericValue(c)];
+			if (sum == i)
+				s += i;
+		}
+
+		System.out.println(s);
+	}
+}
+```
+### Problem 35: How many circular primes are there below one million?
+Time: ~921 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Problem_35 {
+	static boolean contains_024568(final char[] input) {
+		int n = input.length;
+		for (int i = 4; i < n; i++)
+			if (input[i] == '0' || input[i] == '2' || input[i] == '4'
+					|| input[i] == '5' || input[i] == '6' || input[i] == '8')
+				return true;
+		return false;
+	}
+
+	static void rotate(StringBuilder sb) {
+		sb.append(sb.charAt(0)).delete(0, 1);
+	}
+
+	static int iRotate(StringBuilder s) {
+		return Integer.parseInt(s.append(s.charAt(0)).delete(0, 1).toString());
+	}
+
+	static void CircularPrimes(Integer elem, Set<Integer> primes,
+			Set<Integer> found, Set<Integer> circular) {
+		StringBuilder sb = new StringBuilder("" + elem);
+		ArrayList<Integer> tmp = new ArrayList<Integer>();
+		int n = sb.length(), i;
+
+		if (found.contains(elem) || circular.contains(elem))
+			return;
+		for (i = 1; i <= n; i++)
+			tmp.add(iRotate(sb));
+		for (Integer mem : tmp)
+			if (!primes.contains(mem)) {
+				found.addAll(tmp);
+				return;
+			}
+
+		circular.addAll(tmp);
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		Set<Integer> circular = new HashSet<Integer>();
+		Set<Integer> primes = new HashSet<Integer>();
+		Set<Integer> found = new HashSet<Integer>();
+		Scanner sc = new Scanner(new File("primes1m.txt"));
+
+		for (String tmp = sc.next(); sc.hasNext(); tmp = sc.next())
+			if (!contains_024568(tmp.toCharArray()))
+				primes.add(Integer.parseInt(tmp));
+
+		for (Integer elem : primes)
+			CircularPrimes(elem, primes, found, circular);
+
+		System.out.println(circular.size());
+	}
+}
+```
+### Problem 36: Find the sum of all numbers less than one million, which are palindromic in base 10 and base 2.
+Time: ~476 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+public class Problem_36 {
+	static boolean palindrome(String p) {
+		return p.equals(new StringBuilder(p).reverse().toString());
+	}
+
+	static String dec2bin(int number) {
+		return Integer.toString(number, 2);
+	}
+
+	public static void main(String[] args) {
+		int sum = 0, size = 1000000;
+
+		for (int i = 0; i < size; i++)
+			sum += palindrome("" + i) && palindrome(dec2bin(i)) ? i : 0;
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 37: Find the sum of all eleven primes that are both truncatable from left to right and right to left.
+Time: ~599 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Problem_37 {
+
+	static Integer cint(String nr) {
+		return Integer.parseInt(nr);
+	}
+
+	static boolean isLTP(String mem, Set<Integer> primes) {
+		int n = mem.length();
+		if (n < 1)
+			return true;
+		return primes.contains(cint(mem)) && isLTP(mem.substring(1), primes);
+	}
+
+	static boolean isRTP(String mem, Set<Integer> primes) {
+		int n = mem.length();
+		if (n < 1)
+			return true;
+		return primes.contains(cint(mem))
+				&& isRTP(mem.substring(0, n - 1), primes);
+	}
+
+	static boolean isTP(String mem, Set<Integer> primes) {
+		return isLTP(mem, primes) && isRTP(mem, primes);
+	}
+
+	private static void bTP(Integer mem, Set<Integer> primes,
+			Set<Integer> truncatable) {
+		if (primes.contains(mem)) {
+			if (isTP(""+mem, primes))
+				truncatable.add(mem);
+			TruncatablePrimes(mem, primes, truncatable);
+		}
+	}
+
+	private static void TruncatablePrimes(Integer elem, Set<Integer> primes,
+			Set<Integer> truncatable) {
+		String[] o = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		String s = "" + elem;
+
+		for (String pos : o) {
+			bTP(cint(s + pos), primes, truncatable);
+			bTP(cint(pos + s), primes, truncatable);
+		}
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		Set<Integer> truncatable = new HashSet<Integer>();
+		Set<Integer> primes = new HashSet<Integer>();
+		Scanner sc = new Scanner(new File("primes1m.txt"));
+		int sum = 0;
+
+		for (String tmp = sc.next(); sc.hasNext(); tmp = sc.next())
+			primes.add(Integer.parseInt(tmp));
+
+		for (Integer elem : new Integer[] { 3, 7 })
+			TruncatablePrimes(elem, primes, truncatable);
+
+		for (Integer elem : truncatable)
+			sum += elem;
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 38: What is the largest 1 to 9 pandigital that can be formed by multiplying a fixed number by 1, 2, 3, ... ?
+Time: ~12 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Problem_38 {
+	static final int nbrs = 9;
+
+	static boolean isPandigital(String s) {
+		return isPandigital(s, nbrs);
+	}
+
+	static boolean isPandigital(String s, int nr) {
+		if (s.length() != nr)
+			return false;
+
+		Set<Character> set = new HashSet<Character>();
+		for (int i = 0; i < nr; i++)
+			set.add(s.charAt(i));
+
+		if (set.size() != nr)
+			return false;
+		if (set.contains('0'))
+			return false;
+		return true;
+	}
+
+	public static void main(String[] args) {
+		String maxPan = "";
+		for (int i = 9876; i > 9123; i--)
+			if (isPandigital(maxPan = "" + i + (i + i)))
+				break;
+		System.out.println(maxPan);
+	}
+}
+```
+### Problem 39: If p is the perimeter of a right angle triangle, {a, b, c}, which value, for p ≤ 1000, has the most solutions?
+Time: ~9 ms
+```java
+package margusmartseppcode.From_30_to_39;
+
+public class Problem_39 {
+	// Pythagorean theorem for right angle triangle:
+	// a*a+b*b==c*c where c=(p-a-b)
+	// same as (MOD(p(p–2a),2(p-a))== 0)
+	public static void main(String[] args) {
+		int max = 0, limit = 1000, imax = 0;
+
+		for (int i = 2; i <= limit; i += 2)
+			for (int j = 2, t = 0; j <= i / 4; j++) {
+				if (i * (i - 2 * j) % (2 * (i - j)) == 0)
+					t++;
+				if (t > imax) {
+					imax = t;
+					max = i;
+				}
+			}
+
+		System.out.println(max);
+	}
+}
+```
+### Problem 40: Finding the nth digit of the fractional part of the irrational number.
+Time: ~8 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+public class Problem_40 {
+	public static void main(String[] args) {
+		int size = 100000, result = 1;
+		StringBuilder sb = new StringBuilder(size + 200);
+
+		for (int i = 1; sb.length() <= 100000; i++)
+			sb.append(i);
+
+		for (int count = 1; count <= size; count *= 10)
+			result *= Character.getNumericValue(sb.charAt(count - 1));
+
+		System.out.println(result);
+	}
+}
+```
+### Problem 41: What is the largest n-digit pandigital prime that exists?
+Time: ~9 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Problem_41 {
+	static final int nbrs = 7;
+
+	static boolean isPandigital(String s) {
+		return isPandigital(s, nbrs);
+	}
+
+	static boolean isPandigital(String s, int nr) {
+		if (s.length() != nr)
+			return false;
+
+		Set<Character> set = new HashSet<Character>();
+		for (int i = 0; i < nr; i++)
+			set.add(s.charAt(i));
+
+		if (set.size() != nr)
+			return false;
+		if (set.contains('0'))
+			return false;
+		if (set.contains('8'))
+			return false;
+		if (set.contains('9'))
+			return false;
+		return true;
+	}
+
+	// Call only if: (n>0&&(i%2==0||i%3==0||i%5==0||i%7==0))
+	static boolean isPrimeS(final int n) {
+		final int r = (int) Math.floor(Math.sqrt(n));
+		for (int f = 5; f <= r; f += 6)
+			if (n % f == 0 || n % (f + 2) == 0)
+				return false;
+		return true;
+	}
+
+	public static void main(String[] args) {
+		int i;
+		for (i = 7654321; i >= 1234567; i -= 2) {
+			if (i % 3 == 0 || i % 5 == 0 || i % 7 == 0)
+				continue;
+			if (!isPrimeS(i))
+				continue;
+			if (isPandigital("" + i))
+				break;
+		}
+		System.out.println(i);
+	}
+}
+```
+### Problem 42: How many triangle words does the list of common English words contain?
+Time: ~67 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Map;
+
+public class Problem_42 {
+	static int sumStringChars(String s) {
+		if (s == null)
+			return 0;
+		int n = s.length(), sum = 0;
+		for (int i = 0; i < n; i++)
+			sum += s.charAt(i) - '@';
+		return sum;
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		String raw = new Scanner(new File("words.txt")).next();
+		String str[] = raw.substring(1, raw.length() - 1).split("\",\"");
+		int count = 0;
+
+		for (String s : str) {
+			int tmp = sumStringChars(s);
+			map.put(tmp, map.containsKey(tmp) ? map.get(tmp) + 1 : 1);
+		}
+
+		for (Integer i : map.keySet())
+			if ((((Math.sqrt(1 + 8 * i) - 1) / 2) % 1 == 0))
+				count += map.get(i);
+
+		System.out.println(count);
+	}
+}
+```
+### Problem 43: Find the sum of all pandigital numbers with an unusual sub-string divisibility property.
+Time: ~2 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+public class Problem_43 {
+	static String perms(int n, String s) {
+		int fact[] = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800 };
+		return perms(n, s, fact);
+	}
+
+	static String perms(int n, String s, int fact[]) {
+		StringBuilder sb = new StringBuilder();
+		StringBuilder s2 = new StringBuilder(s);
+
+		n--;
+		for (int i, g, sl = s2.length(); sl > 0; sl--, n = n % (g)) {
+			i = (int) Math.floor(n / (g = fact[sl] / sl));
+			sb.append(s2.charAt(i));
+			s2.deleteCharAt(i);
+		}
+		return sb.toString();
+	}
+
+	static long cint(String nr) {
+		return Long.parseLong(nr);
+	}
+
+	static boolean check(String s) {
+		return cint(s.substring(1, 4)) % 2 == 0
+				&& cint(s.substring(2, 5)) % 3 == 0;
+	}
+
+	public static void main(String[] args) {
+		long sum = 0;
+		String p = "";
+
+		for (int i = 1; i < 25; i++)
+			sum += (check(p = perms(i, "0134") + "952867") ? cint(p) : 0)
+					+ (check(p = perms(i, "0146") + "357289") ? cint(p) : 0);
+
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 45: After 40755, what is the next triangle number that is also pentagonal and hexagonal?
+Time: ~6 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+public class Problem_45 {
+	static boolean isPentagonal(long n) {
+		return ((Math.sqrt(1 + 24 * n) + 1) / 6) % 1 == 0;
+	}
+
+	public static void main(String[] args) {
+		long hex = 0;
+
+		for (int n = 165; !isPentagonal(hex); n++)
+			hex = n * (2 * n - 1);
+
+		System.out.println(hex);
+	}
+}
+```
+### Problem 46: What is the smallest odd composite that cannot be written as the sum of a prime and twice a square?
+Time: ~30 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+public class Problem_46 {
+	/** Call only if: (n>0&&(i%2==0||i%3==0||i%5==0||i%7==0)) */
+	static boolean isPrimeS(final int n) {
+		final int r = (int) Math.floor(Math.sqrt(n));
+		for (int f = 5; f <= r; f += 6)
+			if (n % f == 0 || n % (f + 2) == 0)
+				return false;
+		return true;
+	}
+
+	/** Will return array with first nr primes */
+	static int[] getPrimes(int nr) {
+		if (nr < 0)
+			return new int[0];
+
+		int amount = 0;
+		int result[] = new int[nr];
+
+		if (nr > 0)
+			result[amount++] = 2;
+		if (nr > 1)
+			result[amount++] = 3;
+		if (nr > 2)
+			result[amount++] = 5;
+		if (nr > 3)
+			result[amount++] = 7;
+		if (nr <= 4)
+			return result;
+
+		for (int i = 9;; i += 2) {
+			if (i % 3 == 0 || i % 5 == 0 || i % 7 == 0)
+				continue;
+			if (isPrimeS(i)) {
+				result[amount++] = i;
+				if (amount >= nr)
+					break;
+			}
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		double tmp = 0;
+		int i = 0, num = 3, p[] = getPrimes(1000);
+
+		for (i = 0; !(p[i] > num); i++, tmp = Math.sqrt((num - p[i]) / 2))
+			if (tmp == Math.ceil(tmp)) {
+				i = 0;
+				num += 2;
+			}
+
+		System.out.println(num);
+	}
+}
+```
+### Problem 47: Find the first four consecutive integers to have four distinct primes factors.
+Time: ~69 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+public class Problem_47 {
+
+	static int unique_factors(int num, int[] primes, int[] factors) {
+		int max = (int) Math.sqrt(num);
+
+		for (int i = 0; primes[i] <= max; i++)
+			if ((num % primes[i]) == 0) {
+				do {
+					num /= primes[i];
+				} while ((num % primes[i]) == 0);
+
+				return num == 1 ? 1 : factors[num] + 1;
+			}
+
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		int n = 0, ps = 1, max = 200000;
+		int primes[] = new int[max], factors[] = new int[max];
+
+		for (n = 3, primes[0] = 2; n < max; n++)
+			if ((factors[n] = unique_factors(n, primes, factors)) == 0) {
+				factors[n] = 1;
+				primes[ps++] = n;
+			} else if ((factors[n] == 4) && (factors[n - 1] == 4)
+					&& (factors[n - 2] == 4) && (factors[n - 3] == 4))
+				break;
+
+		System.out.println(n - 3);
+	}
+}
+```
+Time: ~30034 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Problem_47 {
+	static int uniquefactorcount(long nr, ArrayList<Integer> primes) {
+		int c = 0;
+		for (Integer p : primes) {
+			if (nr % p == 0)
+				c++;
+			while (nr % p == 0)
+				nr = nr / p;
+			if (nr == 1)
+				break;
+		}
+
+		return c;
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		ArrayList<Integer> primes = new ArrayList<Integer>();
+		Scanner sc = new Scanner(new File("primes1m.txt"));
+		int c = 1, n = 2 * 3 * 5 * 7;
+
+		for (String tmp = sc.next(); sc.hasNext(); tmp = sc.next())
+			primes.add(Integer.parseInt(tmp));
+
+		while (c != 4)
+			c = uniquefactorcount(++n, primes) == 4 ? c++ : 0;
+
+		System.out.println(n - 3);
+	}
+}
+```
+### Problem 48: Find the last ten digits of 11 + 22 + ... + 10001000.
+Time: ~224 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+import java.math.BigInteger;
+
+public class Problem_48 {
+	// Note: i = 2 !!!
+	public static void main(String[] args) {
+		BigInteger num = BigInteger.ONE;
+		for (int i = 2; i < 1000; i++)
+			num = num.add(BigInteger.valueOf(i).pow(i));
+		String result = num.toString();
+		System.out.println(result.substring(result.length() - 10));
+	}
+}
+```
+### Problem 49: Find arithmetic sequences, made of prime terms, whose four digits are permutations of each other.
+Time: ~2 ms
+```java
+package margusmartseppcode.From_40_to_49;
+
+import java.util.Arrays;
+
+public class Problem_49 {
+
+	// Call only if: (n>0&&(i%2==0||i%3==0||i%5==0||i%7==0))
+	static boolean isPrimeS(final int n) {
+		final int r = (int) Math.floor(Math.sqrt(n));
+		for (int f = 5; f <= r; f += 6)
+			if (n % f == 0 || n % (f + 2) == 0)
+				return false;
+		return true;
+	}
+
+	static boolean isPerm(char[] a, char[] b) {
+		if (a.length != b.length)
+			return false;
+		Arrays.sort(a);
+		Arrays.sort(b);
+		return Arrays.equals(a, b);
+	}
+
+	static boolean arePerms(int... n) {
+		if (n.length == 0)
+			return true;
+		for (int i = 1; i < n.length; i++)
+			if (!isPerm(("" + n[i - 1]).toCharArray(), ("" + n[i])
+					.toCharArray()))
+				return false;
+		return true;
+	}
+
+	static boolean arePrimes(int... n) {
+		for (int i : n)
+			if (!isPrimeS(i))
+				return false;
+
+		return true;
+	}
+
+	public static void main(String[] args) {
+		int a, b, c;
+		a = b = c = 0;
+
+		for (a = 1489;; a += 2) {
+			if (a % 3 == 0 || a % 5 == 0 || a % 7 == 0)
+				continue;
+
+			b = a + 3330;
+			c = a + 6660;
+
+			if (arePrimes(a, b, c))
+				if (arePerms(a, b, c))
+					break;
+		}
+		System.out.println("" + a + b + c);
+	}
+}
+```
