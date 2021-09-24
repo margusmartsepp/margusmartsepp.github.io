@@ -5,4 +5,4 @@
 
 Margus started with his first programming language in 2001 Spring and has been accumulating knowledge since. He loves efficient code and intelligent solutions.
 # Problems
-[Project Euler - Java](ProjectEulerJava.MD)
+[Project Euler - Java](ProjectEulerJava.md)
