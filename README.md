@@ -6,15 +6,9 @@
 
 Margus started with his first programming language in 2001 Spring and has been accumulating knowledge since. He loves efficient code and intelligent solutions.
 
-# Problems
-- [Project Euler - Java](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/ProjectEulerJava.md) Aug 28 - Sep 9, 2009
-- [LeetCode - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/LeetCodeC%23.md) Sep 20 - Sep 24, 2021
-
-### Flair
+### Flair & Social
 [![stackoverflow](https://stackexchange.com/users/flair/34563.png)](https://stackoverflow.com/cv/margusmartsepp)
 [![projecteuler](https://projecteuler.net/profile/margusmartsepp.png)](https://projecteuler.net/)
-
-### Social 
 [![linkedin](https://appicons.about.me/linkedin/32x32.png)](https://www.linkedin.com/in/margus-martsepp)
 [![facebook](https://appicons.about.me/facebook/32x32.png)](https://www.facebook.com/MARTSEPPMARGUS)
 
@@ -30,3 +24,7 @@ Margus started with his first programming language in 2001 Spring and has been a
   - [x] Oil Trading and Operations
 - Microsoft
   - [x] 70-483 Programming in C#
+
+# Problems
+- [Project Euler - Java](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/ProjectEulerJava.md) Aug 28 - Sep 9, 2009
+- [LeetCode - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/LeetCodeC%23.md) Sep 20 - Sep 24, 2021
