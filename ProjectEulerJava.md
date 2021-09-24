@@ -1010,3 +1010,494 @@ public class Problem_19 {
 	}
 }
 ```
+### Problem 20: Find the sum of digits in 100!
+Time: ~0.001 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+import java.math.BigInteger;
+
+public class Problem_20 {
+	static final int maxSize = 101;
+	static BigInteger f[] = new BigInteger[maxSize];
+	static {
+		f[0] = BigInteger.ONE;
+		for (int i = 1; i < maxSize; i++)
+			f[i] = f[i - 1].multiply(BigInteger.valueOf(i));
+	}
+
+	public static void main(String[] args) {
+		int sum = 0;
+
+		for (char c : f[100].toString().toCharArray())
+			sum += Character.getNumericValue(c);
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 21: Evaluate the sum of all amicable pairs under 10000.
+Time: ~0.022 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_21 {
+	static int size = 10000;
+	static int memcard[] = new int[size * 3];
+
+	static int getSoPD(int nr) {
+		if (memcard[nr] != 0)
+			return memcard[nr];
+
+		int sum = 1;
+		for (int i = 2; i * i <= nr; i++)
+			if (nr % i == 0)
+				sum = sum + i + nr / i;
+
+		return memcard[nr] = sum;
+	}
+
+	public static void main(String[] args) {
+		int sum = 0, b;
+
+		for (int i = 2; i < size; i++)
+			if (((b = getSoPD(i)) > i) && (getSoPD(b) == i))
+				sum += b + i;
+
+		System.out.println(sum);
+	}
+}
+```
+Time: ~0.084 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_21 {
+	static int size = 10000;
+	static int memcard[] = new int[size * 10];
+
+	static int getSoPD(int nr) {
+		if (memcard[nr] != 0)
+			return memcard[nr];
+
+		int sum = 1;
+		for (int i = 2; i < Math.floor(Math.sqrt(nr) + 1); i++)
+			if (nr % i == 0)
+				sum += i + nr / i;
+
+		return memcard[nr] = sum;
+	}
+
+	public static void main(String[] args) {
+		int sum = 0, b;
+
+		for (int i = 2; i < size; i++)
+			if (((b = getSoPD(i)) > i) && (getSoPD(b) == i))
+				sum += b + i;
+
+		System.out.println(sum);
+	}
+}
+```
+Time: ~1.755 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_21 {
+	static int d(int nr) {
+		int sum = 0;
+		for (int i = 1; i < nr; i++)
+			if (nr % i == 0)
+				sum += i;
+
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		int sum = 0, toNr = 10000, b;
+
+		for (int i = 2; i < toNr; i++) {
+			b = d(i);
+			if ((b > i) && (d(b) == i))
+				sum += b + i;
+		}
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 22: What is the total of all the name scores in the file of first names?
+Time: ~0.096 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Problem_22 {
+	public static void main(String[] args) throws FileNotFoundException {
+		String raw = new Scanner(new File("names.txt")).next();
+		String str[] = raw.substring(1, raw.length() - 1).split("\",\"");
+		long ls = 0, ts = 0;
+		Arrays.sort(str);
+
+		for (int i = 0; i < str.length; i++, ls = 0) {
+			for (char c : str[i].toCharArray())
+				ls += c - '@';
+
+			ts += ls * (i + 1);
+		}
+		System.out.println(ts);
+	}
+}
+```
+### Problem 23: Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+Time: ~0.231 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_23 {
+	public static boolean IsAbundant(int num) {
+		int factorSum = 1;
+		double temp = Math.sqrt(num);
+
+		if (temp % 1 == 0)
+			factorSum -= temp;
+		for (int i = 2; i <= temp; i++)
+			if (num % i == 0)
+				factorSum += i + num / i;
+
+		if (factorSum > num)
+			return true;
+
+		return false;
+	}
+
+	public static void main(String[] args) {
+		final int size = 28123;
+		int[] d = new int[8192];
+		int[] not = new int[size];
+		int c = 0, c2 = 0, sum = 0;
+
+		for (int i = 10; i <= size; i++)
+			if (IsAbundant(i))
+				d[c++] = i;
+
+		for (int i = 0; i < c; i++)
+			for (int j = i; j < c; j++)
+				if ((c2 = d[i] + d[j]) < size)
+					not[c2] = 1;
+
+		for (int i = 1; i < size; i++)
+			if (not[i] != 1)
+				sum += i;
+
+		System.out.println(sum);
+	}
+}
+```
+Time: ~5.421 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+import java.util.ArrayList;
+
+public class Problem_23 {
+	static int size = 20162;
+	static int memcard[] = new int[size];
+
+	static int d(int nr) {
+		int sum = 0;
+		for (int i = 1; i < nr; i++)
+			if (nr % i == 0)
+				sum += i;
+
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		ArrayList<Integer> abundant = new ArrayList<Integer>();
+		int sum = 0;
+		boolean cont = false;
+
+		for (int i = 0; i < size; i++, cont = false) {
+			if (d(i) > i) {
+				abundant.add(i);
+				memcard[i] = 1;
+			}
+			for (Integer integer : abundant)
+				if (memcard[i - integer] == 1) {
+					cont = true;
+					break;
+				}
+			if (cont == false)
+				sum += i;
+		}
+		System.out.println(sum);
+	}
+}
+```
+### Problem 24: What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+Time: ~0.001 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_24 {
+	static String perms(int n, String s) {
+		int fact[] = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800 };
+		return perms(n, s, fact);
+	}
+
+	static String perms(int n, String s, int fact[]) {
+		StringBuilder sb = new StringBuilder();
+		StringBuilder s2 = new StringBuilder(s);
+		n--;
+		for (int i, g, sl = s2.length(); sl > 0; sl--, n = n % (g)) {
+			i = (int) Math.floor(n / (g = fact[sl] / sl));
+			sb.append(s2.charAt(i));
+			s2.deleteCharAt(i);
+		}
+		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+		System.out.println(perms(1000000, "0123456789"));
+	}
+}
+```
+Time: ~4.725 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_24 {
+	private static String permResult = "";
+	private static int permCount = 0;
+
+	public static String perms(int nr, String s) {
+		permCount = nr;
+		perms("", s);
+		return permResult;
+	}
+
+	static void perms(String prefix, String s) {
+		int N = s.length();
+		if (N == 0) {
+			if (--permCount == 0)
+				permResult = prefix;
+		} else
+			for (int i = 0; i < N; i++)
+				perms(prefix + s.charAt(i), s.substring(0, i)
+						+ s.substring(i + 1, N));
+	}
+
+	public static void main(String[] args) {
+		int N = 10;
+		String alphabet = "0123456789";
+		String elements = alphabet.substring(0, N);
+
+		System.out.println(perms(1000000, elements));
+	}
+}
+```
+### Problem 25: What is the first term in the Fibonacci sequence to contain 1000 digits?
+Time: ~0.001 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_25 {
+	public static void main(String[] args) {
+		// Binet's Fibonacci Number Formula
+		double digits = 1000;
+		double result = Math.ceil((digits - 1 + Math.log10(5) / 2)
+				/ Math.log10((1 + Math.sqrt(5)) / 2));
+		System.out.println((int) result);
+	}
+}
+```
+Time: ~1.306 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+import java.math.BigInteger;
+
+public class Problem_25 {
+	static final int maxSize = 5001;
+	static BigInteger f[] = new BigInteger[maxSize];
+	static {
+		f[0] = BigInteger.ONE;
+		f[1] = BigInteger.ONE;
+		for (int i = 2; i < maxSize; i++)
+			f[i] = f[i - 2].add(f[i - 1]);
+	}
+
+	public static void main(String[] args) {
+		int i;
+
+		for (i = 1; i < maxSize; i++)
+			if (f[i].toString().length() > 999)
+				break;
+		System.out.println(i);
+	}
+}
+```
+### Problem 26: Find the value of d < 1000 for which 1/d contains the longest recurring cycle.
+Time: ~0.021 s
+```
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_26 {
+	// Brent's algorithm
+	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
+		int r = 1, c = 0, power, lam, t, tr, h, hr;
+		for (int i = 999; i > 1; i--) {
+			power = lam = 1;
+			tr = (1 % i) * 10;
+			hr = (tr % i) * 10;
+			t = 1 / i;
+			h = tr / i;
+
+			while (t != h || tr != hr) {
+				if (power == lam) {
+					t = h;
+					tr = hr;
+					power *= 2;
+					lam = 0;
+				}
+				h = hr / i;
+				hr = (hr % i) * 10;
+				lam++;
+			}
+			if (lam > c) {
+				c = lam;
+				r = i;
+			}
+		}
+		System.out.println(r);
+		System.out.println(System.currentTimeMillis() - start);
+	}
+}
+```
+Time: ~0.094 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+import java.math.BigInteger;
+
+public class Problem_26 {
+	static boolean isPrime(long n) {
+		if (n % 2 == 0 || n < 2)
+			return (n == 2) ? true : false;
+		if (n < 9)
+			return true;
+		if (n % 3 == 0 || n % 5 == 0)
+			return false;
+
+		final long r = (long) Math.floor(Math.sqrt(n));
+		for (long f = 5L; f <= r; f += 6)
+			if (n % f == 0 || n % (f + 2) == 0)
+				return false;
+
+		return true;
+	}
+
+	public static void main(String[] args) {
+		int i, c = 1;
+		for (i = 999; i > 1; c = 1, i -= 2) {
+			if (!isPrime(i))
+				continue;
+
+			while (BigInteger.valueOf(10).pow(c).subtract(BigInteger.ONE).abs()
+					.mod(BigInteger.valueOf(i)).doubleValue() != 0d)
+				c += 1;
+
+			if ((i - c) == 1)
+				break;
+		}
+
+		System.out.println(i);
+	}
+}
+```
+### Problem 27: Find a quadratic formula that produces the maximum number of primes for consecutive values of n.
+Time: ~0.034 s
+```java
+package margusmartseppcode.From_20_to_29;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Problem_27 {
+	static Integer prime_k[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37,
+			41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107,
+			109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179,
+			181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251,
+			257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331,
+			337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409,
+			419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487,
+			491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577,
+			587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653,
+			659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743,
+			751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829,
+			839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929,
+			937, 941, 947, 953, 967, 971, 977, 983, 991, 997 };
+
+	public static void main(String[] args) {
+		int nmax = 0, n, pr = 0;
+		Set<Integer> set = new HashSet<Integer>(Arrays.asList(prime_k));
+
+		for (int i = -999; i < 999; i += 2)
+			for (int b : prime_k) {
+				n = 1;
+				while (set.contains(n * n + i * n + b))
+					n += 1;
+				if (n > nmax) {
+					nmax = n;
+					pr = i * b;
+				}
+			}
+		System.out.println(pr);
+	}
+}
+```
+### Problem 28: What is the sum of both diagonals in a 1001 by 1001 spiral?
+Time: ~1 ms
+```java
+package margusmartseppcode.From_20_to_29;
+
+public class Problem_28 {
+	public static void main(String[] args) {
+		int sum = 1, diag = 1, size = 1001;
+
+		for (int i = 2; i < size; diag += i * 4, i += 2)
+			sum += 4 * diag + 10 * i;
+
+		System.out.println(sum);
+	}
+}
+```
+### Problem 29: How many distinct terms are in the sequence generated byab for 2 ≤ a ≤ 100 and 2 ≤ b ≤ 100?
+Time: ~25 ms
+```
+package margusmartseppcode.From_20_to_29;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Problem_29 {
+
+	public static void main(String[] args) {
+		int max = 101;
+		Set<Double> set = new HashSet<Double>();
+
+		for (Long i = 2L; i < max; i++)
+			for (Long j = 2L; j < max; j++)
+				set.add(Math.pow(i, j));
+
+		System.out.println(set.size());
+	}
+}
+```
