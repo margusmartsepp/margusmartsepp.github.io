@@ -25,5 +25,6 @@ Margus started with his first programming language in 2001 Spring and has been a
 - [LeetCode - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/LeetCodeC%23.md) Sep 20 - Sep 24, 2021
 
 
-## Presentations
+## Presentations and documents
 - [Protobuf](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Presentations/Protobuf.pptx) 
+- [GIT cheatsheet](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/GitCheatSheet.md) 
