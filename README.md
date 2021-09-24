@@ -6,6 +6,7 @@ Margus started with his first programming language in 2001 Spring and has been a
 
 [![stackoverflow](https://stackexchange.com/users/flair/34563.png)](https://stackoverflow.com/cv/margusmartsepp)
 [![projecteuler](https://projecteuler.net/profile/margusmartsepp.png)](https://projecteuler.net/)
+[![codewars](https://www.codewars.com/users/margusmartsepp/badges/small)](https://www.codewars.com/users/margusmartsepp)
 
 ### Certificates
 - THE OXFORD PRINCETON PROGRAMME LIMITED 
