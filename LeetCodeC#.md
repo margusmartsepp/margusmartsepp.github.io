@@ -911,3 +911,502 @@ public class Solution {
     }
 }
 ```
+### 34. Find First and Last Position of Element in Sorted Array
+Medium
+```c#
+public class Solution {
+    public int[] SearchRange(int[] nums, int target) {
+        return new [] { Array.IndexOf(nums, target), Array.LastIndexOf(nums, target) };
+    }
+}
+```
+### 35. Search Insert Position
+Easy
+```c#
+public class Solution {
+    public int SearchInsert(int[] nums, int target) {
+        var n = nums.Length;
+        var start = 0;
+        var end = n - 1;
+
+        while (start <= end)
+        {
+            int mid = (start + end) / 2;
+
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target)
+                start = mid + 1;
+            else
+                end = mid - 1;
+        }
+
+        return end + 1;
+    }
+}
+```
+### 36. Valid Sudoku
+Medium
+```c#
+public class Solution {
+    public bool IsValidSudoku(char[][] board)
+    {
+        int[] row = new int[9], col = new int[9], cub = new int[9];
+        for (int i = 0; i < 9; ++i)
+        {
+            for (int j = 0; j < 9; ++j)
+            {
+                if (board[i][j] != '.')
+                {
+                    int idx = 1 << (board[i][j] - '0');
+                    if (((row[i] & idx) != 0) || ((col[j] & idx) != 0) || ((cub[(i / 3) * 3 + j / 3] & idx) != 0)) return false;
+                    row[i] |= idx;
+                    col[j] |= idx;
+                    cub[(i / 3) * 3 + j / 3] |= idx;
+                }
+            }
+        }
+        return true;
+    }
+}
+```
+### 37. Sudoku Solver
+Hard
+```c#
+public class Solution {
+    public void SolveSudoku(char[][] board) 
+    { 
+        Solve(board);
+    }
+    private bool Solve(char[][] board)
+    {
+        for (int r = 0; r < 9; r++)
+        {
+            for (int c = 0; c < 9; c++)
+            {
+                if (board[r][c] == '.')
+                {
+                    for (char d = '1'; d <= '9'; d++)
+                    {
+                        if (IsValid(board, r, c, d))
+                        {
+                            board[r][c] = d;
+                            if (Solve(board)) return true;
+                            board[r][c] = '.';
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    private bool IsValid(char[][] board, int r, int c, char d)
+    {
+        for (int row = 0; row < 9; row++)
+            if (board[row][c] == d) return false;
+        for (int col = 0; col < 9; col++)
+            if (board[r][col] == d) return false;
+        for (int row = (r / 3) * 3; row < (r / 3 + 1) * 3; row++)
+            for (int col = (c / 3) * 3; col < (c / 3 + 1) * 3; col++)
+                if (board[row][col] == d) return false;
+        return true;
+    }
+}
+```
+### 38. Count and Say
+Medium
+```c#
+public class Solution {
+    public string CountAndSay(int n)
+    {
+        if (n <= 0) return "-1";
+        string result = "1";
+
+        for (int i = 1; i < n; i++)
+        {
+            result = Build(result);
+        }
+        return result;
+    }
+
+    private string Build(string result)
+    {
+        var builder = new StringBuilder();
+        int p = 0;
+        while (p < result.Length)
+        {
+            char val = result[p];
+            int count = 0;
+
+            while (p < result.Length && result[p] == val)
+            {
+                p++;
+                count++;
+            }
+            builder.Append(count);
+            builder.Append(val);
+        }
+        return builder.ToString();
+    }
+}
+```
+### 39. Combination Sum
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> CombinationSum(int[] candidates, int target)
+    {
+        var list = new List<IList<int>>();
+        Array.Sort(candidates);
+        BackTrack(list, new List<int>(), candidates, target, 0);
+        return list;
+    }
+
+    private void BackTrack(List<IList<int>> list, List<int> buffer, int[] nums, int remain, int start)
+    {
+        if (remain < 0) return;
+        else if (remain == 0) list.Add(new List<int>(buffer));
+        else
+        {
+            for (int i = start; i < nums.Length; i++)
+            {
+                buffer.Add(nums[i]);
+                BackTrack(list, buffer, nums, remain - nums[i], i);
+                buffer.RemoveAt(buffer.Count - 1);
+            }
+        }
+    }
+}
+```
+### 40. Combination Sum II
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> CombinationSum2(int[] candidates, int target)
+    {
+        var list = new List<IList<int>>();
+        Array.Sort(candidates);
+        BackTrack(list, new List<int>(), candidates, target, 0);
+        return list;
+    }
+
+    private void BackTrack(List<IList<int>> list, List<int> buffer, int[] nums, int remain, int start)
+    {
+        if (remain < 0) return;
+        else if (remain == 0) list.Add(new List<int>(buffer));
+        else
+        {
+            for (int i = start; i < nums.Length; i++)
+            {
+                if(i > start && nums[i] == nums[i-1]) continue;
+                buffer.Add(nums[i]);
+                BackTrack(list, buffer, nums, remain - nums[i], i + 1);
+                buffer.RemoveAt(buffer.Count - 1);
+            }
+        }
+    }
+}
+```
+41. First Missing Positive
+Hard
+```c#
+public class Solution {
+    public int FirstMissingPositive(int[] nums) {
+        Array.Sort()
+        var set = new HashSet<int>(nums);
+        for(int i=1;i<5000004;i++)
+        {
+            if(!set.Contains(i)) return i;   
+        }
+        return 0;
+    }
+}
+```
+### 42. Trapping Rain Water
+Hard
+```c#
+public class Solution {
+    public int Trap(int[] height)
+    {
+        int left = 0, right = height.Length - 1;
+        int answer = 0;
+        int left_max = 0, right_max = 0;
+        while (left < right)
+        {
+            if (height[left] < height[right])
+            {
+                if (height[left] >= left_max) left_max = height[left];
+                else answer += left_max - height[left];
+                ++left;
+            }
+            else
+            {
+                if (height[right] >= right_max) right_max = height[right];
+                else answer += right_max - height[right];
+                --right;
+            }
+        }
+        return answer;
+    }
+}
+```
+### 43. Multiply Strings
+Medium
+```c#
+public class Solution {
+    public string Multiply(string num1, string num2) {
+        int m = num1.Length, n = num2.Length;
+        int[] pos = new int[m + n];
+
+        for (int i = m - 1; i >= 0; i--)
+        {
+            for (int j = n - 1; j >= 0; j--)
+            {
+                int mul = (num1[i] - '0') * (num2[j] - '0');
+                int p1 = i + j, p2 = i + j + 1;
+                int sum = mul + pos[p2];
+
+                pos[p1] += sum / 10;
+                pos[p2] = sum % 10;
+            }
+        }
+
+        var sb = new StringBuilder();
+        foreach (int p in pos) 
+            if (!(sb.Length == 0 && p == 0)) sb.Append(p);
+        return sb.Length == 0 ? "0" : sb.ToString();
+    }
+}
+```
+### 44. Wildcard Matching
+Hard
+```c#
+using System.Text.RegularExpressions;  
+public class Solution {
+    public bool IsMatch(string text, string pattern) 
+    {
+        int s = 0, p = 0, match = 0, starIdx = -1;
+        while (s < text.Length)
+        {
+            if (p < pattern.Length && (pattern[p] == '?' || text[s] == pattern[p]))
+            {
+                s++;
+                p++;
+            }
+            else if (p < pattern.Length && pattern[p] == '*')
+            {
+                starIdx = p;
+                match = s;
+                p++;
+            }
+            else if (starIdx != -1)
+            {
+                p = starIdx + 1;
+                match++;
+                s = match;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        while (p < pattern.Length && pattern[p] == '*')
+            p++;
+
+        return p == pattern.Length;
+    }
+}
+```
+### 45. Jump Game II
+Medium
+```c#
+public class Solution {
+    public int Jump(int[] nums) {
+        int jumps = 0, end = 0, most = 0;
+        for (var i = 0; i < nums.Length - 1; i++)
+        {
+            most = Math.Max(most, i + nums[i]);
+            if (i == end)
+            {
+                jumps++;
+                end = most;
+            }
+        }
+        return jumps;
+    }
+}
+```
+### 46. Permutations
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> Permute(int[] nums)
+    {
+        var result = new List<IList<int>>();
+        var fact = new[] { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800 };
+        for (int i = 1; i <= fact[nums.Length]; i++)
+        {
+            result.Add(Perms(i, nums, fact));
+        }
+        return result;
+    }
+
+    public List<int> Perms(int n, int[] s, int[] fact)
+    {
+        var sb = new List<int>();
+        var s2 = s.ToList();
+        n--;
+        for (int i, g, sl = s2.Count; sl > 0; sl--, n = n % (g))
+        {
+            i = (int)Math.Floor((double)n / (g = fact[sl] / sl));
+            sb.Add(s2[i]);
+            s2.RemoveAt(i);
+        }
+        return sb;
+    }
+}
+```
+### 47. Permutations II
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> PermuteUnique(int[] nums) 
+    {
+        var list = new List<IList<int>>();
+        Array.Sort(nums);
+        BackTrack(list, new List<int>(), nums, new bool[nums.Length]);
+        return list;
+    }
+
+    private void BackTrack(List<IList<int>> list, List<int> buffer, int[] nums, bool[] used)
+    {
+        if (buffer.Count == nums.Length)
+        {
+            list.Add(new List<int>(buffer));
+        }
+        else
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (used[i] || i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
+                used[i] = true;
+                buffer.Add(nums[i]);
+                BackTrack(list, buffer, nums, used);
+                used[i] = false;
+                buffer.RemoveAt(buffer.Count - 1);
+            }
+        }
+    }
+}
+```
+### 48. Rotate Image
+Medium
+```c#
+public class Solution {
+    public void Rotate(int[][] matrix)
+    {
+        int s = 0, e = matrix.Length - 1;
+        while (s < e)
+        {
+            int[] temp = matrix[s];
+            matrix[s++] = matrix[e];
+            matrix[e--] = temp;
+        }
+
+        for (int i = 0; i < matrix.Length; i++)
+        {
+            for (int j = i + 1; j < matrix[i].Length; j++)
+            {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+}
+```
+### 49. Group Anagrams
+Medium
+```c#
+public class Solution {
+    public IList<IList<string>> GroupAnagrams(string[] strs) =>
+        strs.GroupBy(o => new string(o.OrderBy(x => x).ToArray()), o => o, (key, g) => (IList<string>)g.ToList()).ToList();    
+}
+```
+### 50. Pow(x, n)
+Medium
+```c#
+public class Solution {
+    public double MyPow(double x, int n) {
+        return Math.Pow(x, n);
+    }
+}
+```
+### 51. N-Queens
+Hard
+```c#
+public class Solution {
+    public IList<IList<string>> SolveNQueens(int n) 
+    {
+        var res = new List<IList<string>>();
+
+        DFS(n, res, new List<int>(), new List<int>(), new List<int>());
+        return res;
+    }
+
+    public void DFS(int n, List<IList<string>> res, List<int> queens, List<int> dif, List<int> sum)
+    {
+        var p = queens.Count;
+        if (p == n)
+        {
+            var queens2 = (from i in queens
+                           select (new string('.', i) + "Q" + new string('.', n - 1 - i))).ToList();
+            res.Add(queens2);
+            return;
+        }
+        foreach (var q in Enumerable.Range(0, n))
+        {
+            if (queens.Contains(q) || dif.Contains(p - q) || sum.Contains(p + q))
+            {
+                continue;
+            }
+            DFS(n, res, queens.Concat(new List<int> { q }).ToList(), dif.Concat(new List<int> { (p - q) }).ToList(), sum.Concat(new List<int> { (p + q) }).ToList());
+        }
+    }
+}
+```
+### 52. N-Queens II
+Hard
+```c#
+public class Solution {
+    public int TotalNQueens(int n)
+    {
+        var res = new List<IList<string>>();
+
+        DFS(n, res, new List<int>(), new List<int>(), new List<int>());
+        return res.Count;
+    }
+
+    public void DFS(int n, List<IList<string>> res, List<int> queens, List<int> dif, List<int> sum)
+    {
+        var p = queens.Count;
+        if (p == n)
+        {
+            var queens2 = (from i in queens
+                           select (new string('.', i) + "Q" + new string('.', n - 1 - i))).ToList();
+            res.Add(queens2);
+            return;
+        }
+        foreach (var q in Enumerable.Range(0, n))
+        {
+            if (queens.Contains(q) || dif.Contains(p - q) || sum.Contains(p + q))
+            {
+                continue;
+            }
+            DFS(n, res, queens.Concat(new List<int> { q }).ToList(), dif.Concat(new List<int> { (p - q) }).ToList(), sum.Concat(new List<int> { (p + q) }).ToList());
+        }
+    }
+}
+```
