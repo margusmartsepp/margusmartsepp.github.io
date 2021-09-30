@@ -1,6 +1,6 @@
 ### 1. Two Sum
-```c#
 Easy
+```c#
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
       var numsDictionary = new Dictionary<int, int>();
