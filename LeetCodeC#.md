@@ -1410,3 +1410,1141 @@ public class Solution {
     }
 }
 ```
+### 53. Maximum Subarray
+Easy
+```c#
+public class Solution {
+    public int MaxSubArray(int[] nums)
+    {
+        if (nums == null || nums.Length == 0)
+            return 0;
+        int runSum = nums[0];
+        int result = runSum;
+        for (int end = 1; end < nums.Length; end++)
+        {
+            runSum = runSum + nums[end] >= nums[end] ? runSum + nums[end] : nums[end];
+            result = Math.Max(runSum, result);
+        }
+        return result;
+    }
+}
+```
+### 54. Spiral Matrix
+Medium
+```c#
+public class Solution {
+    public IList<int> SpiralOrder(int[][] matrix)
+    {
+        int end = matrix.Length * matrix[0].Length;
+        var result = new List<int>(end);
+        for (int xMin = 0, yMin = 0, x = 0, y = 0, xMax = matrix[0].Length - 1, yMax = matrix.Length - 1; result.Count < end; xMin++)
+        {
+            for (x = xMin; x <= xMax && result.Count < end; x++) result.Add(matrix[yMin][x]);
+            for (y = ++yMin; y <= yMax && result.Count < end; y++) result.Add(matrix[y][xMax]);
+            for (x = --xMax; x >= xMin && result.Count < end; x--) result.Add(matrix[yMax][x]);
+            for (y = --yMax; y >= yMin && result.Count < end; y--) result.Add(matrix[y][xMin]);
+        }
+        return result;
+    }
+}
+```
+### 55. Jump Game
+Medium
+```c#
+public class Solution {
+    public bool CanJump(int[] nums) {
+        for (int i = 0, max = 0; i < nums.Length; max = (i + nums[i]) > max ? i + nums[i] : max, i++)
+            if (max < i) return false;
+        return true;
+    }
+}
+```
+### 56. Merge Intervals
+Medium
+```c#
+public class Solution {
+    public int[][] Merge(int[][] intervals)
+    {
+        var ordered = intervals.OrderBy(o => o[0]).ToList();
+        var result = new List<int[]>();
+        int[] last = null;
+        foreach (var item in ordered)
+        {
+            if (last == null || item[0] > last[1])
+                result.Add(last = item);
+            else if (item[1] > last[1])
+                last[1] = item[1];
+        }
+        return result.ToArray();
+    }
+}
+```
+### 57. Insert Interval
+Medium
+```c#
+public class Solution {
+    public int[][] Insert(int[][] intervals, int[] newInterval) 
+    {
+		var list = intervals.ToList();
+		list.Add(newInterval);
+        var ordered = list.OrderBy(o => o[0]).ToList();
+        var result = new List<int[]>();
+        int[] last = null;
+        foreach (var item in ordered)
+        {
+            if (last == null || item[0] > last[1])
+                result.Add(last = item);
+            else if (item[1] > last[1])
+                last[1] = item[1];
+        }
+        return result.ToArray();
+    }
+}
+```
+### 58. Length of Last Word
+Easy
+```c#
+public class Solution {
+    public int LengthOfLastWord(string s) {
+        return s.Trim().Split(" ").Last().Length;
+    }
+}
+```
+### 59. Spiral Matrix II
+Medium
+```c#
+public class Solution {
+    public int[][] GenerateMatrix(int n) {
+        int end = n * n, count = 0;
+        int[][] result = new int[n][];
+        for(int i = 0; i < n; i++)
+            result[i] = new int[n];       
+        for (int xMin = 0, yMin = 0, x = 0, y = 0, xMax = n - 1, yMax = n - 1; count < end; xMin++)
+        {
+            for (x = xMin; x <= xMax && count < end; x++) result[yMin][x] = ++count;
+            for (y = ++yMin; y <= yMax && count < end; y++) result[y][xMax] = ++count;
+            for (x = --xMax; x >= xMin && count < end; x--) result[yMax][x] = ++count;
+            for (y = --yMax; y >= yMin && count < end; y--) result[y][xMin] = ++count;
+        }
+        return result;
+    }
+}
+```
+### 60. Permutation Sequence
+Hard
+```c#
+public class Solution {
+   public string GetPermutation(int n, int k)
+    {
+        var sb = new StringBuilder();
+        var num = new List<int>();
+        int fact = 1;
+        for (int i = 1; i <= n; i++)
+        {
+            fact *= i;
+            num.Add(i);
+        }
+        for (int i = 0, l = k - 1; i < n; i++)
+        {
+            fact /= n - i;
+            int index = l / fact;
+            sb.Append(num[index]);
+            num.RemoveAt(index);
+            l -= index * fact;
+        }
+        return sb.ToString();
+    }
+}
+```
+### 61. Rotate List
+Medium
+```c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode RotateRight(ListNode head, int k) {
+		if(head == null) return head;
+
+		int length = 0;
+		ListNode node = head;
+		while(node != null){
+			node = node.next;
+			length++;
+		}
+		k = k % length;
+
+		ListNode fpart, lpart;
+		lpart = head;
+		for(int i = 1; i < length - k; i++){
+			head = head.next;
+		}
+
+		fpart = head.next;
+		head.next = null;
+
+		if(fpart == null) return lpart;
+		node = fpart;
+		while(node.next != null){
+			node = node.next;
+		}
+		node.next = lpart;
+
+		return fpart;
+	}
+}
+```
+### 62. Unique Paths
+Medium
+```c#
+public class Solution {
+    public int UniquePaths(int m, int n)
+    {
+        var location = new int[m, n];
+        for (int i = 0; i < m; i++)        
+            for (int j = 0; j < n; j++)            
+                location[i, j] = (i == 0 || j == 0) 
+                    ? 1
+                    : location[i, j - 1] + location[i - 1, j];           
+        return location[m - 1, n - 1];
+    }
+}
+```
+### 63. Unique Paths II
+Medium
+```c#
+public class Solution {
+    public int UniquePathsWithObstacles(int[][] grid)
+    {
+        int m = grid.Length, n = grid[0].Length;
+        var dp = new int[m + 1, n+ 1];
+        dp[1,1] = grid[0][0] != 1 ? 1 : 0;
+        for (int i = 1; i <= m; i++)            
+            for (int j = 1; j <= n; j++)                
+                dp[i,j] += grid[i - 1][j - 1] != 1 ? dp[i,j - 1] + dp[i - 1,j] : 0;               
+        return dp[m, n];
+    }
+}
+```
+### 64. Minimum Path Sum
+Medium
+```c#
+public class Solution {
+    public int MinPathSum(int[][] grid) {
+        int m = grid.Length, n = grid[0].Length;
+        var cur = new int[m];
+        for (int i = 1; i < m; i++)
+            cur[i] = cur[i - 1] + grid[i][0]; 
+        for (int j = 1; j < n; j++) {
+            cur[0] += grid[0][j]; 
+            for (int i = 1; i < m; i++)
+                cur[i] = Math.Min(cur[i - 1], cur[i]) + grid[i][j];
+        }
+        return cur[m - 1] + grid[0][0];
+    }
+}
+```
+### 65. Valid Number
+Hard
+```c#
+using System.Text.RegularExpressions;
+public class Solution {
+    public bool IsNumber(string s) => new Regex(@"^[+-]?(\d+[.]?\d*|[.]\d+)(e[-+]?\d+)?$").IsMatch(s.ToLower().Trim());
+}
+```
+### 66. Plus One
+Easy
+```c#
+public class Solution {
+    public int[] PlusOne(int[] digits)
+    {
+        int carry = 1;
+        int index = digits.Length - 1;
+        while (index >= 0 && carry > 0)
+        {
+            digits[index] = (digits[index] + carry) % 10;
+            carry = digits[index] == 0 ? 1 : 0;
+            index--;
+        }
+
+        if (carry > 0)
+        {
+            digits = new int[digits.Length + 1];
+            digits[0] = 1;
+        }
+
+        return digits;
+    }
+}
+```
+### 67. Add Binary
+Easy
+```c#
+public class Solution {
+    public string AddBinary(string a, string b) {
+        int i = a.Length - 1; 
+        int j = b.Length - 1;
+        int c = 0;
+
+        var str = new StringBuilder();
+        while (i >= 0 || j >= 0 || c == 1) {
+            c += i >= 0 ? a[i--] - '0': 0;
+            c += j >= 0 ? b[j--] - '0': 0;
+            str.Insert(0, (c & 1).ToString());
+            c = c >> 1;
+        }
+
+        return str.ToString();
+    }
+}
+```
+### 68. Text Justification
+Hard
+```c#
+public class Solution {
+    public IList<string> FullJustify(string[] words, int maxWidth)
+    {
+        var result = new List<string>();
+        for (int i = 0, w, len = -1; i < words.Length; i = w, len = -1)
+        {
+            for (w = i; w < words.Length && len + words[w].Length + 1 <= maxWidth; w++)                
+                len += words[w].Length + 1;               
+            var strBuilder = new StringBuilder(words[i]);
+            int space = 1, extra = 0;
+            if (w != i + 1 && w != words.Length)
+                (space, extra) = ((maxWidth - len) / (w - i - 1) + 1, (maxWidth - len) % (w - i - 1));                
+            for (int j = i + 1; j < w; j++)
+            {
+                for (int s = space; s > 0; s--) strBuilder.Append(' ');
+                if (extra-- > 0) strBuilder.Append(' ');
+                strBuilder.Append(words[j]);
+            }
+            int strLen = maxWidth - strBuilder.Length;
+            while (strLen-- > 0) strBuilder.Append(' ');
+            result.Add(strBuilder.ToString());
+        }
+
+        return result;
+    }
+}
+```
+### 69. Sqrt(x)
+Easy
+```c#
+public class Solution {
+    public int MySqrt(int x) {
+        return (int)Math.Sqrt(x);
+    }
+}
+```
+### 70. Climbing Stairs
+Easy
+```c#
+public class Solution {
+    public int ClimbStairs(int n) {
+        int a = 1, b = 1;
+        while (n-- > 0)
+            a = (b += a) - a;
+        return a;
+    }
+}
+```
+### 71. Simplify Path
+Medium
+```c#
+public class Solution {
+    public string SimplifyPath(string path) {   
+        return "/"+string.Join("/", Path.GetFullPath(path).Split("/").Where(o=>!string.IsNullOrEmpty(o)));
+    }
+}
+```
+### 72. Edit Distance
+Hard
+```c#
+public class Solution {
+    public int MinDistance(string word1, string word2) => LevenshteinDistance(word1.ToArray(), word2.ToArray());        
+    public int LevenshteinDistance(char[] s1, char[] s2)
+    {
+        int s1p = s1.Length, s2p = s2.Length;
+        int[,] num = new int[s1p + 1, s2p + 1];
+        for (int i = 0; i <= s1p; i++)
+            num[i,0] = i;
+        for (int i = 0; i <= s2p; i++)
+            num[0,i] = i;
+        for (int i = 1; i <= s1p; i++)
+            for (int j = 1; j <= s2p; j++)
+                num[i,j] = Math.Min(Math.Min(num[i - 1,j] + 1,
+                        num[i,j - 1] + 1), num[i - 1,j - 1]
+                        + (s1[i - 1] == s2[j - 1] ? 0 : 1));
+        return num[s1p,s2p];
+    }
+}
+```
+### 73. Set Matrix Zeroes
+Medium
+```c#
+public class Solution {
+    public void SetZeroes(int[][] matrix) {
+        int col0 = 1, m = matrix.Length, n = matrix[0].Length;
+
+        for (int i = 0; i < m; i++)
+        {
+            if (matrix[i][0] == 0) col0 = 0;
+            for (int j = 1; j < n; j++)
+                if (matrix[i][j] == 0)
+                    matrix[i][0] = matrix[0][j] = 0;
+        }
+
+        for (int i = m - 1; i >= 0; i--)
+        {
+            for (int j = n - 1; j >= 1; j--)
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                    matrix[i][j] = 0;
+            if (col0 == 0) matrix[i][0] = 0;
+        }
+    }
+}
+```
+### 74. Search a 2D Matrix
+Medium
+```c#
+public class Solution {
+    public bool SearchMatrix(int[][] grid, int target) 
+    {
+        int m = grid.Length, n = grid[0].Length;
+        for (int j = 0; j < n; j++) 
+            for (int i = 0; i < m; i++)
+                if(grid[i][j] == target)
+                    return true;
+        return false;
+    }
+}
+```
+### 75. Sort Colors
+Medium
+```c#
+public class Solution {
+    //bucket sort
+    public void SortColors(int[] nums) {
+        int[] buckets = new int[3];
+        foreach(int num in nums) buckets[num]++;
+        for(int p = 0, val = 0; val < 3; val++) 
+            for(int count = 0; count < buckets[val]; count++) 
+                nums[p++] = val;           
+    }
+}
+```
+### 76. Minimum Window Substring
+Hard
+```c#
+public class Solution {
+    public string MinWindow(string input, string window)
+    {
+        var map = new int[256];
+        foreach (var c in window) map[c]++;
+        int counter = window.Length, begin = 0, end = 0, result = int.MaxValue, head = 0;
+        while (end < input.Length)
+        {
+            if (map[input[end++]]-- > 0) counter--;
+            while (counter == 0)
+            {
+                if (end - begin < result) result = end - (head = begin);
+                if (map[input[begin++]]++ == 0) counter++;
+            }
+        }
+        return result == int.MaxValue ? "" : input.Substring(head, result);
+    }
+}
+```
+### 77. Combinations
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> Combine(int n, int k)
+    {
+        var combs = new List<IList<int>>();
+        Dfs(combs, new List<int>(), 1, n, k);
+        return combs;
+    }
+    public void Dfs(List<IList<int>> combs, List<int> comb, int start, int n, int k)
+    {
+        if (k == 0)
+        {
+            combs.Add(new List<int>(comb));
+            return;
+        }
+        for (int i = start; i <= n - k + 1; i++)
+        {
+            comb.Add(i);
+            Dfs(combs, comb, i + 1, n, k - 1);
+            comb.RemoveAt(comb.Count - 1);
+        }
+    }
+}
+```
+### 78. Subsets
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> Subsets(int[] nums)
+    {
+        var list = new List<IList<int>>();
+        Array.Sort(nums);
+        BackTrack(list, new List<int>(), nums, 0);
+        return list;
+    }
+
+    private void BackTrack(List<IList<int>> list, List<int> buffer, int[] nums, int start)
+    {
+        list.Add(new List<int>(buffer));
+        for (int i = start; i < nums.Length; i++)
+        {
+            buffer.Add(nums[i]);
+            BackTrack(list, buffer, nums, i + 1);
+            buffer.RemoveAt(buffer.Count - 1);
+        }
+    }
+}
+```
+### 79. Word Search
+Medium
+```c#
+public class Solution {
+    public bool Exist(char[][] board, string word)
+    {
+        int m = board.Length, n = board[0].Length;
+        for (int i = 0; i < m; i++)            
+            for (int j = 0; j < n; j++)                
+                if (Search(board, i, j, word.ToArray(), 0))                    
+                    return true;                  
+        return false;
+    }
+
+    bool Search(char[][] board, int r, int c, char[] word, int wordI) 
+    {
+        if (word.Length == wordI) 
+            return true;
+        int m = board.Length, n = board[0].Length;
+        if (r< 0 || r >= m || c< 0 || c >= n || board[r][c] != word[wordI])
+            return false;        
+        board[r][c] = (char)0;
+        if (Search(board, r - 1 ,c, word, wordI+1) || Search(board, r + 1, c, word, wordI+1) ||
+            Search(board, r, c - 1, word, wordI+1) || Search(board, r, c + 1, word, wordI+1))
+            return true;        
+        board[r][c] = word[wordI];
+        return false;
+    }
+}
+```
+### 80. Remove Duplicates from Sorted Array II
+Medium
+```c#
+public class Solution {
+    public int RemoveDuplicates(int[] nums) {
+        int i = 0;
+        foreach (var n in nums)
+            if (i < 2 || n > nums[i-2])
+                nums[i++] = n;
+        return i;
+    }
+}
+```
+### 81. Search in Rotated Sorted Array II
+Medium
+```c#
+public class Solution {
+    public bool Search(int[] nums, int target) {
+        return Array.FindIndex(nums, o=> o == target) >= 0;
+    }
+}
+```
+### 82. Remove Duplicates from Sorted List II
+Medium
+```c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode DeleteDuplicates(ListNode head) {
+      	var list = new List<ListNode>();
+        for (ListNode i = head; i != null; i = i.next)
+        {
+            list.Add(i);
+        }
+		var withoutDuplicates = list.GroupBy(o=>o.val).Where(g=>g.Count()==1).Select(o=>o.First()).ToList();
+		int count = 0;
+        foreach(var i in withoutDuplicates)
+        {
+			i.next = (++count < withoutDuplicates.Count) 
+				? withoutDuplicates[count] 
+				: null;
+        }
+        return withoutDuplicates.FirstOrDefault();
+    }
+}
+```
+### 83. Remove Duplicates from Sorted List
+Easy
+```c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode DeleteDuplicates(ListNode head)
+    {
+        for (ListNode i = head; i != null; i = i.next)
+        {
+            while (i.next != null && i.val == i.next.val)
+                i.next = i.next?.next;
+        }
+        return head;
+    }
+}
+```
+### 84. Largest Rectangle in Histogram
+Hard
+```c#
+public class Solution {
+    public int LargestRectangleArea(int[] heights)
+    {
+        int n = heights.Length, max = 0, counter = -1;
+        var stack = new int[n + 1];
+        for (int i = 0; i <= n; stack[++counter] = i++)
+        {
+            int height = (i == n) ? 0 : heights[i];
+            while (counter != -1 && height < heights[stack[counter]])
+                max = Math.Max(max, heights[stack[counter--]] * ((counter == -1) ? i : i - 1 - stack[counter]));
+        }
+        return max;
+    }
+}
+```
+### 85. Maximal Rectangle
+Hard
+```c#
+public class Solution {
+    public int MaximalRectangle(char[][] matrix)
+    {
+        if (matrix.Length == 0) return 0;
+        int n = matrix[0].Length, max = 0; 
+        var heights = new int[n]; 
+        foreach (char[] row in matrix)
+        {
+            for (int i = 0; i < n; i++)                
+                heights[i] = (row[i] == '1') ? heights[i] + 1 : 0;                   
+            max = Math.Max(max, LargestRectangleArea(heights));
+        }
+        return max;
+    }
+    public int LargestRectangleArea(int[] heights)
+    {
+        int n = heights.Length, max = 0, counter = -1;
+        var stack = new int[n + 1];
+        for (int i = 0; i <= n; stack[++counter] = i++)
+        {
+            int height = (i == n) ? 0 : heights[i];
+            while (counter != -1 && height < heights[stack[counter]])
+                max = Math.Max(max, heights[stack[counter--]] * ((counter == -1) ? i : i - 1 - stack[counter]));
+        }
+        return max;
+    }
+}
+```
+### 86. Partition List
+Medium
+```c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode Partition(ListNode head, int x)
+    {
+        ListNode minNode = new ListNode(0), maxNode = new ListNode(0), min = minNode, max = maxNode;
+        for (; head != null; head = head.next)            
+            if (head.val < x)
+                min = min.next = head;
+            else
+                max = max.next = head;      
+        min.next = maxNode.next;
+        max.next = null;
+        return minNode.next;
+    }
+}
+```
+### 87. Scramble String
+Hard
+```c#
+public class Solution {
+    public bool IsScramble(string s1, string s2) 
+    {
+        if (s1.Length != s2.Length) 
+            return false;
+        
+        var len = s1.Length;
+        return IsRangeScramble(s1, s2, 0, 0, s1.Length, new byte[len, len, len + 1]) == TRUE;
+    }
+    
+    const byte NA = 0;
+    const byte TRUE = 1;
+    const byte FALSE = 2;
+    
+    public byte IsRangeScramble(string s1, string s2, int i, int j, int length, byte[,,] dp)
+    {
+        if (length <= 1)
+        {
+            return length == 0 || s1[i] == s2[j] ? TRUE : FALSE;
+        }
+        
+        var canScramble = dp[i, j, length];
+        if (canScramble == NA)
+        {
+            for (int firstLen = 1; firstLen < length && canScramble != TRUE; firstLen++)
+            {
+                var secondLen = length - firstLen;
+                if ((IsRangeScramble(s1, s2, i, j, firstLen, dp) == TRUE && 
+                     IsRangeScramble(s1, s2, i + firstLen, j + firstLen, secondLen, dp) == TRUE) ||
+                    (IsRangeScramble(s1, s2, i + secondLen, j, firstLen, dp) == TRUE && 
+                     IsRangeScramble(s1, s2, i, j + firstLen, length - firstLen, dp) == TRUE))
+                {
+                    canScramble = TRUE;
+                }
+            }
+            return (dp[i, j, length] = (canScramble == TRUE ? TRUE : FALSE));
+        }
+        return canScramble;
+    }
+}
+```
+### 88. Merge Sorted Array
+Easy
+```c#
+public class Solution {
+    public void Merge(int[] nums1, int m, int[] nums2, int n) {
+        Buffer.BlockCopy(nums2, 0 * 4, nums1, (m) * 4, (n) * 4);
+        Array.Sort(nums1);
+    }
+}
+```
+### 89. Gray Code
+Medium
+```c#
+public class Solution {
+    public IList<int> GrayCode(int n) {
+        var result = new List<int>();
+        for (int i = 0; i < 1<<n; i++) 
+            result.Add(i ^ i>>1);
+        return result;
+    }
+}
+```
+### 90. Subsets II
+Medium
+```c#
+public class Solution {
+    public IList<IList<int>> SubsetsWithDup(int[] nums) 
+    {
+        var list = new List<IList<int>>();
+        Array.Sort(nums);
+        BackTrack(list, new List<int>(), nums, 0);
+        return list;
+    }
+
+    private void BackTrack(List<IList<int>> list, List<int> buffer, int[] nums, int start)
+    {
+        list.Add(new List<int>(buffer));
+        for (int i = start; i < nums.Length; i++)
+        {
+            if(i > start && nums[i] == nums[i-1]) continue;
+            buffer.Add(nums[i]);
+            BackTrack(list, buffer, nums, i + 1);
+            buffer.RemoveAt(buffer.Count - 1);
+        }
+    }
+}
+```
+### 91. Decode Ways
+Medium
+```c#
+public class Solution {
+    public int NumDecodings(string s)
+    {
+        if (s == null || s.Length == 0)
+        {
+            return 0;
+        }
+        var chars = s.ToArray();
+        var dp = new int[chars.Length];
+        dp[0] = chars[0] == '0' ? 0 : 1;
+        for (int i = 1; i < chars.Length; i++)
+        {
+            if (chars[i] >= '1' && chars[i] <= '9')                
+                dp[i] = dp[i - 1];                
+            if ((chars[i - 1] == '1' && chars[i] >= '0' && chars[i] <= '9') 
+                || (chars[i - 1] == '2' && chars[i] >= '0' && chars[i] <= '6'))                
+                dp[i] += i >= 2 ? dp[i - 2] : 1;                
+        }
+        return dp[chars.Length - 1];
+    }
+}
+```
+### 92. Reverse Linked List II
+Medium
+```c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode ReverseBetween(ListNode head, int left, int right) {
+        var list = new List<ListNode>();
+        for (ListNode i = head; i != null; i = i.next)
+            list.Add(i);
+        var result = list.Take(left-1)
+            .Concat(list.Skip(left-1).Take(right - left + 1).Reverse())
+            .Concat(list.Skip(right)).ToList();
+        var count = 0;
+        foreach(var item in result)
+            item.next = (++count < result.Count) ? result[count] : null;
+        return result.FirstOrDefault();
+    }
+}
+```
+### 93. Restore IP Addresses
+Medium
+```c#
+public class Solution {
+    public IList<string> RestoreIpAddresses(string s)
+    {
+        int[] n;
+        var ret = new List<string>();
+        var ip = new StringBuilder();
+        for (int a = 1; a < 4; ++a)
+            for (int b = 1; b < 4; ++b)
+                for (int c = 1; c < 4; ++c)
+                    for (int d = 1; d < 4; ++d)						
+                        if (a + b + c + d == s.Length)
+                            if ((n = new int[] {
+                                int.Parse(s.Substring(0, a)),
+                                int.Parse(s.Substring(a, b)),
+                                int.Parse(s.Substring(a + b, c)),
+                                int.Parse(s.Substring(a + b + c, s.Length - a - b - c)),
+                            }).All(o => o <= 255))
+                            {
+                                ip.Append($"{n[0]}.{n[1]}.{n[2]}.{n[3]}");
+                                if (ip.Length == s.Length + 3) ret.Add(ip.ToString());
+                                ip.Remove(0, ip.Length);
+                            }						
+        return ret;
+    }
+}
+```
+### 94. Binary Tree Inorder Traversal
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<int> InorderTraversal(TreeNode root) {
+        IList<int> list = new List<int>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        while (node != null || stack.Count > 0)
+        {
+            if (node != null)
+            {
+                stack.Push(node);
+                node = node.left;
+            }
+            else
+            {
+                node = stack.Pop();
+                list.Add(node.val);
+                node = node.right;
+            }
+        }
+        
+        return list;
+    }
+}
+```
+### 95. Unique Binary Search Trees II
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public List<TreeNode> GenerateTrees(int n)
+    {
+        var result = new List<TreeNode>();
+        if (n == 0)        
+            return result;        
+        result.Add(null);
+        for (int i = 1; i <= n; i++)
+        {
+            var temp = new List<TreeNode>();
+            foreach (var node in result)
+            {
+                var root = new TreeNode(i) { left = DeepCopy(node) };
+                temp.Add(root);
+
+                if (node == null)
+                {
+                    continue;
+                }
+                var item = node;
+                while (item.right != null)
+                {
+                    root = new TreeNode(i);
+                    var swap = item.right;
+                    item.right = root;
+                    root.left = swap;
+                    temp.Add(DeepCopy(node));
+                    item.right = swap;
+                    item = item.right;
+                }
+                root = new TreeNode(i);
+                item.right = root;
+                temp.Add(DeepCopy(node));
+                item.right = null;
+            }
+            result = new List<TreeNode>(temp);
+        }
+        return result;
+    }
+
+    private TreeNode DeepCopy(TreeNode root) => root == null
+        ? null
+        : new TreeNode(root.val)
+        {
+            left = DeepCopy(root.left),
+            right = DeepCopy(root.right)
+        };
+}
+```
+### 96. Unique Binary Search Trees
+Medium
+```c#
+public class Solution {
+    Dictionary<int, int> map = new Dictionary<int, int>{{0, 1}, {1, 1}};
+    public int NumTrees(int n, int sum = 0) 
+    {        
+        if(map.ContainsKey(n)) return map[n];
+        for(int i = 1; i <= n; i++)
+            sum += NumTrees(i-1) * NumTrees(n-i);
+        return map[n] = sum;
+    }
+}
+```
+### 97. Interleaving String
+Medium
+```c#
+public class Solution {
+    public bool IsInterleave(string s1, string s2, string s3)
+    {
+        var len = new int[] { s1.Length, s2.Length, s3.Length };            
+        if (len[0] > len[1]) return IsInterleave(s2, s1, s3);
+        if (len[2] != len[0] + len[1]) return false;
+        var dp = new bool[len[0] + 1];
+        dp[0] = true;
+        for (int i = 1; i <= len[0]; i++)
+            dp[i] = dp[i - 1] && s3[i - 1] == s1[i - 1];
+        for (int j = 1; j <= len[1]; j++) {
+            dp[0] = dp[0] && s3[j - 1] == s2[j - 1];
+            for (int i = 1; i <= len[0]; i++)
+                dp[i] = (dp[i - 1] && s3[i + j - 1] == s1[i - 1]) || (dp[i] && s3[i + j - 1] == s2[j - 1]);
+        }
+        return dp[len[0]];
+    }
+}
+```
+### 98. Validate Binary Search Tree
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsValidBST(TreeNode root) => BackTrack(root, null, null);
+    private bool BackTrack(TreeNode root, int? low, int? high)
+    {
+        if (root == null) return true;
+        if (low != null && root.val <= low || high != null && root.val >= high) return false;
+        return BackTrack(root.left, low, root.val) && BackTrack(root.right, root.val, high);
+    }
+}
+```
+### 99. Recover Binary Search Tree
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    TreeNode last = null;
+    TreeNode a = null;
+    TreeNode b = null;
+    public void RecoverTree(TreeNode root)
+    {
+        BackTrack(root);
+        Swap(ref a.val, ref b.val);
+    }
+    private void BackTrack(TreeNode node)
+    {
+        if (node == null) return;
+        BackTrack(node.left);
+        if (last != null)
+        {
+            if (last.val >= node.val)
+            {
+                if (a == null)
+                    a = last;
+                b = node;
+            }
+        }
+        last = node;
+        BackTrack(node.right);
+    }
+    private void Swap<T>(ref T i, ref T j)
+    {
+        T swap = i;
+        i = j;
+        j = swap;
+    }
+}
+```
+### 100. Same Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsSameTree(TreeNode p, TreeNode q) {
+        if(p == null && q == null) return true;
+        if(p == null || q == null) return false;
+        if(p.val == q.val)
+            return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
+        return false;
+    }
+}
+```
+### 101. Symmetric Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsSymmetric(TreeNode root) => root == null || Compare(root.left, root.right);
+    private bool Compare(TreeNode left, TreeNode right)
+    {
+        if (left == null || right == null)
+            return left == right;
+        if (left.val != right.val)
+            return false;
+        return Compare(left.left, right.right) &&
+               Compare(left.right, right.left);
+    }
+}
+```
