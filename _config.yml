@@ -11,7 +11,4 @@ include:
   - ProjectEulerJava.md
   - AlgorithmsJava.md
 
-title: Type on Strap                                    # site's title
-description: "A website with blog posts and pages"      # used by search engines
-
 remote_theme: sylhare/Type-on-Strap 
