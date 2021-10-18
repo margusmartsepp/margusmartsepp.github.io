@@ -11,4 +11,4 @@ include:
   - ProjectEulerJava.md
   - AlgorithmsJava.md
 
-remote_theme: sylhare/Type-on-Strap 
+remote_theme: "mmistakes/jekyll-theme-skinny-bones"
