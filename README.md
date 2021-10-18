@@ -1,9 +1,13 @@
 ## Problemsets
-- [Project Euler - Java](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/ProjectEulerJava.md) 2009 Aug 28 - Sep 9,
-- [Codewars - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/CodewarsC%23.md) 2021 Jan  
-- [LeetCode - C#](LeetCodeC%23.md) 2021 Sep 20 - Current (test relative link)
-- **HackerRank** - C# 2016-2021
+- [Project Euler - Java](ProjectEulerJava.html) 2009 Aug 28 - Sep 9,
+- [Codewars - C#](CodewarsC%23.html) 2021 Jan,
+- [LeetCode - C#](LeetCodeC%23.html) 2021 Sep 20 - Current,
+- [HackerRank - C#](HackerRankC%23.html),
+
+## Algorithms
+- [Algorithms - Java](AlgorithmsJava.html),
+- [Algorithms - C#](AlgorithmsC%23.html),
 
 ## Presentations and documents
-- [Protobuf](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Presentations/Protobuf.pptx) 
-- [GIT cheatsheet](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/GitCheatSheet.md) 
+- [Protobuf](Presentations/Protobuf.pptx),
+- [GIT cheatsheet](GitCheatSheet.html),
