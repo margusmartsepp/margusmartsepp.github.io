@@ -2386,7 +2386,11 @@ public class Solution {
 Medium
 ```c#
 public class Solution {
-    Dictionary<int, int> map = new Dictionary<int, int>{{0, 1}, {1, 1}};
+    Dictionary<int, int> map = new Dictionary<int, int>
+    {   
+        {0, 1}, 
+        {1, 1}
+    };
     public int NumTrees(int n, int sum = 0) 
     {        
         if(map.ContainsKey(n)) return map[n];
