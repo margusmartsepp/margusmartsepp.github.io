@@ -2552,3 +2552,92 @@ public class Solution {
     }
 }
 ```
+### 102. Binary Tree Level Order Traversal
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> LevelOrder(TreeNode root) => Visitor(root, 0, new List<IList<int>>());
+    private IList<IList<int>> Visitor(TreeNode root, int level, List<IList<int>> result)
+    {
+        if (root == null)
+            return result;			
+        if (level == result.Count)
+            result.Add(new List<int>());
+        result[level].Add(root.val);
+        Visitor(root.left, level + 1, result);
+        Visitor(root.right, level + 1, result);
+        return result;
+    }
+}
+```
+### 103. Binary Tree Zigzag Level Order Traversal
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> ZigzagLevelOrder(TreeNode root) 
+    {
+        var result = Visitor(root, 0, new List<IList<int>>());
+        for(var i = 0; i < result.Count; i++)        
+            if(i % 2 == 1)            
+                result[i] = result[i].Reverse().ToList();
+        return result;
+    }
+    private IList<IList<int>> Visitor(TreeNode root, int level, List<IList<int>> result)
+    {
+        if (root == null)
+            return result;			
+        if (level == result.Count)
+            result.Add(new List<int>());
+        result[level].Add(root.val);
+        Visitor(root.left, level + 1, result);
+        Visitor(root.right, level + 1, result);
+        return result;
+    }
+}
+```
+### 104. Maximum Depth of Binary Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public int MaxDepth(TreeNode root) => root == null ? 0 : 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
+}
+```
