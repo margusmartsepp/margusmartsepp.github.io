@@ -8,4 +8,4 @@ include:
   - LeetCodeC#.md
   - ProjectEulerJava.md
   - AlgorithmsJava.md
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: TaylanTatli/Moon
