@@ -1,7 +1,7 @@
 ## Problemsets
 - [Project Euler - Java](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/ProjectEulerJava.md) 2009 Aug 28 - Sep 9,
 - [Codewars - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/CodewarsC%23.md) 2021 Jan  
-- [LeetCode - C#](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/LeetCodeC%23.md) 2021 Sep 20 - Current
+- [LeetCode - C#](LeetCodeC%23.md) 2021 Sep 20 - Current (test relative link)
 - **HackerRank** - C# 2016-2021
 
 ## Presentations and documents
