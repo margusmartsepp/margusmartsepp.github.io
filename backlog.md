@@ -48,3 +48,24 @@ public TreeNode SortedArrayToBST(int[] nums, int lower, int higher)
     };
 }
 ```
+### 
+```C#
+public ListNode[] SplitListToParts(ListNode head, int k)
+{
+    var list = new List<ListNode>();
+    var first = new ListNode[k];
+    for (var i = head; i != null; i = i.next)
+        list.Add(i);
+    if (list.Count <= k)
+        return list.Select(g => {
+            g.next = null;
+            return g;
+        }).Concat(Enumerable.Range(1, k - list.Count()).Select(o => (ListNode)null)).ToArray();
+    return list.Select((o, i) => (Node: o, Id: i ))
+        .GroupBy((x) => ( Math.Floor(x.Id * (double)k / list.Count)))
+        .Select(g => {
+            g.Last().Node.next = null;
+            return g.First().Node;
+        }).ToArray();
+}
+```
