@@ -8,4 +8,4 @@ include:
   - LeetCodeC#.md
   - ProjectEulerJava.md
   - AlgorithmsJava.md
-remote_theme: daattali/beautiful-jekyll
+remote_theme: poole / lanyon
