@@ -8,4 +8,4 @@ include:
   - LeetCodeC#.md
   - ProjectEulerJava.md
   - AlgorithmsJava.md
-theme: jekyll-theme-leap-day
+theme: mmistakes/minimal-mistakes
