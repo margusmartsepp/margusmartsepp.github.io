@@ -1,3 +1,5 @@
+baseurl: "/margusmartsepp"
+url: "https://margusmartsepp.github.io"
 plugins:
   - jekyll-relative-links
 relative_links:
@@ -8,4 +10,8 @@ include:
   - LeetCodeC#.md
   - ProjectEulerJava.md
   - AlgorithmsJava.md
-remote_theme: Wiredcraft/carte
+
+title: Type on Strap                                    # site's title
+description: "A website with blog posts and pages"      # used by search engines
+
+remote_theme: sylhare/Type-on-Strap 
