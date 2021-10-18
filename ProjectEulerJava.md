@@ -1,3 +1,4 @@
+## Project Euler - Java
 ### Problem 1: Add all the natural numbers below one thousand that are multiples of 3 or 5.
 Time: ~0.001 s
 ```java

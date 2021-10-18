@@ -1,3 +1,4 @@
+# GIT Cheat Sheet
 ## Basics
 Revert local commit:
 ```bash

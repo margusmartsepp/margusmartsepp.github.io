@@ -1,4 +1,5 @@
 
+# Algorithms - C#
 ## Fast Inverse Squere Root aka Quake  III Algorithm
 Following has some minor improvements over the original ( see [youtube](https://www.youtube.com/watch?v=p8u_k2LIZyo), see [stackoverflow](https://stackoverflow.com/questions/268853/is-it-possible-to-write-quakes-fast-invsqrt-function-in-c) ). Original was using an inferior constant value ```0x5f3759df``` ( see [paper](http://www.lomont.org/papers/2003/InvSqrt.pdf) ) and unsafe pointer casts. Furthermore, the readability of the document has been improved by separating functionality into three methods. By default, compile-time optimizations would inline method calls in Release config, but optional implementation attribute ```AggressiveInlining``` ensures that we will not lose performance.
 ```c#
