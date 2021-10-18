@@ -8,4 +8,4 @@ include:
   - LeetCodeC#.md
   - ProjectEulerJava.md
   - AlgorithmsJava.md
-remote_theme: andrewbanchich/forty-jekyll-theme
+remote_theme: "dracula/gh-pages"
