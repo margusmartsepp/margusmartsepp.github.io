@@ -1,12 +1,12 @@
-## Problemsets
-- [Project Euler - Java](ProjectEulerJava.html) 2009 Aug 28 - Sep 9,
-- [Codewars - C#](CodewarsC%23.html) 2021 Jan,
-- [LeetCode - C#](LeetCodeC%23.html) 2021 Sep 20 - Current,
-- [HackerRank - C#](HackerRankC%23.html),
+## ``C#`` Problemsets & Algorithms
+- [LeetCode](LeetCodeC%23.html),
+- [Codewars](CodewarsC%23.html),
+- [HackerRank](HackerRankC%23.html),
+- [Algorithms](AlgorithmsC%23.html),
 
-## Algorithms
-- [Algorithms - Java](AlgorithmsJava.html),
-- [Algorithms - C#](AlgorithmsC%23.html),
+## ``Java`` Problemsets & Algorithms
+- [Project Euler](ProjectEulerJava.html),
+- [Algorithms](AlgorithmsJava.html),
 
 ## Presentations and documents
 - [Protobuf](Presentations/Protobuf.pptx),
