@@ -12,3 +12,4 @@ include:
   - AlgorithmsJava.md
 
 remote_theme: "mmistakes/jekyll-theme-skinny-bones"
+theme: jekyll-theme-time-machine
