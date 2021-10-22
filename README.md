@@ -1,13 +1,13 @@
 ## ``C#`` Problemsets & Algorithms
-- [LeetCode](LeetCodeC%23.html),
-- [Codewars](CodewarsC%23.html),
-- [HackerRank](HackerRankC%23.html),
-- [Algorithms](AlgorithmsC%23.html),
+- [LeetCode](LeetCodeC%23),
+- [Codewars](CodewarsC%23),
+- [HackerRank](HackerRankC%23),
+- [Algorithms](AlgorithmsC%23),
 
 ## ``Java`` Problemsets & Algorithms
-- [Project Euler](ProjectEulerJava.html),
-- [Algorithms](AlgorithmsJava.html),
+- [Project Euler](ProjectEulerJava),
+- [Algorithms](AlgorithmsJava),
 
 ## Presentations and documents
 - [Protobuf](Presentations/Protobuf.pptx),
-- [GIT cheatsheet](GitCheatSheet.html),
+- [GIT cheatsheet](GitCheatSheet),
