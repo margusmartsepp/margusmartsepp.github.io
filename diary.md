@@ -6,8 +6,18 @@
   * [ ] Attend a seminar/course about Agile and Lean. Propose and implement improvements in current Blackstar process. Make knowledge sharing presentation and present it to help others reach their goal of improving our IT processes and methodologies.
     * [x] Agile Organizations: DevOps & Agile (Percipio) [Started: 2021/10/20, Completed: 2021/10/20, Score: 100%]
     * [x] Agile Software Development: Agile Development Life Cycle [Started: 2021/10/21, Completed: 2021/10/21, Score: 100%]
+
 # Daily 
-## 2021/10/22 Monday
+## 2021/10/26 Tuesday
+* [ ] CORE-243 Make sure SSIS works with new config
+  * [x] check how it worked on master, migration issues, check out earlier version
+* [ ] CORE-267 Improve message CompressedResult (on hold)
+  * [x] Make notes to the JIRA story 
+    * [x] ServerRequestLogger.RequestCompleted, 
+    * [x] AppHost.OnAfterExecute Task.WaitAny extension method
+  * [x] Add feedback to pull request
+
+## 2021/10/25 Monday
 ### Work
 * [ ] CORE-243 Make sure SSIS works with new config
   * [x] Get latest CORE-29 and set up personal config from ConfigTemplates
@@ -22,7 +32,7 @@
 ### Other
 * [x] Filed a bug about archived outlook messages
 * [x] Made sure CORE-29 builds on TC
-* [x] Helped Yurii with xunit test execution order
+* [x] Helped Yurii with xunit test execution order where db schema test had 
 
 ## 2021/10/22 Friday
 ### Other
