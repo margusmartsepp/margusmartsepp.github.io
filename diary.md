@@ -13,17 +13,20 @@
 * [ ] Go to HR to pick up summer 2021 gift 
 
 # Daily 
-## 2021/10/26 Tuesday
+## 2021/10/26 Wednesday
 * [ ] CORE-243 Make sure SSIS works with new config
   * [x] check how it worked on master, migration issues, check out earlier version
     * [x] handle migration issues, use vm-gva-sqld01 db's, cache etc
     * [x] the server side running the ssis needs to have approprite binaries 
-    * [ ] install DTSRuntimeWrap v12 to 64bit GAC, libary itself is not enough
+    * [x] install DTSRuntimeWrap v12 to 64bit GAC, libary itself is not enough
+      * [x] change expired privileged account password
   * [ ] may need to restore app.config and not use appsettings.area.json
 ### Other
 * [x] Helped Petar with sql migration naming
 * [x] Helped Yevhen with what to do if he fails to connec to Singapore preprod server
 * [x] Helped Hui Ru with connection issues, but still unresolved 
+* [x] Helped Antonio with loggin in as alternative user
+* [x] Helped Antonio resolve user problems, his build, config issues, set up a physical deal and made sure he is nolonger suck
 
 ## 2021/10/26 Tuesday
 * [ ] CORE-243 Make sure SSIS works with new config
