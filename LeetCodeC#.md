@@ -2553,3 +2553,694 @@ public class Solution {
     }
 }
 ```
+### 102. Binary Tree Level Order Traversal
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> LevelOrder(TreeNode root) => Visitor(root, 0, new List<IList<int>>());
+    private IList<IList<int>> Visitor(TreeNode root, int level, List<IList<int>> result)
+    {
+        if (root == null)
+            return result;			
+        if (level == result.Count)
+            result.Add(new List<int>());
+        result[level].Add(root.val);
+        Visitor(root.left, level + 1, result);
+        Visitor(root.right, level + 1, result);
+        return result;
+    }
+}
+```
+### 103. Binary Tree Zigzag Level Order Traversal
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> ZigzagLevelOrder(TreeNode root) 
+    {
+        var result = Visitor(root, 0, new List<IList<int>>());
+        for(var i = 0; i < result.Count; i++)        
+            if(i % 2 == 1)            
+                result[i] = result[i].Reverse().ToList();
+        return result;
+    }
+    private IList<IList<int>> Visitor(TreeNode root, int level, List<IList<int>> result)
+    {
+        if (root == null)
+            return result;			
+        if (level == result.Count)
+            result.Add(new List<int>());
+        result[level].Add(root.val);
+        Visitor(root.left, level + 1, result);
+        Visitor(root.right, level + 1, result);
+        return result;
+    }
+}
+```
+### 104. Maximum Depth of Binary Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public int MaxDepth(TreeNode root) => root == null ? 0 : 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
+}
+```
+### 105. Construct Binary Tree from Preorder and Inorder Traversal
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {    
+    public TreeNode BuildTree(int[] preorder, int[] inorder, int inCount = 0, int preCount = 0) => 
+        Visitor(preorder, inorder, int.MinValue, ref inCount, ref preCount);    
+    private TreeNode Visitor(int[] preorder, int[] inorder, int stop, ref int inCount, ref int preCount)
+    {
+        if (preCount >= preorder.Length) 
+            return null;
+        if (inorder[inCount] == stop) {
+            inCount++;
+            return null;
+        }
+        return new TreeNode(preorder[preCount++])
+        {
+            left = Visitor(preorder, inorder, preorder[preCount-1], ref inCount, ref preCount),
+            right = Visitor(preorder, inorder, stop, ref inCount, ref preCount),
+        };       
+    }
+}
+```
+### 106. Construct Binary Tree from Inorder and Postorder Traversal
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public TreeNode SortedListToBST(ListNode head) => ToBST(head, null);
+    private TreeNode ToBST(ListNode head, ListNode tail)
+    {
+        if (head == null || head == tail)
+            return null;
+        if (head.next == tail)
+            return new TreeNode(head.val);
+        ListNode fast = head, slow = head;
+        while (fast != tail && fast.next != tail)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return new TreeNode(slow.val)
+        {
+            left = ToBST(head, slow),
+            right = ToBST(slow.next, tail)
+        };
+    }
+}
+```
+### 107. Binary Tree Level Order Traversal II
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> LevelOrderBottom(TreeNode root) => Visitor(root, 0, new List<IList<int>>()).Reverse().ToList();
+    private IList<IList<int>> Visitor(TreeNode root, int level, List<IList<int>> result)
+    {
+        if (root == null)
+            return result;			
+        if (level == result.Count)
+            result.Add(new List<int>());
+        result[level].Add(root.val);
+        Visitor(root.left, level + 1, result);
+        Visitor(root.right, level + 1, result);
+        return result;
+    }
+}
+```
+### 108. Convert Sorted Array to Binary Search Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public TreeNode SortedArrayToBST(int[] nums) => SortedArrayToBST(nums, 0, nums.Length - 1);
+    public TreeNode SortedArrayToBST(int[] nums, int lower, int higher)
+    {
+        if (lower > higher) return null;
+        int mid = (higher - lower) / 2 + lower;
+        return new TreeNode(nums[mid])
+        {
+            left = SortedArrayToBST(nums, lower, mid - 1),
+            right = SortedArrayToBST(nums, mid + 1, higher)
+        };
+    }
+}
+```
+### 109. Convert Sorted List to Binary Search Tree
+Medium
+```c#
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public TreeNode SortedListToBST(ListNode head) => ToBST(head, null);
+    private TreeNode ToBST(ListNode head, ListNode tail)
+    {
+        if (head == null || head == tail)
+            return null;
+        if (head.next == tail)
+            return new TreeNode(head.val);
+        ListNode fast = head, slow = head;
+        while (fast != tail && fast.next != tail)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return new TreeNode(slow.val)
+        {
+            left = ToBST(head, slow),
+            right = ToBST(slow.next, tail)
+        };
+    }
+}
+```
+### 110. Balanced Binary Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsBalanced(TreeNode root) {
+        return Height(root) != -1;
+    }
+    
+    int Height (TreeNode root, int l = 0, int r = 0) 
+    {        
+        if (root == null) return 0;    
+        if ((l = Height(root.left)) == -1) return -1;
+        if ((r = Height(root.right)) == -1) return -1;        
+        if (Math.Abs(l - r) > 1)  return -1;
+        return Math.Max(l, r) + 1;
+    }
+}
+```
+### 111. Minimum Depth of Binary Tree
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public int MinDepth(TreeNode root) 
+    {
+        if (root == null) 
+            return 0;
+        int L = MinDepth(root.left);
+        int R = MinDepth(root.right);
+        return L < R && L > 0 || R < 1 
+            ? 1 + L 
+            : 1 + R;
+    }
+}
+```
+### 112. Path Sum
+Easy
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool HasPathSum(TreeNode root, int sum) {
+        if(root == null) return false;
+        if(root.left == null && root.right == null) return root.val == sum;
+        return HasPathSum(root.left, sum - root.val) || HasPathSum(root.right, sum - root.val);
+    }
+}
+```
+### 113. Path Sum II
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> PathSum(TreeNode root, int targetSum)
+    {
+        var paths = new List<IList<int>>();
+        FindPaths(root, targetSum, new List<int>(), paths);
+        return paths;
+    }
+
+    public void FindPaths(TreeNode node, int targetSum, IList<int> path, IList<IList<int>> paths)
+    {
+        if (node == null) 
+            return;
+        path.Add(node.val);
+        if (node.left == null && node.right == null && targetSum == node.val)
+            paths.Add(path.ToList());
+        FindPaths(node.left, targetSum - node.val, path, paths);
+        FindPaths(node.right, targetSum - node.val, path, paths);
+        path.RemoveAt(path.Count - 1);
+    }
+}
+```
+### 114. Flatten Binary Tree to Linked List
+Medium
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public void Flatten(TreeNode root)
+    {
+        while (root != null)
+        {
+            if (root.left != null)
+            {
+                TreeNode prev = root.left;
+                while (prev.right != null)                
+                    prev = prev.right;                
+                prev.right = root.right;
+                root.right = root.left;
+                root.left = null;
+            }
+            root = root.right;
+        }
+    }
+}
+```
+### 115. Distinct Subsequences
+Hard
+```c#
+public class Solution {
+    public int NumDistinct(string a, string b)
+    {
+        if (a == null || b == null) return 0;
+        var mem = new int[a.Length, b.Length];
+        for (int i = 0; i < mem.GetLength(0); i++)
+            for (int j = 0; j < mem.GetLength(1); j++)
+                mem[i, j] = -1;
+        return BackTrack(a, b, mem, 0, 0);
+    }
+    private int BackTrack(string a, string b, int[,] mem, int aFrom, int bFrom)
+    {
+        if (aFrom == a.Length && bFrom < b.Length) return 0;
+        if (bFrom == b.Length) return 1;
+        if (mem[aFrom, bFrom] != -1) return mem[aFrom, bFrom];
+        return a[aFrom] == b[bFrom]
+            ? (mem[aFrom, bFrom] = BackTrack(a, b, mem, aFrom + 1, bFrom) + BackTrack(a, b, mem, aFrom + 1, bFrom + 1))
+            : (mem[aFrom, bFrom] = BackTrack(a, b, mem, aFrom + 1, bFrom));
+    }
+}
+```
+### 116. Populating Next Right Pointers in Each Node
+Medium
+```c#
+/*
+// Definition for a Node.
+public class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+}
+*/
+
+public class Solution {
+    public Node Connect(Node root)
+    {
+        var level_start = root;
+        while (level_start != null)
+        {
+            var current = level_start;
+            while (current != null)
+            {
+                if (current.left != null) current.left.next = current.right;
+                if (current.right != null && current.next != null) current.right.next = current.next.left;
+
+                current = current.next;
+            }
+            level_start = level_start.left;
+        }
+        return root;
+    }
+}
+```
+### 117. Populating Next Right Pointers in Each Node II
+Medium
+```c#
+/*
+// Definition for a Node.
+public class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+}
+*/
+
+public class Solution {
+    public Node Connect(Node root)
+	{
+		if (root == null)
+		{
+			return null;
+		}
+		var location = root;
+		var next = new Node(0);
+		var current = next;
+		while (location != null)
+		{
+			if (location.left != null)
+			{
+				current.next = location.left;
+				current = current.next;
+			}
+			if (location.right != null)
+			{
+				current.next = location.right;
+				current = current.next;
+			}
+			if (location.next != null)
+			{
+				location = location.next;
+			}
+			else
+			{
+				location = next.next;
+				next.next = null;
+				current = next;
+			}
+		}
+        return root;
+	}
+}
+```
+### 118. Pascal's Triangle
+Easy
+```c#
+public class Solution {
+private System.Numerics.BigInteger[] factorial = new string[] { "1", "1", "2", "6", "24", "120", "720", "5040", "40320", "362880", "3628800", "39916800", "479001600", "6227020800", "87178291200", "1307674368000", "20922789888000", "355687428096000", "6402373705728000", "121645100408832000", "2432902008176640000", "51090942171709440000", "1124000727777607680000", "25852016738884976640000", "620448401733239439360000", "15511210043330985984000000", "403291461126605635584000000", "10888869450418352160768000000", "304888344611713860501504000000", "8841761993739701954543616000000", "265252859812191058636308480000000", "8222838654177922817725562880000000", "263130836933693530167218012160000000", "8683317618811886495518194401280000000", "295232799039604140847618609643520000000", "10333147966386144929666651337523200000000", "371993326789901217467999448150835200000000", "13763753091226345046315979581580902400000000", "523022617466601111760007224100074291200000000", "20397882081197443358640281739902897356800000000", "815915283247897734345611269596115894272000000000", "33452526613163807108170062053440751665152000000000", "1405006117752879898543142606244511569936384000000000", "60415263063373835637355132068513997507264512000000000", "2658271574788448768043625811014615890319638528000000000", "119622220865480194561963161495657715064383733760000000000", "5502622159812088949850305428800254892961651752960000000000", "258623241511168180642964355153611979969197632389120000000000", "12413915592536072670862289047373375038521486354677760000000000", "608281864034267560872252163321295376887552831379210240000000000", "30414093201713378043612608166064768844377641568960512000000000000", "1551118753287382280224243016469303211063259720016986112000000000000", "80658175170943878571660636856403766975289505440883277824000000000000", "4274883284060025564298013753389399649690343788366813724672000000000000", "230843697339241380472092742683027581083278564571807941132288000000000000", "12696403353658275925965100847566516959580321051449436762275840000000000000", "710998587804863451854045647463724949736497978881168458687447040000000000000", "40526919504877216755680601905432322134980384796226602145184481280000000000000", "2350561331282878571829474910515074683828862318181142924420699914240000000000000", "138683118545689835737939019720389406345902876772687432540821294940160000000000000", "8320987112741390144276341183223364380754172606361245952449277696409600000000000000", "507580213877224798800856812176625227226004528988036003099405939480985600000000000000", "31469973260387937525653122354950764088012280797258232192163168247821107200000000000000", "1982608315404440064116146708361898137544773690227268628106279599612729753600000000000000", "126886932185884164103433389335161480802865516174545192198801894375214704230400000000000000", "8247650592082470666723170306785496252186258551345437492922123134388955774976000000000000000", "544344939077443064003729240247842752644293064388798874532860126869671081148416000000000000000", "36471110918188685288249859096605464427167635314049524593701628500267962436943872000000000000000", "2480035542436830599600990418569171581047399201355367672371710738018221445712183296000000000000000", "171122452428141311372468338881272839092270544893520369393648040923257279754140647424000000000000000", "11978571669969891796072783721689098736458938142546425857555362864628009582789845319680000000000000000", "850478588567862317521167644239926010288584608120796235886430763388588680378079017697280000000000000000", "61234458376886086861524070385274672740778091784697328983823014963978384987221689274204160000000000000000", "4470115461512684340891257138125051110076800700282905015819080092370422104067183317016903680000000000000000", "330788544151938641225953028221253782145683251820934971170611926835411235700971565459250872320000000000000000", "24809140811395398091946477116594033660926243886570122837795894512655842677572867409443815424000000000000000000", "1885494701666050254987932260861146558230394535379329335672487982961844043495537923117729972224000000000000000000", "145183092028285869634070784086308284983740379224208358846781574688061991349156420080065207861248000000000000000000", "11324281178206297831457521158732046228731749579488251990048962825668835325234200766245086213177344000000000000000000", "894618213078297528685144171539831652069808216779571907213868063227837990693501860533361810841010176000000000000000000", "71569457046263802294811533723186532165584657342365752577109445058227039255480148842668944867280814080000000000000000000", "5797126020747367985879734231578109105412357244731625958745865049716390179693892056256184534249745940480000000000000000000", "475364333701284174842138206989404946643813294067993328617160934076743994734899148613007131808479167119360000000000000000000", "39455239697206586511897471180120610571436503407643446275224357528369751562996629334879591940103770870906880000000000000000000", "3314240134565353266999387579130131288000666286242049487118846032383059131291716864129885722968716753156177920000000000000000000", "281710411438055027694947944226061159480056634330574206405101912752560026159795933451040286452340924018275123200000000000000000000", "24227095383672732381765523203441259715284870552429381750838764496720162249742450276789464634901319465571660595200000000000000000000", "2107757298379527717213600518699389595229783738061356212322972511214654115727593174080683423236414793504734471782400000000000000000000", "185482642257398439114796845645546284380220968949399346684421580986889562184028199319100141244804501828416633516851200000000000000000000", "16507955160908461081216919262453619309839666236496541854913520707833171034378509739399912570787600662729080382999756800000000000000000000", "1485715964481761497309522733620825737885569961284688766942216863704985393094065876545992131370884059645617234469978112000000000000000000000", "135200152767840296255166568759495142147586866476906677791741734597153670771559994765685283954750449427751168336768008192000000000000000000000", "12438414054641307255475324325873553077577991715875414356840239582938137710983519518443046123837041347353107486982656753664000000000000000000000", "1156772507081641574759205162306240436214753229576413535186142281213246807121467315215203289516844845303838996289387078090752000000000000000000000", "108736615665674308027365285256786601004186803580182872307497374434045199869417927630229109214583415458560865651202385340530688000000000000000000000", "10329978488239059262599702099394727095397746340117372869212250571234293987594703124871765375385424468563282236864226607350415360000000000000000000000", "991677934870949689209571401541893801158183648651267795444376054838492222809091499987689476037000748982075094738965754305639874560000000000000000000000", "96192759682482119853328425949563698712343813919172976158104477319333745612481875498805879175589072651261284189679678167647067832320000000000000000000000", "9426890448883247745626185743057242473809693764078951663494238777294707070023223798882976159207729119823605850588608460429412647567360000000000000000000000", "933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182862536979208272237582511852109168640000000000000000000000", "93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000" }.Select(o => System.Numerics.BigInteger.Parse(o)).ToArray();
+private System.Numerics.BigInteger Binomial(int n, int k) => System.Numerics.BigInteger.Divide(factorial[n], System.Numerics.BigInteger.Multiply(factorial[k], factorial[n - k]));
+public IList<IList<int>> Generate(int numRows) => Enumerable.Range(0, numRows)
+    .Select(n => (IList<int>)Enumerable.Range(0, n + 1).Select(k => (int)Binomial(n, k)).ToList()).ToList();
+}
+```
+### 119. Pascal's Triangle II
+Easy
+```c#
+public class Solution {
+    public IList<int> GetRow(int rowIndex) {
+        return Enumerable.Range(0, rowIndex + 1).Select(k => (int)Binomial(rowIndex, k)).ToList();
+    }
+    private System.Numerics.BigInteger[] factorial = new string[] { "1", "1", "2", "6", "24", "120", "720", "5040", "40320", "362880", "3628800", "39916800", "479001600", "6227020800", "87178291200", "1307674368000", "20922789888000", "355687428096000", "6402373705728000", "121645100408832000", "2432902008176640000", "51090942171709440000", "1124000727777607680000", "25852016738884976640000", "620448401733239439360000", "15511210043330985984000000", "403291461126605635584000000", "10888869450418352160768000000", "304888344611713860501504000000", "8841761993739701954543616000000", "265252859812191058636308480000000", "8222838654177922817725562880000000", "263130836933693530167218012160000000", "8683317618811886495518194401280000000", "295232799039604140847618609643520000000", "10333147966386144929666651337523200000000", "371993326789901217467999448150835200000000", "13763753091226345046315979581580902400000000", "523022617466601111760007224100074291200000000", "20397882081197443358640281739902897356800000000", "815915283247897734345611269596115894272000000000", "33452526613163807108170062053440751665152000000000", "1405006117752879898543142606244511569936384000000000", "60415263063373835637355132068513997507264512000000000", "2658271574788448768043625811014615890319638528000000000", "119622220865480194561963161495657715064383733760000000000", "5502622159812088949850305428800254892961651752960000000000", "258623241511168180642964355153611979969197632389120000000000", "12413915592536072670862289047373375038521486354677760000000000", "608281864034267560872252163321295376887552831379210240000000000", "30414093201713378043612608166064768844377641568960512000000000000", "1551118753287382280224243016469303211063259720016986112000000000000", "80658175170943878571660636856403766975289505440883277824000000000000", "4274883284060025564298013753389399649690343788366813724672000000000000", "230843697339241380472092742683027581083278564571807941132288000000000000", "12696403353658275925965100847566516959580321051449436762275840000000000000", "710998587804863451854045647463724949736497978881168458687447040000000000000", "40526919504877216755680601905432322134980384796226602145184481280000000000000", "2350561331282878571829474910515074683828862318181142924420699914240000000000000", "138683118545689835737939019720389406345902876772687432540821294940160000000000000", "8320987112741390144276341183223364380754172606361245952449277696409600000000000000", "507580213877224798800856812176625227226004528988036003099405939480985600000000000000", "31469973260387937525653122354950764088012280797258232192163168247821107200000000000000", "1982608315404440064116146708361898137544773690227268628106279599612729753600000000000000", "126886932185884164103433389335161480802865516174545192198801894375214704230400000000000000", "8247650592082470666723170306785496252186258551345437492922123134388955774976000000000000000", "544344939077443064003729240247842752644293064388798874532860126869671081148416000000000000000", "36471110918188685288249859096605464427167635314049524593701628500267962436943872000000000000000", "2480035542436830599600990418569171581047399201355367672371710738018221445712183296000000000000000", "171122452428141311372468338881272839092270544893520369393648040923257279754140647424000000000000000", "11978571669969891796072783721689098736458938142546425857555362864628009582789845319680000000000000000", "850478588567862317521167644239926010288584608120796235886430763388588680378079017697280000000000000000", "61234458376886086861524070385274672740778091784697328983823014963978384987221689274204160000000000000000", "4470115461512684340891257138125051110076800700282905015819080092370422104067183317016903680000000000000000", "330788544151938641225953028221253782145683251820934971170611926835411235700971565459250872320000000000000000", "24809140811395398091946477116594033660926243886570122837795894512655842677572867409443815424000000000000000000", "1885494701666050254987932260861146558230394535379329335672487982961844043495537923117729972224000000000000000000", "145183092028285869634070784086308284983740379224208358846781574688061991349156420080065207861248000000000000000000", "11324281178206297831457521158732046228731749579488251990048962825668835325234200766245086213177344000000000000000000", "894618213078297528685144171539831652069808216779571907213868063227837990693501860533361810841010176000000000000000000", "71569457046263802294811533723186532165584657342365752577109445058227039255480148842668944867280814080000000000000000000", "5797126020747367985879734231578109105412357244731625958745865049716390179693892056256184534249745940480000000000000000000", "475364333701284174842138206989404946643813294067993328617160934076743994734899148613007131808479167119360000000000000000000", "39455239697206586511897471180120610571436503407643446275224357528369751562996629334879591940103770870906880000000000000000000", "3314240134565353266999387579130131288000666286242049487118846032383059131291716864129885722968716753156177920000000000000000000", "281710411438055027694947944226061159480056634330574206405101912752560026159795933451040286452340924018275123200000000000000000000", "24227095383672732381765523203441259715284870552429381750838764496720162249742450276789464634901319465571660595200000000000000000000", "2107757298379527717213600518699389595229783738061356212322972511214654115727593174080683423236414793504734471782400000000000000000000", "185482642257398439114796845645546284380220968949399346684421580986889562184028199319100141244804501828416633516851200000000000000000000", "16507955160908461081216919262453619309839666236496541854913520707833171034378509739399912570787600662729080382999756800000000000000000000", "1485715964481761497309522733620825737885569961284688766942216863704985393094065876545992131370884059645617234469978112000000000000000000000", "135200152767840296255166568759495142147586866476906677791741734597153670771559994765685283954750449427751168336768008192000000000000000000000", "12438414054641307255475324325873553077577991715875414356840239582938137710983519518443046123837041347353107486982656753664000000000000000000000", "1156772507081641574759205162306240436214753229576413535186142281213246807121467315215203289516844845303838996289387078090752000000000000000000000", "108736615665674308027365285256786601004186803580182872307497374434045199869417927630229109214583415458560865651202385340530688000000000000000000000", "10329978488239059262599702099394727095397746340117372869212250571234293987594703124871765375385424468563282236864226607350415360000000000000000000000", "991677934870949689209571401541893801158183648651267795444376054838492222809091499987689476037000748982075094738965754305639874560000000000000000000000", "96192759682482119853328425949563698712343813919172976158104477319333745612481875498805879175589072651261284189679678167647067832320000000000000000000000", "9426890448883247745626185743057242473809693764078951663494238777294707070023223798882976159207729119823605850588608460429412647567360000000000000000000000", "933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182862536979208272237582511852109168640000000000000000000000", "93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000" }.Select(o => System.Numerics.BigInteger.Parse(o)).ToArray();
+private System.Numerics.BigInteger Binomial(int n, int k) => System.Numerics.BigInteger.Divide(factorial[n], System.Numerics.BigInteger.Multiply(factorial[k], factorial[n - k]));
+}
+```
+### 120. Triangle
+Medium
+```c#
+public class Solution {
+    public int MinimumTotal(IList<IList<int>> triangle) 
+    {
+        int[] result = new int[triangle.Count + 1];
+        for (int i = triangle.Count - 1; i >= 0; i--)			
+            for (int j = 0; j < triangle[i].Count; j++)				
+                result[j] = Math.Min(result[j], result[j + 1]) + triangle[i][j];			
+        return result[0];
+    }
+}
+```
+### 121. Best Time to Buy and Sell Stock
+Easy
+```c#
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        int maxCur = 0, maxSoFar = 0;
+        for(int i = 1; i < prices.Length; i++) {
+            maxCur = Math.Max(0, maxCur += prices[i] - prices[i-1]);
+            maxSoFar = Math.Max(maxCur, maxSoFar);
+        }
+        return maxSoFar;
+    }    
+}
+```
+### 122. Best Time to Buy and Sell Stock II
+Medium
+```c#
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        int i = 0, buy, sell, profit = 0, N = prices.Length - 1;
+        while (i < N) {
+            while (i < N && prices[i + 1] <= prices[i]) i++;
+            buy = prices[i];
+
+            while (i < N && prices[i + 1] > prices[i]) i++;
+            sell = prices[i];
+
+            profit += sell - buy;
+        }
+        return profit;
+    }
+}
+```
+### 123. Best Time to Buy and Sell Stock III
+Hard
+```c#
+using static System.Math;
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        int buy = int.MinValue, sell = 0, buyAfter = int.MinValue, sellAfter = 0;
+        foreach (int price in prices)
+        {
+            buy = Max(buy, -price);
+            sell = Max(sell, buy + price);
+            buyAfter = Max(buyAfter, sell - price);
+            sellAfter = Max(sellAfter, buyAfter + price);
+        }
+        return sellAfter;
+    }
+}
+```
+### 124. Binary Tree Maximum Path Sum
+Hard
+```c#
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution 
+{    
+    public int MaxPathSum(TreeNode root) 
+    {
+        var max = int.MinValue;
+        TrackBack(root, ref max);
+        return max; 
+    }
+    public int TrackBack(TreeNode root, ref int max) 
+    {		
+        if (root == null) return 0; 		
+        var (leftMax, rightMax) = (TrackBack(root.left, ref max), TrackBack(root.right, ref max));
+        
+        int result = Math.Max(root.val, (root.val + Math.Max(leftMax, rightMax)));
+        max = Math.Max(max, Math.Max(result, leftMax + rightMax + root.val));
+		
+        return result;
+    }
+}
+```
+### 125. Valid Palindrome
+Easy
+```c#
+public class Solution {
+    public bool IsPalindrome(string s) =>
+       (s = new string(s.ToLower().Where(char.IsLetterOrDigit).ToArray())).Equals(new string(s.Reverse().ToArray()), StringComparison.OrdinalIgnoreCase);    
+}
+```
