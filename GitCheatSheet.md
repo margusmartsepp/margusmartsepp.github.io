@@ -29,6 +29,10 @@ Rename branch
 ```bash
 git branch -m feature/12897-2 feature/BS-12897-2
 ```
+Rename pushed branch (delete branch from origin)
+```bash
+git branch --unset-upstream
+```
 To clone a repository from the server, navigate to the Windows folder you want to use and run:
 ```bash
 git clone http://vm-gva-tfs07:8080/tfs/.../.../_git/..._main
