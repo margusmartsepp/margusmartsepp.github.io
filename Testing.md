@@ -550,7 +550,7 @@ The test manager has defined the following test strategy/approach in the test pl
     Notation: Logical requirement dependencies (A -> B means, that B depends on A). Which one of the following options structures the test execution schedule according to the requirement dependencies?
     1. [ ] R1 ; R3 ; R4 ; R7 ; R2 ; R5 ; R6
     1. [ ] R1 ; R3 ; R2 ; R4 ; R7 ; R5 ; R6
-    1. [ ] R1 ; R3 ; R2 ; R5 ; R6 ; R4 ; R7
+    1. [x] R1 ; R3 ; R2 ; R5 ; R6 ; R4 ; R7
     1. [ ] R1 ; R2 ; R5 ; R6 ; R3 ; R4 ; R7
 
     > ### Explanation / Rationale
