@@ -1,4 +1,4 @@
-The Sample Exam Q & A Set originates from [ISTQB Certified tester foundation level](https://www.istqb.org/certifications/certified-tester-foundation-level), and is here for searchability and quotations to allow faster learning. Visit their site for the most up-to-date version.
+The Sample Exam Q&A Set originates from [ISTQB Certified tester foundation level](https://www.istqb.org/certifications/certified-tester-foundation-level), and is here for searchability and quotations to allow faster learning. Visit their site for the most up-to-date version.
 
 # Sample Exam set A | Version 1.7
 (1 Point) Select ONE option.
@@ -6,8 +6,7 @@ The Sample Exam Q & A Set originates from [ISTQB Certified tester foundation lev
 1. Which one of the following answers describes a **test condition**?
     1. [ ] A distinguishing characteristic of a component or system
     1. [x] A testable aspect of a component or system identified as a basis for testing
-    1. [ ] The degree to which a software product provides functions which meet stated and implied
-needs when the software is used under specified conditions
+    1. [ ] The degree to which a software product provides functions which meet stated and implied needs when the software is used under specified conditions
     1. [ ] Test cases designed to execute combinations of conditions and actions resulting from them
     
     > ### Explanation / Rationale
@@ -30,10 +29,8 @@ needs when the software is used under specified conditions
 
 1. Which of the following statements correctly describes the difference between testing and
 debugging?
-    1. [ ] Testing identifies the source of defects; debugging analyzes the defects and proposes
-prevention activities
-    1. [x] Dynamic testing shows failures caused by defects; debugging eliminates the defects, which
-are the source of failures
+    1. [ ] Testing identifies the source of defects; debugging analyzes the defects and proposes prevention activities
+    1. [x] Dynamic testing shows failures caused by defects; debugging eliminates the defects, which are the source of failures
     1. [ ] Testing removes faults; but debugging removes defects that cause the faults
     1. [ ] Dynamic testing prevents the causes of failures; debugging removes the failures
 
@@ -83,80 +80,146 @@ are the source of failures
     1. [ ] Identifying any required infrastructure and tools
     1. [ ] Creating test suites from test scripts
     1. [ ] Analyzing lessons learned for process improvement
-    1. [ ] Evaluating the test basis for testability
+    1. [x] Evaluating the test basis for testability
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. This activity is performed during the test design activity (test design)
+    > 1. Is not correct. This activity is performed during the test implementation activity (test implementation)
+    > 1. Is not correct. This activity is performed during the test completion activity (test completion)
+    > 1. Is correct. This activity is performed during the test analysis activity (test analysis)
+
 1. Match the following test work products (1-4) with the right description (A-D).
     ```
     1. Test suite
     2. Test case
     3. Test script
     4. Test charter
+    ----
     A. A set of test scripts to be executed in a specific test run
     B. A set of instructions for the execution of a test
     C. Contains expected results
     D. Documentation of test activities in session-based exploratory testing
     ```
-    1. [ ] 1A, 2C, 3B, 4D
+    1. [x] 1A, 2C, 3B, 4D
     1. [ ] 1D, 2B, 3A, 4C
     1. [ ] 1A, 2C, 3D, 4B
     1. [ ] 1D, 2C, 3B, 4A
+
+    > ### Explanation / Rationale
+    > Glossary defines the following tests as:
+    > * Test suite: “A set of test scripts or test procedures to be executed in a specific test run.” (1A)
+    > * Test case: “A set of preconditions, inputs, actions (where applicable), expected results and post conditions, developed based on test conditions” (2C)
+    > * Test script: “A sequence of instructions for the execution of a test” (3B)
+    > * Test charter: “Documentation of test activities in session-based exploratory testing” (4D)
+
 1. How can white-box testing be applied during user acceptance testing?
     1. [ ] To check if large volumes of data can be transferred between integrated systems
     1. [ ] To check if all code statements and code decision paths have been executed
-    1. [ ] To check if all work process flows have been covered
+    1. [x] To check if all work process flows have been covered
     1. [ ] To cover all web page navigations
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Relevant for integration testing
+    > 1. Is not correct. Relevant for component testing
+    > 1. Is correct. For acceptance testing, tests are designed to cover all workflows defined in the functional requirements documents.
+    > 1. Is not correct. Relevant for system testing
+
 1. Which of the following statements comparing component testing and system testing is TRUE?
-    1. [ ] Component testing verifies the functionality of software modules, program objects, and
-classes that are separately testable, whereas system testing verifies interfaces between
-components and interactions between different parts of the system
-    1. [ ] Test cases for component testing are usually derived from component specifications,
-design specifications, or data models, whereas test cases for system testing are usually
-derived from requirement specifications or use cases
-    1. [ ] Component testing only focuses on functional characteristics, whereas system testing
-focuses on functional and non-functional characteristics
+    1. [ ] Component testing verifies the functionality of software modules, program objects, and classes that are separately testable, whereas system testing verifies interfaces between components and interactions between different parts of the system
+    1. [x] Test cases for component testing are usually derived from component specifications, design specifications, or data models, whereas test cases for system testing are usually derived from requirement specifications or use cases
+    1. [ ] Component testing only focuses on functional characteristics, whereas system testing focuses on functional and non-functional characteristics
     1. [ ] Component testing is the responsibility of the testers, whereas system testing typically is the responsibility of the users of the system
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. System testing does not test interfaces between components and interactions between different parts of the system; this is a target of integration tests
+    > 1. Is correct. Examples of work products that can be used as a test basis for component testing include detailed design, code, data model,component specifications. Examples of work products for system testing include system and software requirement specifications (functional and non-functional) use cases
+    > 1. Is not correct. Component testing does not ONLY focus on functional characteristics
+    > 1. Is not correct. Component tests are also executed by developers, whereas system testing typically is the responsibility of (independent)testers
+
 1. Which one of the following is TRUE?
-    1. [ ] The purpose of regression testing is to check if the correction has been successfully
-implemented, while the purpose of confirmation testing is to confirm that the correction has
-no side effects
-    1. [ ] The purpose of regression testing is to detect unintended side effects, while the purpose of
-confirmation testing is to check if the system is still working in a new environment
-    1. [ ] The purpose of regression testing is to detect unintended side effects, while the purpose of
-confirmation testing is to check if the original defect has been fixed
+    1. [ ] The purpose of regression testing is to check if the correction has been successfully implemented, while the purpose of confirmation testing is to confirm that the correction has no side effects
+    1. [ ] The purpose of regression testing is to detect unintended side effects, while the purpose of confirmation testing is to check if the system is still working in a new environment
+    1. [x] The purpose of regression testing is to detect unintended side effects, while the purpose of confirmation testing is to check if the original defect has been fixed
     1. [ ] The purpose of regression testing is to check if the new functionality is working, while the purpose of confirmation testing is to check if the original defect has been fixed
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Regression testing does not check successful implementation of corrections and confirmation testing does not check for side effects
+    > 1. Is not correct. The statement about confirmation testing should be about regression testing
+    > 1. Is correct. See reasons from incorrect answers
+    > 1. Is not correct. Testing new functionality is not regression testing
+
 1. Which one of the following is the BEST definition of an incremental development model?
-    1. [ ] Defining requirements, designing software and testing are done in phases where in each
-phase a piece of the system is added
+    1. [x] Defining requirements, designing software and testing are done in phases where in each phase a piece of the system is added
     1. [ ] A phase in the development process should begin when the previous phase is complete
-    1. [ ] Testing is viewed as a separate phase which takes place after development has been
-completed
+    1. [ ] Testing is viewed as a separate phase which takes place after development has been completed
     1. [ ] Testing is added to development as an increment
+
+    > ### Explanation / Rationale
+    > 1. Is correct. Incremental development involves establishing requirements, designing, building, and testing a system in pieces
+    > 1. Is not correct. This is a sequential model
+    > 1. Is not correct. This describes the waterfall model
+    > 1. Is not correct. Testing alone is not an increment/additional step in the development
+
 1. Which of the following should NOT be a trigger for maintenance testing?
-    1. [ ] Decision to test the maintainability of the software
+    1. [x] Decision to test the maintainability of the software
     1. [ ] Decision to test the system after migration to a new operating platform
     1. [ ] Decision to test if archived data is possible to be retrieved
     1. [ ] Decision to test after “hot fixes”
+
+    > ### Explanation / Rationale
+    > 1. Is correct. This is maintainability testing, not maintenance testing
+    > 1. Is not correct. This is a trigger for maintenance testing: Operational tests of the new environment as well as of the changed software
+    > 1. Is not correct. This is the trigger for maintenance testing: testing restore/retrieve procedures after archiving for long retention periods
+    > 1. Is not correct. This is the trigger for maintenance testing: Reactive modification of a delivered software product to correct emergency defects that have caused actual failures
+
 1. Which of the following options are roles in a formal review?
     1. [ ] Developer, Moderator, Review leader, Reviewer, Tester
     1. [ ] Author, Moderator, Manager, Reviewer, Developer
     1. [ ] Author, Manager, Review leader, Reviewer, Designer
-    1. [ ] Author, Moderator, Review leader, Reviewer, Scribe
+    1. [x] Author, Moderator, Review leader, Reviewer, Scribe
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Tester and developer are NOT roles in a formal review
+    > 1. Is not correct. Developer is NOT a role in a formal review
+    > 1. Is not correct. Designer is NOT a role in a formal review
+    > 1. Is correct. See reasons from incorrect answers
+
 1. Which activities are carried out within the planning of a formal review?
     1. [ ] Collection of metrics for the evaluation of the effectiveness of the review
     1. [ ] Answer any questions the participants may have
-    1. [ ] Definition and Verification of fulfillment of entry criteria for the review
+    1. [x] Definition and Verification of fulfillment of entry criteria for the review
     1. [ ] Evaluation of the review findings against the exit criteria
-1. Which of the review types below is the BEST option to choose when the review must follow a
-formal process based on rules and checklists?
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. ‘Collection of metrics’ belongs to the main activity “Fixing and Reporting”
+    > 1. Is not correct. ‘Answer any question.’ belongs to the main activity “Initiate Review”
+    > 1. Is correct. The checking of entry criteria takes place in the planning of a formal review
+    > 1. Is not correct. The evaluation of the review findings against the exit criteria belongs to the main activity “Issue communication and analysis”
+
+1. Which of the review types below is the BEST option to choose when the review must follow a formal process based on rules and checklists?
     1. [ ] Informal Review
     1. [ ] Technical Review
-    1. [ ] Inspection
+    1. [x] Inspection
     1. [ ] Walkthrough
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Informal review does not use a formal process
+    > 1. Is not correct. Use of checklists are optional
+    > 1. Is correct. Inspection is a formal process based on rules and checklists
+    > 1. Is not correct. Does not explicitly require a formal process and the use of checklists is optional
+
 1. Which of the following statements about static testing are MOST true?
-    1. [ ] Static testing is a cheap way to detect and remove defects
+    1. [x] Static testing is a cheap way to detect and remove defects
     1. [ ] Static testing makes dynamic testing less challenging
     1. [ ] Static testing makes it possible to find run-time problems early in the lifecycle
-    1. [ ] When testing safety-critical system, static testing has less value because dynamic testing
-finds the defects better
+    1. [ ] When testing safety-critical system, static testing has less value because dynamic testing finds the defects better
+
+    > ### Explanation / Rationale
+    > 1. Is correct. Defects found early are often much cheaper to remove than defects detected later in the lifecycle
+    > 1. Is not correct. Dynamic testing still has its challenging because they find other types of defects
+    > 1. Is not correct. This is dynamic testing
+    > 1. Is not correct. Static testing is important for safety-critical computer systems
+
 1. You will be invited to a review. The work product to be reviewed is a description of the in-house document creation process. The aim of the description is to present the work distribution between the different roles involved in the process in a way that can be clearly understood by everyone. You will be invited to a checklist-based review. The checklist will also be sent to you. It includes the following points:
     ```
     i. Is the person who performs the activity clearly identified for each activity?
@@ -172,29 +235,44 @@ finds the defects better
 
     Which of the following statements about your review is correct?
     1. [ ] Point ii) of the checklist has been violated because it is not clear which condition must be fulfilled to invite to the review
-    1. [ ] You notice that in addition to the tester and the verifier, the validator must also be invited.
-Since this item is not part of your checklist, you do not create a corresponding comment
+    1. [ ] You notice that in addition to the tester and the verifier, the validator must also be invited. Since this item is not part of your checklist, you do not create a corresponding comment
     1. [ ] Point iii) of the checklist has been violated as it is not clear what marks the review as completed
-    1. [ ] Point i) of the checklist has been violated because it is not clear who is providing the checklist for the invitation to the review
+    1. [x] Point i) of the checklist has been violated because it is not clear who is providing the checklist for the invitation to the review
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. It is described that the software architect must have completed the system specification
+    > 1. Is not correct. ‘Checklist-based’, last sentence it is documented that you should also look for defects outside the checklist
+    > 1. Is not correct. It is described: every reviewer did his review done comment
+    > 1. Is correct. It is described that a checklist is available, but who provides the checklist?
+
 1. What is checklist-based testing?
-    1. [ ] A test technique in which tests are derived based on the tester's knowledge of past faults,
-or general knowledge of failures
+    1. [ ] A test technique in which tests are derived based on the tester's knowledge of past faults, or general knowledge of failures
     1. [ ] A test technique based on an analysis of the specification of a component or system
-    1. [ ] An experience-based test technique whereby the experienced tester uses a list of items to
-be noted, checked, or remembered, or a set of rules or criteria against which a product
-must be verified
-    1. [ ] An approach to testing where the testers dynamically design and execute tests based on
-their knowledge, exploration of the test item and the results of previous tests
+    1. [x] An experience-based test technique whereby the experienced tester uses a list of items to be noted, checked, or remembered, or a set of rules or criteria against which a product must be verified
+    1. [ ] An approach to testing where the testers dynamically design and execute tests based on their knowledge, exploration of the test item and the results of previous tests
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. This is error guessing
+    > 1. Is not correct. This is black-box test technique
+    > 1. Is correct. See reasons from incorrect answers
+    > 1. Is not correct. This is exploratory testing
+
 1. Which one of the following options is categorized as a black-box test technique?
     1. [ ] A technique based on analysis of the architecture
     1. [ ] A technique checking that the test object is working according to the detailed design
     1. [ ] A technique based on the knowledge of past faults, or general knowledge of failures
-    1. [ ] A technique based on formal requirements
+    1. [x] A technique based on formal requirements
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. This is a white-box test technique
+    > 1. Is not correct. This is a white-box test technique
+    > 1. Is not correct. This is an experience-based test technique
+    > 1. Is correct. Black-box test techniques are based on an analysis of the appropriate test basis (e.g., formal requirements documents, specifications, use cases, user stories)
+
 1. The following statement refers to decision coverage:
-“When the code contains only a single ‘if’ statement and no loops or CASE statements, and its
-execution is not nested within the test, any single test case we run will result in 50% decision
-coverage.”
-Which of the following statement is correct?
+“When the code contains only a single ‘if’ statement and no loops or CASE statements, and its execution is not nested within the test, any single test case we run will result in 50% decision coverage.”
+
+    Which of the following statement is correct?
     1. [ ] The statement is true. Any single test case provides 100% statement coverage and
 therefore 50% decision coverage
     1. [ ] The statement is true. Any single test case would cause the outcome of the “if” statement to
