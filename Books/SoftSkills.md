@@ -42,6 +42,7 @@ Goldman model to measure emotional intelligence.
 > * Relationship management - manage relationships (others' emotions)
 ## Chapter 2 | Impulse
 Most of the bad decisions that we make result from emotional considerations instead of logical conclusions. Ex: you eat junk food based on how it makes you feel.
+> I would rather rephrase it as "Know what **tires you out** (not just physically)"
 1) Identify your emotional weaknesses. 
     - When do you start doing something less meaningful? 
     - What feeling is driving me to avoid the correct cause of action?
