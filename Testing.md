@@ -1,6 +1,6 @@
-The Sample Exam Q&A Set originates from [ISTQB Certified tester foundation level](https://www.istqb.org/certifications/certified-tester-foundation-level), and is here for searchability and quotations to allow faster learning. Visit their site for the most up-to-date version.
-
-# Sample Exam set A | Version 1.7
+# Fundamentals
+The Sample Exam Q&A Set originates from [ISTQB Certified tester foundation level](https://www.istqb.org/certifications/certified-tester-foundation-level) and is here for searchability and quotations to allow faster learning. Visit their site for the most up-to-date version.
+## Sample Exam set A | Version 1.7
 (1 Point) Select ONE option.
 
 1. Which one of the following answers describes a **test condition**?
@@ -273,59 +273,106 @@ debugging?
 “When the code contains only a single ‘if’ statement and no loops or CASE statements, and its execution is not nested within the test, any single test case we run will result in 50% decision coverage.”
 
     Which of the following statement is correct?
-    1. [ ] The statement is true. Any single test case provides 100% statement coverage and
-therefore 50% decision coverage
-    1. [ ] The statement is true. Any single test case would cause the outcome of the “if” statement to
-be either true or false
-    1. [ ] The statement is false. A single test case can only guarantee 25% decision coverage in this
-case
-    1. [ ] The statement is false. The statement is too broad. It may be correct or not, depending on
-the tested software
+    1. [ ] The statement is true. Any single test case provides 100% statement coverage and therefore 50% decision coverage
+    1. [x] The statement is true. Any single test case would cause the outcome of the “if” statement to be either true or false
+    1. [ ] The statement is false. A single test case can only guarantee 25% decision coverage in this case
+    1. [ ] The statement is false. The statement is too broad. It may be correct or not, depending on the tested software
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. While the given statement is true, the explanation is not. The relationship between statement and decision coverage is misrepresented
+    > 1. Is correct. Since any test case will cause the outcome of the “if” statement to be either TRUE or FALSE, by definition we achieved 50% decision coverage
+    > 1. Is not correct. A single test case can give more than 25% decision coverage, this means according to the statement above always 50 % decision coverage
+    > 1. Is not correct. The statement is specific and always true, because each test case achieves 50 % decision coverage
+
 1. Which one of the following is the description of statement coverage?
     1. [ ] It is a metric, which is the percentage of test cases that have been executed
-    1. [ ] It is a metric, which is the percentage of statements in the source code that have been
-executed
-    1. [ ] It is a metric, which is the number of statements in the source code that have been
-executed by test cases that are passed
+    1. [x] It is a metric, which is the percentage of statements in the source code that have been executed
+    1. [ ] It is a metric, which is the number of statements in the source code that have been executed by test cases that are passed
     1. [ ] It is a metric, that gives a true/false confirmation if all statements are covered or not
-1. Which statement about the relationship between statement coverage and decision coverage is
-true?
-    1. [ ] 100% decision coverage also guarantees 100% statement coverage
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Statement coverage measures the percentage of statements exercised by test cases
+    > 1. Is correct. Statement testing exercises the executable statements in the code. Statement coverage is measured as the number of statements executed by the tests divided by the total number of executable statements in the test object, normally expressed as a percentage
+    > 1. Is not correct. The coverage does not measure pass/fail
+    > 1. Is not correct. It is a metric and does not provide true/false statements
+
+1. Which statement about the relationship between statement coverage and decision coverage is true?
+    1. [x] 100% decision coverage also guarantees 100% statement coverage
     1. [ ] 100% statement coverage also guarantees 100% decision coverage
     1. [ ] 50% decision coverage also guarantees 50% statement coverage
     1. [ ] Decision coverage can never reach 100%
-1. Question #24 (1 Point)
-For which of the following situations is exploratory testing suitable?
+
+    > ### Explanation / Rationale
+    > 1. Is correct. The statement is true. Achieving 100% decision coverage guarantees 100% statement coverage
+    > 1. Is not correct. The statement is false because achieving 100 % statement coverage does not in any case mean that the decision coverage is 100%
+    > 1. Is not correct. The statement is false because we can only do statements about 100% values
+    > 1. Is not correct. The statement is false
+
+1. For which of the following situations is exploratory testing suitable?
     1. [ ] When time pressure requires speeding up the execution of tests already specified
     1. [ ] When the system is developed incrementally, and no test charter is available
-    1. [ ] When testers are available who have enough knowledge of similar applications and
-technologies
-    1. [ ] When an advanced knowledge of the system already exists, and evidence is to be if it
-should be tested intensively
-1. An employee’s bonus is to be calculated. It cannot be negative, but it can be calculated down to
-zero. The bonus is based on the length of employment:
-• Less than or equal to 2 years
-• More than 2 years but less than 5 years
-• 5 to 10 years inclusively
-• Longer than 10 years
-What is the minimum number of test cases required to cover all valid equivalence partitions for
-calculating the bonus?
+    1. [x] When testers are available who have enough knowledge of similar applications and technologies
+    1. [ ] When an advanced knowledge of the system already exists, and evidence is to be if it should be tested intensively
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Exploratory testing is not suitable to speed up tests, which are already specified. It is most useful when there are few or inappropriate specified requirements or significant time pressure on testing
+    > 1. Is not correct. The absence of a test charter, which may have been derived from the test analysis, is a poor precondition for the use of exploratory testing
+    > 1. Is correct. Exploratory tests should be performed by experienced testers with knowledge of similar applications and technologies
+    > 1. Is not correct. Explorative testing alone is not suitable to provide evidence that the test was very intensive, instead the evidence is provided in combination with other test methods
+
+1. An employee’s bonus is to be calculated. It cannot be negative, but it can be calculated down to zero. The bonus is based on the length of employment:
+    ```
+    • Less than or equal to 2 years
+    • More than 2 years but less than 5 years
+    • 5 to 10 years inclusively
+    • Longer than 10 years
+    ```
+    What is the minimum number of test cases required to cover all valid equivalence partitions for calculating the bonus?
     1. [ ] 3
     1. [ ] 5
     1. [ ] 2
-    1. [ ] 4
+    1. [x] 4
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. One too few (see the four correct partitions in the correct answer)
+    > 1. Is not correct. One too much (see the four correct partitions in the correct answer)
+    > 1. Is not correct. Two too few (see the four correct partitions in the correct answer)
+    > 1. Is correct. The 4 equivalence partitions correspond to the description in the question, i.e., at least one test case must be created for each equivalence partition:
+    >
+    >     1. Equivalence partition: 0 ≤ employment time ≤ 2
+    >     2. Equivalence partition: 2 < employment time < 5
+    >     3. Equivalence partition: 5 ≤ employment time ≤ 10
+    >     4. Equivalence partition: 10 < employment time
+
 1. A speed control and reporting system has the following characteristics:
-• If you drive 50 km/h or less, nothing will happen.
-• If you drive faster than 50 km/h, but no more than 55 km/h, you will be warned.
-• If you drive faster than 55 km/h but not more than 60 km/h, you will be fined.
-• If you drive faster than 60 km/h, your driving license will be suspended.
-• The speed in km/h is available to the system as an integer value.
-Which would be the most likely set of values (km/h) identified by applying the boundary value
-analysis, where only the values on the boundaries of the equivalence classes are selected?
+    
+    * If you drive 50 km/h or less, nothing will happen.
+    * If you drive faster than 50 km/h, but no more than 55 km/h, you will be warned.
+    * If you drive faster than 55 km/h but not more than 60 km/h, you will be fined.
+    * If you drive faster than 60 km/h, your driving license will be suspended.
+    * The speed in km/h is available to the system as an integer value.
+    
+    Which would be the most likely set of values (km/h) identified by applying the boundary value analysis, where only the values on the boundaries of the equivalence classes are selected?
     1. [ ] 0, 49, 50, 54, 59, 60
     1. [ ] 50, 55, 60
     1. [ ] 49, 50, 54, 55, 60, 62
-    1. [ ] 50, 51, 55, 56, 60, 61
+    1. [x] 50, 51, 55, 56, 60, 61
+
+    > ### Explanation / Rationale
+    > The following partitions can be identified:
+    > * <= 50, boundary value 50
+    > * 51 – 55 boundary values 51, 55
+    > * 56 – 60 boundary values 56, 60
+    > * &gt;= 61 boundary value 61
+    >
+    > Boundary value according to glossary V.3.2: A minimum or maximum value of an ordered equivalence partition.
+    >
+    > Thus:
+    > 1. Is not correct. Does not include all necessary boundary values, but it includes additional values: 0, 49, and 59, which are not boundary values in this equivalence partition
+    > 1. Is not correct. Does not include all necessary boundary values. 51 and 55 are missing
+    > 1. Is not correct. Does not include necessary boundary values but it includes additional values: 49, 62, and 54, which are not boundary values in this equivalence partition
+    > 1. Is correct. includes all necessary boundary values
+
 1. A company's employees are paid bonuses if they work more than a year in the company and
 achieve a target which is individually agreed before.
 These facts can be shown in a decision table:
@@ -341,7 +388,14 @@ These facts can be shown in a decision table:
     1. [ ] Condition1 = YES, Condition2 = NO, Condition3 = YES, Action= NO
     1. [ ] Condition1 = YES, Condition2 = YES, Condition3 = NO, Action= YES
     1. [ ] Condition1 = NO, Condition2 = NO, Condition3 = YES, Action= NO
-    1. [ ] Condition1 = NO, Condition2 = YES, Condition3 = NO, Action= NO
+    1. [x] Condition1 = NO, Condition2 = YES, Condition3 = NO, Action= NO
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. If there was no agreement on targets, it is impossible to reach the targets. Since this situation can´t occur, this is not a scenario happening in reality
+    > 1. Is not correct. The test case is objectively wrong, since under these conditions no bonus is paid because the agreed target was not reached
+    > 1. Is not correct. There was no agreement on targets, it is impossible to reach the targets. Since this situation can´t occur, this is not a scenario happening in reality
+    > 1. Is correct. The test case describes the situation that the too short period of employment and the non-fulfilment of the agreed target leads to nonpayment of the bonus. This situation can occur in practice but is missing in the decision table
+
 1. Which of the following statements about the given state transition diagram and table of test cases is TRUE?
 
     Test Case | 1 | 2 | 3 | 4 | 5
@@ -351,9 +405,19 @@ These facts can be shown in a decision table:
     Expected Final State | S2 | S1 | S3 | S2 | S1
 
     1. [ ] The given test cases cover both valid and invalid transitions in the state transition diagram
-    1. [ ] The given test cases represent all possible valid transitions in the state transition diagram
+    1. [x] The given test cases represent all possible valid transitions in the state transition diagram
     1. [ ] The given test cases represent some of the valid transitions in the state transition diagram
     1. [ ] The given test cases represent pairs of transitions in the state transition diagram
+
+    > ### Explanation / Rationale
+    > Proposed test case covers all five possible single valid transitions in the given state diagram (S1->S2, S2->S1, S2->S3, S3->S2, and S3->S1).
+    >
+    >Thus:
+    > 1. Is not correct. Because no invalid transitions are covered
+    > 1. Is correct. Because all valid transitions are covered
+    > 1. Is not correct. Because all valid transitions are covered
+    > 1. Is not correct. Because the test cases do not have pairs of transitions specified
+
 1. A video application has the following requirement: The application shall allow playing a video on the following display resolution:
     ```
     1. 640x480
@@ -363,110 +427,185 @@ These facts can be shown in a decision table:
     ```
     Which of the following list of test cases is a result of applying the equivalence partitioning test technique to test this requirement?
     1. [ ] Verify that the application can play a video on a display of size 1920x1080 (1 test case)
-    1. [ ] Verify that the application can play a video on a display of size 640x480 and 1920x1080 (2
-test cases)
-    1. [ ] Verify that the application can play a video on each of the display sizes in the requirement
-(4 test cases)
-    1. [ ] Verify that the application can play a video on any one of the display sizes in the
-requirement (1 test case)
-1. Which of the following statements BEST describes how tasks are divided between the test
-manager and the tester?
-    1. [ ] The test manager plans testing activities and chooses the standards to be followed, while
-the tester chooses the tools and set the tools usage guidelines
-    1. [ ] The test manager plans, coordinates, and controls the testing activities, while the tester
-automates the tests
-    1. [ ] The test manager plans, monitors, and controls the testing activities, while the tester
-designs tests and decides on the release of the test object
+    1. [ ] Verify that the application can play a video on a display of size 640x480 and 1920x1080 (2 test cases)
+    1. [x] Verify that the application can play a video on each of the display sizes in the requirement (4 test cases)
+    1. [ ] Verify that the application can play a video on any one of the display sizes in the requirement (1 test case)
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. See reason from correct answer
+    > 1. Is not correct. See reason from correct answer
+    > 1. Is correct. This is a case where the requirement gives an enumeration of discrete values. Each enumeration value is an equivalence class by itself; therefore, each will be tested when using equivalence partitioning test technique
+    > 1. Is not correct. See reason from correct answer
+
+1. Which of the following statements BEST describes how tasks are divided between the test manager and the tester?
+
+    1. [ ] The test manager plans testing activities and chooses the standards to be followed, while the tester chooses the tools and set the tools usage guidelines
+    1. [x] The test manager plans, coordinates, and controls the testing activities, while the tester automates the tests
+    1. [ ] The test manager plans, monitors, and controls the testing activities, while the tester designs tests and decides on the release of the test object
     1. [ ] The test manager plans and organizes the testing and specifies the test cases, while the tester executes the tests
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Selection of tools is a test manager task
+    > 1. Is correct. See reasons from incorrect answers
+    > 1. Is not correct. The tester does not decide on the release of the test object
+    > 1. Is not correct. The tester specifies the test cases, the test manager does the prioritization
+
 1. Which of the following metrics would be MOST useful to monitor during test execution?
-    1. [ ] Percentage of executed test cases
+    1. [x] Percentage of executed test cases
     1. [ ] Average number of testers involved in the test execution
     1. [ ] Coverage of requirements by source code
     1. [ ] Percentage of test cases already created and reviewed
+
+    > ### Explanation / Rationale
+    > 1. Is correct. Test case execution (e.g., number of test cases run/not run, and test cases passed/failed)
+    > 1. Is not correct. This metric can be measured, but its value is low. The number of testers does not give any information about the quality of the test object or test progress
+    > 1. Is not correct. the coverage of requirements by source code is not measured during test execution. At most, the TEST(!) coverage of the code or requirements is measured
+    > 1. Is not correct. This metric is part of test preparation and not test execution
+
 1. Which of the following can affect and be part of the (initial) test planning?
-    1. [ ] Budget limitations
+    1. [x] Budget limitations
     1. [ ] Test log
     1. [ ] Failure rate
     1. [ ] Use cases
+
+    > ### Explanation / Rationale
+    > 1. Is correct. Making decisions about what to test are documented in the test plan. This means when you are planning the test and there are budget limitations, prioritizing is needed; what should be tested and what should be omitted
+    > 1. Is not correct. Test monitoring and control
+    > 1. Is not correct. Common test metrics
+    > 1. Is not correct. It is a part of test analysis
+
 1. Which of the following lists contains only typical exit criteria from testing?
-    1. [ ] Reliability measures, test coverage, schedule and status about fixing defect and remaining
-risks
-    1. [ ] Reliability measures, test coverage, degree of tester’s independence and product
-completeness
-    1. [ ] Reliability measures, test coverage, test cost, availability of test environment, time to
-market and product completeness
+    1. [x] Reliability measures, test coverage, schedule and status about fixing defect and remaining risks
+    1. [ ] Reliability measures, test coverage, degree of tester’s independence and product completeness
+    1. [ ] Reliability measures, test coverage, test cost, availability of test environment, time to market and product completeness
     1. [ ] Time to market, remaining defects, tester qualification, availability of testable use cases, test coverage and test cost
+
+    > ### Explanation / Rationale
+    > 1. Is correct. See reasons from incorrect answers
+    > 1. Is not correct. The “degree of tester’s independence” does not play a role in exit criteria
+    > 1. Is not correct. “Availability of test environment” is an entry criterion
+    > 1. Is not correct. “The Qualification of Tester” is not a typical exit criterion
+
 1. Which one of the following is NOT included in a test summary report?
-    1. [ ] Defining pass/fail criteria and objectives of testing
+    1. [x] Defining pass/fail criteria and objectives of testing
     1. [ ] Deviations from the test approach
     1. [ ] Measurements of actual progress against exit criteria
     1. [ ] Evaluation of the quality of the test object
+
+    > ### Explanation / Rationale
+    > 1. Is correct. This information has been defined earlier in the test project
+    > 1. Is not correct. This information is included in a test report: information on what occurred during a test period
+    > 1. Is not correct. This information is included in a test report:
+    >    * Status of testing and product quality with respect to the exit criteria or definition of done
+    >    * Metrics of defects, test cases, test coverage, activity progress, and resource consumption
+    > 1. Is not correct. This information is included in a test report: Information and metrics to support recommendations and decisions about future actions, such as an assessment of defects remaining, the economic benefit of continued testing, outstanding risks, and the level of confidence in the tested software
+
 1. The project develops a "smart" heating thermostat. The control algorithms of the thermostat were modeled as Matlab/Simulink models and run on the internet connected server. The thermostat
 uses the specifications of the server to trigger the heating valves.
 The test manager has defined the following test strategy/approach in the test plan:
-    ```
+    
     1. The acceptance test for the whole system is executed as an experience-based test.
     2. The control algorithms on the server are checked against standard of the energy
     saving regulation.
     3. The functional test of the thermostat is performed as risk-based testing.
     4. The security tests of data / communication via the internet are executed together
     with external security experts.
-    ```
+    
     What four common types of test strategies/approaches did the test manager implement in the test
     plan?
     1. [ ] Methodical, analytical, reactive, and regression-averse
-    1. [ ] Analytical, standard-compliant, consultative, and reactive
+    1. [x] Analytical, standard-compliant, consultative, and reactive
     1. [ ] Model-based, methodical, analytical, and consultative
     1. [ ] Regression-averse, consultative, reactive, and methodical
+
+    > ### Explanation / Rationale
+    > The possible mappings of points 1 to 4 can be justified as follows:
+    > 1. Approach 3 is analytical: Risk-based testing is an example of an analytical approach, where tests are designed and prioritized based on the level of risk
+    > 1. Approach 2 is standard-compliant: The control algorithms is checked against industry-specific standard of the energy saving regulation.
+    > 1. Approach 4 is consultative: This type of test strategy is driven primarily by the advice, guidance, or instructions of stakeholders, business domain experts, or technology experts, who may be outside the test team or outside the organization itself
+    > 1. Approach 1 is reactive: Exploratory testing is a common technique employed in reactive strategies, whereby the explorative testing isassigned to the experience-based testing category
+
 1. Which one of the following is the characteristic of a metrics-based approach for test estimation?
-    1. [ ] Budget which was used by a previous similar test project
+    1. [x] Budget which was used by a previous similar test project
     1. [ ] Overall experience collected in interviews with test managers
     1. [ ] Estimation of effort for test automation agreed in the test team
     1. [ ] Average of calculations collected from business experts
+
+    > ### Explanation / Rationale
+    > 1. Is correct. The metrics-based approach: estimating the testing effort based on metrics of former similar projects or based on typical values
+    > 1. Is not correct. This is expert-based approach: estimating the tasks based on estimates made by the owners of the tasks or by experts
+    > 1. Is not correct. This is expert-based approach: estimating the tasks based on estimates made by the responsible team of the tasks or by experts
+    > 1. Is not correct. This is expert-based approach: estimating the tasks based on estimates made by the owners of the tasks or by experts
+
 1. As a test manager you are responsible for testing the following parts of requirements:
-    ```
-    • R1 - Process anomalies
-    • R2 - Synchronization
-    • R3 - Approval
-    • R4 - Problem solving
-    • R5 - Financial data
-    • R6 - Diagram data
-    • R7 - Changes to the user profile
-    ```
-    Notation: Logical requirement dependencies (A -> B means, that B depends on     1. [ ]:
-Which one of the following options structures the test execution schedule according to the
-requirement dependencies?
+
+    * R1 - Process anomalies
+    * R2 - Synchronization
+    * R3 - Approval
+    * R4 - Problem solving
+    * R5 - Financial data
+    * R6 - Diagram data
+    * R7 - Changes to the user profile
+
+    Notation: Logical requirement dependencies (A -> B means, that B depends on A). Which one of the following options structures the test execution schedule according to the requirement dependencies?
     1. [ ] R1 ; R3 ; R4 ; R7 ; R2 ; R5 ; R6
     1. [ ] R1 ; R3 ; R2 ; R4 ; R7 ; R5 ; R6
     1. [ ] R1 ; R3 ; R2 ; R5 ; R6 ; R4 ; R7
     1. [ ] R1 ; R2 ; R5 ; R6 ; R3 ; R4 ; R7
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. R4 is dependent on R2, so R2 should be tested before R4
+    > 1. Is not correct. R4 is dependent on R2, R5 and R6, so R5 and R6 should be tested before R4
+    > 1. Is correct. The tests are specified in a sequence that takes the dependencies into account
+    > 1. Is not correct. R2 is dependent on R3, so R3 should be tested before R2
+
 1. You are testing a new version of software for a coffee machine. The machine can prepare different types of coffee based on four categories. i.e., coffee size, sugar, milk, and syrup. The criteria are as follows:
-    ```
-    • Coffee size (small, medium, large)
-    • Sugar (none, 1 unit, 2 units, 3 units, 4 units)
-    • Milk (yes or no)
-    • Coffee flavor syrup (no syrup, caramel, hazelnut, vanilla)
-    ```
+    
+    * Coffee size (small, medium, large)
+    * Sugar (none, 1 unit, 2 units, 3 units, 4 units)
+    * Milk (yes or no)
+    * Coffee flavor syrup (no syrup, caramel, hazelnut, vanilla)
+    
     Now you are writing a defect report with the following information:
-    ```
-    • Title: Low coffee temperature.
-    • Short summary: When you select coffee with milk, the time for preparing coffee is too long and the temperature of the beverage is too low (less than 40 °C).
-    • Expected result: The temperature of coffee should be standard (about 75 °C).
-    • Degree of risk: Medium
-    • Priority: Normal
-    ```
+    
+    * Title: Low coffee temperature.
+    * Short summary: When you select coffee with milk, the time for preparing coffee is too long and the temperature of the beverage is too low (less than 40 °C).
+    * Expected result: The temperature of coffee should be standard (about 75 °C).
+    * Degree of risk: Medium
+    * Priority: Normal
+    
     What valuable information was omitted in the above defect report?
     1. [ ] The actual test results
-    1. [ ] Identification of the tested software version
+    1. [x] Identification of the tested software version
     1. [ ] Status of the defect
     1. [ ] Ideas for improving the test case
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. The test result is given in the short summary
+    > 1. Is correct. When testing different versions of software, identifying information is necessary
+    > 1. Is not correct. You are just writing the defect report; hence, the status is automatically open
+    > 1. Is not correct. This information is useful for the tester but does not need to be included in the defect report
+
 1. Which one of the following is MOST likely to be a benefit of test execution tools?
     1. [ ] It is easy to create regression tests
     1. [ ] It is easy to maintain version control of test assets
     1. [ ] It is easy to design tests for security testing
-    1. [ ] It is easy to run regression tests
+    1. [x] It is easy to run regression tests
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. The benefits are not when creating regressions tests, more in executing them
+    > 1. Is not correct. This is done by configuration management tools
+    > 1. Is not correct. This needs specialized tools
+    > 1. Is correct. Reduction in repetitive manual work (e.g., running regression tests, environment set up/tear down tasks, re-entering the same test data, and checking against coding standards), thus saving time
+
 1. Which one of the following test tools is mostly suitable for developers rather than testers?
     1. [ ] Requirement management tools
     1. [ ] Configuration management tools
-    1. [ ] Static analysis tools
+    1. [x] Static analysis tools
     1. [ ] Performance testing tools
+
+    > ### Explanation / Rationale
+    > 1. Is not correct. Requirement management tools are not particularly suitable for developers
+    > 1. Is not correct. Configuration management tools are not particularly suitable for developers
+    > 1. Is correct. Static analysis tools are especially suitable for developers
+    > 1. Is not correct. Performance testing tools are not better suited for developers than for testers
