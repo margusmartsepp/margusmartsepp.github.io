@@ -80,6 +80,12 @@ git config --global --add diff.guitool kdiff3
 git config --global --add difftool.kdiff3.path "C:/Program Files/KDiff3/kdiff3.exe"
 git config --global --add difftool.kdiff3.trustExitCode false
 ```
+after what
+```bash
+git config --get merge.tool
+```
+should return: kdiff3, and after restart Visual Studio the merge conflicts button should open it in kdiff3.
+
 On undoing, fixing, or removing commits in git
 https://sethrobertson.github.io/GitFixUm/fixup.html
 
