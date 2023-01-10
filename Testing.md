@@ -793,3 +793,39 @@ The Sample Exam Q&A Set originates from [https://www.istqb.org/certifications/pe
    1. [ ] Batch processing of the patient upload information has not been considered
    1. [ ] Other system components that may be required (x-ray upload, lab results reporting) have not been considered
 
+# Automation Testing
+The Sample Exam Q&A Set originates from [https://www.istqb.org/certifications/test-automation-engineer] and is here for searchability and quotations to allow faster learning. Visit their site for the most up-to-date version.
+
+Sample Exam set A | Version 1.1
+
+1. ### Question #1 (1 point)
+Which of the following is considered to be an advantage of test automation over manual testing?
+   1. [ ] The time required for test execution is lengthened and the coverage is increased
+   1. [ ] The time required for test execution is shortened and the coverage is increased
+   1. [ ] The time required for test execution is lengthened and the coverage is reduced
+   1. [ ] The time required for test execution is shortened and the coverage is reduced
+
+1. ### Question #2 (1 point)
+Which of the following is an important technical success factor for any significant automation
+project?
+   1. [ ] The TAA must be designed for learnability
+   1. [ ] The TAA must support the ability to automate all manual tests
+   1. [ ] The SUT must be self-documenting
+   1. [ ] The GUI interaction and data must be coupled with the graphical interface
+
+1. ### Question #3 (3 points)
+You are deciding on the functional test automation approach for a highly complex system which is
+expected to be used in production for many years. You have already conducted a survey with the
+major tool vendors and you have determined that you will not be able to use any of their tools to
+create your test automation due to the non-standard interfaces that were required for the software.
+You and the developers have decided that your best automation approach will be through custom
+interfaces implemented specifically for testing.
+What are two concerns you should have with this approach?
+   1. [ ] If the interfaces are not disabled before release, there could be a security risk
+   1. [ ] The performance of the test interfaces may be much faster than the performance of the real
+interfaces
+   1. [ ]  The effort spent to develop test automation will not be justified by the expected lifespan of
+the code in production
+   1. [ ] Because there is a high level of intrusion, there may be false alarms generated
+   1. [ ] Because there is a low level of intrusion, the test results will not be representative of the
+production code
