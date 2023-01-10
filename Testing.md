@@ -798,29 +798,20 @@ The Sample Exam Q&A Set originates from [https://www.istqb.org/certifications/te
 
 Sample Exam set A | Version 1.1
 
-1. ### Question #1 (1 point)
-Which of the following is considered to be an advantage of test automation over manual testing?
+1. ### Question #1 (1 point) Which of the following is considered to be an advantage of test automation over manual testing?
    1. [ ] The time required for test execution is lengthened and the coverage is increased
    1. [ ] The time required for test execution is shortened and the coverage is increased
    1. [ ] The time required for test execution is lengthened and the coverage is reduced
    1. [ ] The time required for test execution is shortened and the coverage is reduced
 
-1. ### Question #2 (1 point)
-Which of the following is an important technical success factor for any significant automation
-project?
+1. ### Question #2 (1 point) Which of the following is an important technical success factor for any significant automation project?
    1. [ ] The TAA must be designed for learnability
    1. [ ] The TAA must support the ability to automate all manual tests
    1. [ ] The SUT must be self-documenting
    1. [ ] The GUI interaction and data must be coupled with the graphical interface
 
-1. ### Question #3 (3 points)
-You are deciding on the functional test automation approach for a highly complex system which is
-expected to be used in production for many years. You have already conducted a survey with the
-major tool vendors and you have determined that you will not be able to use any of their tools to
-create your test automation due to the non-standard interfaces that were required for the software.
-You and the developers have decided that your best automation approach will be through custom
-interfaces implemented specifically for testing.
-What are two concerns you should have with this approach?
+1. ### Question #3 (3 points) You are deciding on the functional test automation approach for a highly complex system which is expected to be used in production for many years. You have already conducted a survey with the major tool vendors and you have determined that you will not be able to use any of their tools to create your test automation due to the non-standard interfaces that were required for the software. You and the developers have decided that your best automation approach will be through custom interfaces implemented specifically for testing.
+     What are two concerns you should have with this approach?
    1. [ ] If the interfaces are not disabled before release, there could be a security risk
    1. [ ] The performance of the test interfaces may be much faster than the performance of the real
 interfaces
@@ -829,3 +820,40 @@ the code in production
    1. [ ] Because there is a high level of intrusion, there may be false alarms generated
    1. [ ] Because there is a low level of intrusion, the test results will not be representative of the
 production code
+
+1. ### Question #4 (3 points) You have been automating a legacy application that provides critical functionality to the business. An update to the legacy system has been approved and the developers plan to use third party software to provide the new functionality. The third party software has already been tested but the interface between the existing software and the new software is problematic. Your existing test automation needs to be extended to test the interface between these two products.
+     How should you approach implementing the best automation solution?
+   1. [ ] Develop test automation for the entire system including the legacy and third party
+applications
+   1. [ ] Investigate if automation is possible via the APIs used to interface with the third party
+software
+   1. [ ] Develop new automation to test via the GUI of the third party software
+   1. [ ] Investigate if automation can be implemented using the CLI to replace the existing GUI
+automation
+
+1. ### Question #5 (3 points) You are evaluating functional test automation tools. The tool that you prefer can provide your organization with a favorable cost-benefit ratio, which appeals to senior management. Additionally, you feel the tool is superior in meeting your other technical criteria. However, the tool has many features most of which will never be used. As a result, you feel this makes the tool overly complex and confusing.
+     What should your next steps be regarding selection of this tool?
+   1. [ ] Consider another tool that is more user friendly
+   1. [ ] Explore the possibility of configuring the tool to turn off unnecessary features
+   1. [ ] Plan to supplement selection of this tool with lengthy and comprehensive training sessions
+   1. [ ] Consider acquiring an additional tool that can provide a more user friendly interface to the
+preferred tool
+
+1. ### Question #6 (1 point) When a system is designed for testability, one of the characteristics is that the test cases can access interfaces into the system that can be used to verify the expected behavior actually occurred as a result of the test.
+     What is this characteristic called?
+   1. [ ] Observability
+   1. [ ] Controllability
+   1. [ ] Maintainability
+   1. [ ] Interoperability
+
+1. ### Question #7 (1 point) Which of the following is an important testability consideration when designing a SUT?
+   1. [ ] Interoperability
+   1. [ ] Controllability
+   1. [ ] Maintainability
+   1. [ ] Transportability
+
+1. ### Question #8 (1 point) What layer of the gTAA structure provides tool support for designing manual test cases and creating automated test cases?
+   1. [ ] Test Adaptation Layer
+   1. [ ] Test Definition Layer
+   1. [ ] Test Generation Layer
+   1. [ ] Test Flexibility Layer
