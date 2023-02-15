@@ -800,24 +800,24 @@ Sample Exam set A | Version 1.1
 
 1. ### Question #1 (1 point) Which of the following is considered to be an advantage of test automation over manual testing?
    1. [ ] The time required for test execution is lengthened and the coverage is increased
-   1. [ ] The time required for test execution is shortened and the coverage is increased
+   1. [x] The time required for test execution is shortened and the coverage is increased
    1. [ ] The time required for test execution is lengthened and the coverage is reduced
    1. [ ] The time required for test execution is shortened and the coverage is reduced
 
 1. ### Question #2 (1 point) Which of the following is an important technical success factor for any significant automation project?
-   1. [ ] The TAA must be designed for learnability
+   1. [x] The TAA must be designed for learnability
    1. [ ] The TAA must support the ability to automate all manual tests
    1. [ ] The SUT must be self-documenting
    1. [ ] The GUI interaction and data must be coupled with the graphical interface
 
 1. ### Question #3 (3 points) You are deciding on the functional test automation approach for a highly complex system which is expected to be used in production for many years. You have already conducted a survey with the major tool vendors and you have determined that you will not be able to use any of their tools to create your test automation due to the non-standard interfaces that were required for the software. You and the developers have decided that your best automation approach will be through custom interfaces implemented specifically for testing.
      What are two concerns you should have with this approach?
-   1. [ ] If the interfaces are not disabled before release, there could be a security risk
+   1. [x] If the interfaces are not disabled before release, there could be a security risk
    1. [ ] The performance of the test interfaces may be much faster than the performance of the real
 interfaces
    1. [ ]  The effort spent to develop test automation will not be justified by the expected lifespan of
 the code in production
-   1. [ ] Because there is a high level of intrusion, there may be false alarms generated
+   1. [x] Because there is a high level of intrusion, there may be false alarms generated
    1. [ ] Because there is a low level of intrusion, the test results will not be representative of the
 production code
 
@@ -825,7 +825,7 @@ production code
      How should you approach implementing the best automation solution?
    1. [ ] Develop test automation for the entire system including the legacy and third party
 applications
-   1. [ ] Investigate if automation is possible via the APIs used to interface with the third party
+   1. [x] Investigate if automation is possible via the APIs used to interface with the third party
 software
    1. [ ] Develop new automation to test via the GUI of the third party software
    1. [ ] Investigate if automation can be implemented using the CLI to replace the existing GUI
@@ -834,26 +834,129 @@ automation
 1. ### Question #5 (3 points) You are evaluating functional test automation tools. The tool that you prefer can provide your organization with a favorable cost-benefit ratio, which appeals to senior management. Additionally, you feel the tool is superior in meeting your other technical criteria. However, the tool has many features most of which will never be used. As a result, you feel this makes the tool overly complex and confusing.
      What should your next steps be regarding selection of this tool?
    1. [ ] Consider another tool that is more user friendly
-   1. [ ] Explore the possibility of configuring the tool to turn off unnecessary features
+   1. [x] Explore the possibility of configuring the tool to turn off unnecessary features
    1. [ ] Plan to supplement selection of this tool with lengthy and comprehensive training sessions
    1. [ ] Consider acquiring an additional tool that can provide a more user friendly interface to the
 preferred tool
 
 1. ### Question #6 (1 point) When a system is designed for testability, one of the characteristics is that the test cases can access interfaces into the system that can be used to verify the expected behavior actually occurred as a result of the test.
      What is this characteristic called?
-   1. [ ] Observability
+   1. [x] Observability
    1. [ ] Controllability
    1. [ ] Maintainability
    1. [ ] Interoperability
 
 1. ### Question #7 (1 point) Which of the following is an important testability consideration when designing a SUT?
    1. [ ] Interoperability
-   1. [ ] Controllability
+   1. [x] Controllability
    1. [ ] Maintainability
    1. [ ] Transportability
 
 1. ### Question #8 (1 point) What layer of the gTAA structure provides tool support for designing manual test cases and creating automated test cases?
    1. [ ] Test Adaptation Layer
    1. [ ] Test Definition Layer
-   1. [ ] Test Generation Layer
+   1. [x] Test Generation Layer
    1. [ ] Test Flexibility Layer
+
+1. ### Question #9 (3 points) You are working on the design of a test automation project. The gTAA was set up by a consulting company prior to your being hired. You are now looking to create the TAA from the gTAA.
+
+    You have the following requirements that must be addressed by your TAA:
+    1. The TAA must support independence across technologies. It is likely that this same test suite will be used in different test environments and on different target technologies
+    2. The test artifacts need to be portable
+    3. Vendor-neutrality is preferable
+    4. It is vitally important that the TAA be maintainable and maintenance costs be minimized
+    5. It is preferred that less technical people be able to maintain the system even though highly technical people have built it
+    6. There is a large project budget for this effort for the next two years, but the budget will decrease after that time 
+    
+    Given these requirements, which one of the following should the TAE consider during the implementation of the TAA?
+   1. [ ] The communication protocols used by the TAS to interact with the SUT
+   1. [ ] The number of automated test cases to be maintained by the system
+   1. [ ] The test roles that will be supported by the implementation
+   1. [x] The use of abstraction in the implementation
+
+1. ### Question #10 (1 point) Why is it important for the TAA to separate the test definition from the test execution?
+   1. [ ] Separating the two increases the speed of execution
+   1. [x] The test definition can be completed without knowledge of the tool that will be used for execution
+   1. [ ] The execution will be able to add test cases to the test definition as needed during execution
+   1. [ ] The test definition layer will supply the adaptation necessary for the tests to run with various tools and interfaces
+
+1. ### Question #11 (1 point) When designing the test adaptation layer, which of the following should occur?
+   1. [ ] Selecting the interpretation or compilation approach for the test procedures
+   1. [ ] Selecting data-driven, keyword-driven, pattern-based or model-driven test definition
+   1. [ ] Selecting manual or automated test generation
+   1. [x] Selecting tools that will be used to stimulate and observe test interfaces
+
+1. ### Question #12 (1 point) When is the best time, for test automation, to consider legal and/or standards requirements of an SUT?
+   1. [ ] When developing a TAS
+   1. [ ] When implementing the SUT
+   1. [x] When designing a TAA
+   1. [ ] When creating a TAF
+
+1. ### Question #13 (3 points) You are working on a test automation project that will automate business scenarios for the user acceptance testers to use when conducting UAT. 
+    The business scenarios are well-defined andfrequently repeated during UAT. The goal is to also be able to test these same scenarios as part of regression testing by executing the test automation. Structured scripting has already been used to develop the library of functions that can be used by the test automation.
+
+    What scripting technique should be used to build upon the structured scripting that has already been done and to implement this test automation to meet the business goals?
+   1. [ ] Scenario-driven scripting
+   1. [ ] Keyword-driven scripting
+   1. [x] Process-driven scripting
+   1. [ ] Linear scripting
+
+1. ### Question #14 (3 points) Your manager has requested you develop test automation to be used for a legacy system that is going to go through a series of infrastructure migrations. 
+
+    The scripts will be used to verify basic functionality during these infrastructure changes. You need a solution that is simple and fast.
+
+    Maintainability of the scripts is not a consideration because no changes to the software are anticipated. Which of the following is the best scripting approach in this situation?
+   1. [ ] Structured scripting
+   1. [ ] Data-driven scripting
+   1. [ ] Keyword-driven scripting
+   1. [x] Linear scripting
+
+1. ### Question #15 (2 points) You are using a gTAA to create a TAS for a project. You have reviewed the project and determined that the test automation should be focused at the command line level rather than the user interface level due to the rapid and continual changes occurring in the user interface. The command line interface allows you to access all the functionality and will be a part of the released project. Given this information, what part of the standard gTAA can you leave out of the TAS?
+   1. [ ] The test data component of the test definition layer
+   1. [x] The GUI component of the test adaptation layer
+   1. [ ] The test model component of the test generation layer
+   1. [ ] The user interface component of the test execution layer
+
+1. ### Question #16 (2 points) You are implementing a TAS from a TAA. The SUT communicates with another system, which is stable and available for use during testing. The test interface will be through the GUI. Given this information what component of the TAA can you exclude from the TAS?
+   1. [ ] The test generation layer
+   1. [x] The simulator within the test adaption layer
+   1. [ ] Test execution within the test execution layer
+   1. [ ] The GUI from the test adaptation layer
+
+1. ### Question #17 (1 point) Which of the following is true about reuse?
+   1. [x] Reuse is built into the TAA and maintained and improved in the TAS
+   1. [ ] Reuse is built in both the TAA and TAS and maintained in the gTAA
+   1. [ ] Reuse is only applicable for the gTAA
+   1. [ ] Reuse is built into the TAS and maintained and improved in the TAA
+
+1. ### Question #18 (2 points) Senior management wants to implement test automation into your organization and has asked you to lead this initiative. The organization has a number of systems of varying criticality, some of which may benefit from automation once a TAA is mature. You have been given direction to start with a pilot.
+
+    How do you select a suitable project for the TAS?
+   1. [ ] A high visibility project in order to highlight the success of the pilot
+   1. [x] A non-critical project in order to mitigate any delays the TAS may cause
+   1. [ ] A project that is simple and easy to automate
+   1. [ ] A new project that is immature and still in development
+
+1. ### Question #19 (2 points) You have been asked to conduct a pilot for the test automation tool. You have identified a suitable target project (average size and cost), planned the pilot (treating it as a development effort), and conducted the pilot.
+
+    What should be your next step?
+   1. [ ] Conduct another pilot on a critical project to ensure the tool will work when it really matters
+   1. [ ] Conduct another pilot on a trivial project to ensure the time requirements will not be too
+high on small projects
+   1. [x] Evaluate the results engaging the stakeholders to gather their viewpoints
+   1. [ ] Evaluate the results within the pilot testing team and prepare a report for management
+
+1. ### Question #20 (3 points) Your team has been working on creating a strong and maintainable TAS. The TAS is expected to be used for at least five years, so good maintainability is critical.
+
+    The team has done the following:
+    1. Created an impact analysis process for all proposed changes to the system
+    2. Documented the usage for the TAS
+    3. Documented the third party dependencies, including contacts within the third party
+    organization
+    4. Verified that the TAS runs in an environment separate from the SUT environment
+
+    Given this information, what is a major factor of maintainability that has not been addressed?
+   1. [x] The TAS must be modular, so key components can be replaced as needed
+   1. [ ] The TAS must be a copy of the gTAA
+   1. [ ] The SUT must reside in the same environment as the TAS
+   1. [ ] The TAS must unite the test scripts with the TAF
