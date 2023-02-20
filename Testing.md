@@ -960,3 +960,159 @@ high on small projects
    1. [ ] The TAS must be a copy of the gTAA
    1. [ ] The SUT must reside in the same environment as the TAS
    1. [ ] The TAS must unite the test scripts with the TAF
+
+1. ### Question #21 (3 points) You have just updated your TAS to include new features.
+    
+    What steps should you take to ensure that the changes have not adversely affected any existing 
+functionality?
+   1. [x] Compare the new and old TAS versions and assess the impact of any differences
+   1. [ ] Statically check to ensure procedures for the new and old TAS versions are identical
+   1. [ ] Ensure the same stubs and drivers are used in the new TAS
+   1. [ ] Use SUT release notes as a way to ensure the new TAS will operate correctly
+
+1. ### Question #22 (1 point) Why is it important to have standard naming conventions for a TAS?
+   1. [ ] A TAS that uses standard names will enable faster execution of the test automation
+   1. [x] A TAS that uses standard names will be easier for a new person to learn
+   1. [ ] A TAS that uses standard names will support global substitutions when test automation 
+standards change
+   1. [ ] A TAS that uses standard names will allow separation of the test scripts from the TAF
+
+1. ### Question #23 (2 points) Your manager is concerned that it will be difficult to assess the success of the test automation implementation unless it is possible to show that the quality of the tested software steadily improves. You have explained that pass/fail numbers are reported at the end of each execution, but your manager wants to see this information provided automatically to a dashboard that will allow drilling down to the details.
+
+    How can you automatically provide this information from the test automation software?
+   1. [ ] You cannot. This information will have to be gathered manually at the end of each execution
+   1. [x] The automated testware can be used to report this information to a database and a 
+dashboard can be created from the data in the database that will show the trends in passed/failed test cases
+   1. [ ] The automated testware can report each set of test execution results to a spreadsheet that can be published showing the detailed results
+   1. [ ] The TAE can record the information during execution and report that into a graphing tool that can be provided for management reporting
+
+1. ### Question #24 (2 points) You normally start execution of an automated regression test suite at the end of the workday, as it  is a lengthy test. Occasionally the test does not complete by the start of the next workday even though it should complete within five hours of starting.
+
+    What is the most efficient approach you could take to determine the cause of the problem?
+   1. [ ] Run the test at the beginning of the day and monitor it manually
+   1. [ ] Evaluate a vendor reporting tool that measures test progress
+   1. [ ] Supplement your staff with a night shift to monitor the test while it is running
+   1. [x] Automate collection of the test execution results
+
+1. ### Question #25 (1 point) When implementing results reporting for test automation, what is a good way to allow the reader to  make a quick assessment of the progress of the test execution?
+   1. [ ] Spreadsheets
+   1. [x] Traffic lights
+   1. [ ] Detailed reports with percentages of completion
+   1. [ ] Database of results
+
+1. ### Question #26 (1 point) You have been asked to distribute the results of your test automation daily. The preferred method for distribution of these results is via e-mail.
+
+    What is an important characteristic of your test automation reporting that will allow you to provide this information?
+   1. [x] It should integrate with a common third party tool
+   1. [ ] It should allow you to supplement the results with manual commentary
+   1. [ ] It should provide a way to publish the test log library
+   1. [ ] It should allow you to capture an audio message to accompany test results
+
+1. ### Question #27 (3 points) You have been working with a test automation suite that provides good test coverage. The suite contains 500 scripts and has previously run without any problems. Recently, a number of the tests late in the test run have been failing. You have done some analysis and it appears that the test  failures are being caused by a SUT failure that is not being detected by one or more tests earlier in the test run. You need more information to pinpoint the test or tests with a false-negative result.
+
+    Consider the following options: 
+    1. The status of execution for each test case (pass/fail)
+    2. Timing information for each step in each test case
+    3. Dynamic information about the SUT
+    4. All actions of each test case to allow replaying each test
+    5. Failure information for any step in a test case that encounters an error
+
+    What type of logging do you need in order to complete your analysis and get the information to help identify the problem?
+   1. [ ] 1, 2, 3
+   1. [ ] 2, 4, 5
+   1. [ ] 2, 3, 5
+   1. [x] 1, 4, 5
+
+1. ### Question #28 (1 point) When publishing a test execution report which key attribute must the report contain?
+   1. [ ] Test case steps
+   1. [x] Test environment
+   1. [ ] Assessment of the reliability of the SUT
+   1. [ ] Root cause of any failures
+
+1. ### Question #29 (2 points) You have been asked to implement test automation for a system that has been in production for  two years. The software is relatively stable, updates are made once a quarter, and the quality of the software is extremely important. 
+
+    The organization follows a V-model lifecycle and has used this model for many years. Software quality is good on the quarterly releases, but there is concern that the time required for the regression testing is not cost effective and is inhibiting the flow of new features. You see several challenges in this implementation, the greatest of which is the creation and preservation of test data. While the test environments are stable and controlled, the test data is frequently refreshed from production, which makes it difficult to write maintainable test automation.
+
+    Given this information, which of the following is most likely to be a problem for this test automation effort?
+   1. [ ] Maturity of the test process
+   1. [ ] Suitability of automation for the stage of the software product lifecycle
+   1. [ ] Frequency of use
+   1. [x] Complexity to automate
+
+1. ### Question #30 (1 point) What is the most common basis for an automated test script?
+   1. [ ] The gTAA
+   1. [ ] The SUT
+   1. [x] A manual test case
+   1. [ ] The functional requirements
+
+1. ### Question #31 (1 point) What is a stated goal for automated regression test coverage if it is to ascertain the overall quality of the SUT?
+   1. [ ] Cursory
+   1. [ ] Broad
+   1. [ ] Deep
+   1. [x] Broad and deep
+
+1. ### Question #32 (1 point) Who should provide feedback to the TAE when implementing new features to an existing TAS?
+   1. [ ] Business Analysts
+   1. [ ] Senior Managers
+   1. [x] Test Designers with domain expertise
+   1. [ ] System Administrators
+
+1. ### Question #33 (1 point) Which of the following is the best reason for automating the confirmation testing of a defect?
+   1. [ ] To close a gap in the existing automation
+   1. [x] To ensure that the fix works and continues to work
+   1. [ ] To justify the time spent finding the defect
+   1. [ ] To test the configuration management processes
+
+1. ### Question #34 (2 points) You are having problems with the reliability of the automated test environment and setup. You have decided to create a test suite you can execute to verify the environment before you run the actual test scripts.
+
+    Which of the following would provide the best quick test of the environment?
+   1. [ ] Run a set of tests that are known to pass and verify that they still pass
+   1. [ ] Run a set of tests that are known to fail and verify that they still fail
+   1. [x] Run a set of tests containing both passes and fails and verify that the results are consistent
+   1. [ ] Run the entire set of automated tests and verify the results because a subset will not be 
+representative
+
+1. ### Question #35 (2 points) You are testing a system that is updated by monthly service packs. You are testing multiple versions of the SUT simultaneously. Your TAS is complex and you need to ensure it remains consistent across the different SUT environments.
+
+    How will you ensure that the same version of the TAS is used to test each SUT?
+   1. [ ] Update the TAS each time the SUT is patched
+   1. [ ] Revert back to manual testing
+   1. [x] Install the TAS into the SUT environments from a central repository
+   1. [ ] Develop a tool to track historical test results
+
+1. ### Question #36 (2 points) You have executed an automated test suite for a product that was released to production. Although your tests passed, there was a major failure in production in an area that is well covered by your automated tests. You have verified that your tests did pass and that the reporting of the results was correct.
+
+    What should you do now to verify the validity of your tests?
+   1. [ ] Run tests that should fail and verify that they fail
+   1. [ ] Run tests that should pass and verify that they pass
+   1. [x] Check that the post conditions of each test case are being verified correctly
+   1. [ ] Change your test data and run the tests again
+
+1. ### Question #37 (2 points) You are preparing to execute a test automation suite for a safety critical healthcare application. Which approach should you take to verify the accuracy of the test results?
+   1. [x] Execute test cases with known failures and verify that they continue to fail
+   1. [ ] Extract data from the production system and verify compatibility with the TAS
+   1. [ ] Examine historical test trends on a similar SUT
+   1. [ ] Execute the test suite slowly and methodically
+
+1. ### Question #38 (3 points) You have been reviewing the test cases in your TAS and have discovered that there is a wide variety of methods the TAEs have used to handle system errors. How should you handle this?
+   1. [x] Establish an error recovery process in the TAS and ensure all test cases are using that 
+process
+   1. [ ] Create a library of recovery processes so there is better reuse between the different scripts
+   1. [ ] Move to a keyword-driven approach and make recovery one of the keywords
+   1. [ ] Provide better wait time handling in the scripts to avoid system errors
+
+1. ### Question #39 (3 points) Up until now you have provided automated testing for a stable SUT. Because of changing business demands, the SUT will be updated to include several new features and plug-ins that communicate via APIs.
+
+    In what way should you update the TAS?
+   1. [ ] Improve TAS recovery to make it more fault-tolerant when API calls fail
+   1. [ ] Update the documentation for the TAS including its support for APIs
+   1. [ ] Improve the logging to capture the anticipated increase in defects due to API failures
+   1. [x] Modify the adaptation layer in the TAA to enable the TAS to test via the APIs
+
+1. ### Question #40 (3 points) You have been conducting a quality review for your TAS. You have discovered that it has not been updated for three years. The TAS functions properly and provides good coverage of the SUT; however, you want to ensure that it is working as efficiently as possible.
+
+    What step should you consider in order to increase efficiency of the TAS?
+   1. [ ] Ensure consistent naming standards for new automation code
+   1. [ ] Make changes to the TAS in rapid succession to keep pace with leading edge practices
+   1. [x] Ensure the latest libraries are incorporated into the TAS
+   1. [ ] Enlist a third party vendor to evaluate the current TAS
