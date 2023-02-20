@@ -803,12 +803,22 @@ Sample Exam set A | Version 1.1
    1. [x] The time required for test execution is shortened and the coverage is increased
    1. [ ] The time required for test execution is lengthened and the coverage is reduced
    1. [ ] The time required for test execution is shortened and the coverage is reduced
+    > #### Explanation / Rationale
+    > 1. Is not correct
+    > 1. Is correct. There is an expectation with good test automation that the time required for test execution will be reduced while the overall test coverage is increased
+    > 1. Is not correct
+    > 1. Is not correct
 
 1. ### Question #2 (1 point) Which of the following is an important technical success factor for any significant automation project?
    1. [x] The TAA must be designed for learnability
    1. [ ] The TAA must support the ability to automate all manual tests
    1. [ ] The SUT must be self-documenting
    1. [ ] The GUI interaction and data must be coupled with the graphical interface
+    > #### Explanation / Rationale
+    > 1. Is correct. It must be designed for learnability, maintainability, and performance
+    > 1. Is incorrect. Not all manual tests can or should be automated
+    > 1. Is incorrect. The code could be self-documenting but the entire SUT would not be
+    > 1. Is incorrect. Automation is easier with decoupling
 
 1. ### Question #3 (3 points) You are deciding on the functional test automation approach for a highly complex system which is expected to be used in production for many years. You have already conducted a survey with the major tool vendors and you have determined that you will not be able to use any of their tools to create your test automation due to the non-standard interfaces that were required for the software. You and the developers have decided that your best automation approach will be through custom interfaces implemented specifically for testing.
      What are two concerns you should have with this approach?
@@ -820,6 +830,13 @@ the code in production
    1. [x] Because there is a high level of intrusion, there may be false alarms generated
    1. [ ] Because there is a low level of intrusion, the test results will not be representative of the
 production code
+
+    > #### Explanation / Rationale
+    > 1. Is correct. A is noted in section 3.2.3 of the syllabus where it talks about checking for security risks if you leave test interfaces in place
+    > 1. Is not correct. We are testing the code, not the performance
+    > 1. Is not correct. It is stated in the question that this is a long-lived, complex product
+    > 1. Is correct. Developing custom test interfaces is considered a high level of intrusion and this may generate false alarms due to the different code being exercised
+    > 1. Is not correct. The custom interfaces introduce a high level of intrusion
 
 1. ### Question #4 (3 points) You have been automating a legacy application that provides critical functionality to the business. An update to the legacy system has been approved and the developers plan to use third party software to provide the new functionality. The third party software has already been tested but the interface between the existing software and the new software is problematic. Your existing test automation needs to be extended to test the interface between these two products.
      How should you approach implementing the best automation solution?
