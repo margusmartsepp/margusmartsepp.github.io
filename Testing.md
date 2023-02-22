@@ -1115,10 +1115,10 @@ dashboard can be created from the data in the database that will show the trends
    1. [ ] The TAE can record the information during execution and report that into a graphing tool that can be provided for management reporting
    
    > #### Explanation / Rationale
-   > 1. Is not correct. It interferes with other planned activities
-   > 1. Is not correct. This is an unnecessary cost
-   > 1. Is not correct. It is not practical
-   > 1. Is correct. Automated collection is inexpensive and effective
+   > 1. Is not correct. You can provide this information
+   > 1. Is correct. This is an automated solution that will utilize the tools to provide accurate current and trend information
+   > 1. Is not correct. It will provide only current execution information but no overall trending
+   > 1. Is not correct. It is a manual process not an automated solution
 
 1. ### Question #24 (2 points) You normally start execution of an automated regression test suite at the end of the workday, as it  is a lengthy test. Occasionally the test does not complete by the start of the next workday even though it should complete within five hours of starting.
 
@@ -1129,10 +1129,10 @@ dashboard can be created from the data in the database that will show the trends
    1. [x] Automate collection of the test execution results
    
    > #### Explanation / Rationale
-   > 1. Is not correct. These will not allow quick analysis
-   > 1. Is correct. Using colors, such as traffic lights, to indicate progress is mentioned in the syllabus
-   > 1. Is not correct. These will not allow quick analysis
-   > 1. Is not correct. The data would still have to be derived from the database before it could be analyzed
+   > 1. Is not correct. It interferes with other planned activities
+   > 1. Is not correct. This is an unnecessary cost
+   > 1. Is not correct. It is not practical
+   > 1. Is correct. Automated collection is inexpensive and effective
 
 1. ### Question #25 (1 point) When implementing results reporting for test automation, what is a good way to allow the reader to  make a quick assessment of the progress of the test execution?
    1. [ ] Spreadsheets
@@ -1140,11 +1140,11 @@ dashboard can be created from the data in the database that will show the trends
    1. [ ] Detailed reports with percentages of completion
    1. [ ] Database of results
    
-   > #### Explanation / Rationale
-   > 1. Is correct. Importing to commonly known tools such as Excel makes it easier for a broader audience to view and manipulate the data
-   > 1. Is not correct. This would be inefficient and left to individual interpretation of the commentary
-   > 1. Is not correct. This provides too much data for a general audience
-   > 1. Is not correct. This would be an unrealistic expectation of a testreporting tool. Specialized audio capture tools would be more practical
+    > #### Explanation / Rationale
+    > 1. Is not correct. These will not allow quick analysis
+    > 1. Is correct. Using colors, such as traffic lights, to indicate progress is mentioned in the syllabus
+    > 1. Is not correct. These will not allow quick analysis
+    > 1. Is not correct. The data would still have to be derived from the database before it could be analyzed
 
 1. ### Question #26 (1 point) You have been asked to distribute the results of your test automation daily. The preferred method for distribution of these results is via e-mail.
 
