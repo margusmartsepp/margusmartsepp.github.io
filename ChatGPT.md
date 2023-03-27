@@ -1,17 +1,38 @@
 Chat-GPT-4, is a forward-generating language model that produces text sequentially without backtracking. It has a context length limitation, and its default greedy decoding can lead to suboptimal results. While not inherently interactive, it is versatile and can be fine-tuned for specific tasks, with careful handling and well-designed prompts.
 
-# Examples
+# Examples, plugins and info you should know about
 ## TikTok
 * [Using Postman Flows to automate chatgpt APT pipeline to compare chatgpt 3 and 4 speed and cost](https://www.tiktok.com/@joycejetson/video/7211632499724766506), this shows that besides ChatGpt web frontend there is API that can be accessed and does minimal analysis under 2 min.
+* (Zapier automation integrates with ChatGpt)[https://www.tiktok.com/@mike.rama/video/7179652169916845318] to enable over 1000 automations with different applications and tools
 ## Twitter
 * [A proof-of-concept integration of ChatGPT into Unity Editor](https://twitter.com/_kzr/status/1637421440646651905?lang=en), using natural language to create 3 model scene lihting, set properties and physics simulation under 1 min.
 ## Youtube
 * [GPT-4 To Refactor Legacy Codebase](https://www.youtube.com/watch?v=y_NHMGZMb14), tasks are set roughly at level Senior Fullstack developer equivalent of 5-7 years of experience, under 13 min.
 * [ChatGPT + Wolfram](https://www.youtube.com/watch?v=z5WZhCBRDpU) Machine Learning podcast about accurate computational language and natural language input, to compute expert level answers under 58 min
-## Chrome & Edge plugins
+## Chrome, Edge and ChatGPT plugins
 * [ChatGPT for Google](https://chrome.google.com/webstore/detail/chatgpt-for-google/jgjaeacdkonaoafenlfkkkmbaopkbilf) - Display ChatGPT response alongside search engine results
 * [Promptheus](https://chrome.google.com/webstore/detail/promptheus-converse-with/eipjdkbchadnamipponehljdnflolfki?hl=en-GB) - Converse with ChatGPT
+* [ChatGPT Plugins Is Bigger Than GPT-4](https://www.youtube.com/watch?v=sqxOwkROcic), can have internet access, do actions, train with own data (retreival)
+## News and other tools
+* [Verge: Payment info exposed](https://www.theverge.com/2023/3/24/23655622/chatgpt-outage-payment-info-exposed-monday)
+* [Compare different AI models and their performance](nat.dev)
+* [API playground](https://platform.openai.com/playground?model=text-davinci-003), if you don't have gpt-4 model you may need to join their waitlist.
+* [Dalai Lama](https://github.com/cocktailpeanut/dalai), run LLaMA and Alpaca on your computer
+* Chat gpt integrated with Bing and Edge, search/discover within a webpage or document
+* Python access
+```python
+import openai
 
+openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Who won the world series in 2020?"},
+        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+        {"role": "user", "content": "Where was it played?"}
+    ]
+)
+```
 # IT
 ## Project Managers (PM)
 > As an experienced Project Manager, your role is to effectively coordinate and oversee the development of a new software application. Your responsibilities include defining project scope, allocating resources, tracking progress, mitigating risks, and ensuring timely delivery. Collaborate with stakeholders, manage expectations, and maintain clear communication channels to achieve project goals.
