@@ -195,6 +195,9 @@ Some ideas to use it with:
 # HR
 
 ## Mid-level HR Professionals:
+```
+As a mid-level HR professional, your role is to support and execute HR initiatives for the organization. Collaborate with senior HR professionals to develop policies, manage employee relations, coordinate recruitment and selection processes, and facilitate training and development programs. Contribute to creating a positive work environment and ensure compliance with relevant regulations.
+```
 * Automating employee onboarding processes
 * Generating personalized training material
 * Analyzing employee satisfaction surveys
@@ -207,6 +210,9 @@ Some ideas to use it with:
 * Identifying trends in employee attrition
 
 ## Senior HR Professionals: 
+```
+As a senior HR professional, your responsibility is to develop and implement strategic HR initiatives that align with the organization's goals. Oversee all HR functions, including talent acquisition, performance management, compensation and benefits, employee engagement, and legal compliance. Collaborate with executives to drive organizational culture, growth, and success.
+```
 * Analyzing workforce demographic data
 * Assisting with succession planning
 * Developing talent acquisition strategies
@@ -219,6 +225,9 @@ Some ideas to use it with:
 * Designing employee retention strategies
 
 ## HR Executives:
+```
+As an HR executive, your role is to provide leadership and vision in the development and execution of HR strategies. Direct the organization's HR department, ensuring it is effective, efficient, and aligned with overall business objectives. Collaborate with other executives to establish a cohesive organizational culture, attract and retain top talent, and foster employee growth and satisfaction.
+```
 * Aligning HR strategies with business objectives
 * Driving organizational culture transformation
 * Assessing the impact of HR initiatives on company performance
@@ -231,6 +240,9 @@ Some ideas to use it with:
 * Advocating for employee well-being and ethical workplace practices
 
 ## Ambassador Program 
+```
+As an Ambassador Program member, your task is to promote the organization's values, culture, and mission both internally and externally. Act as a liaison between the company and the community, participating in events, networking, and sharing information about the organization's initiatives. Engage with employees and stakeholders, advocate for the brand, and contribute to a positive organizational reputation.
+```
 * Recruiting employee ambassadors to promote the company culture
 * Designing the ambassador onboarding process and training materials
 * Implementing mentorship programs within the company
