@@ -7,6 +7,7 @@ Chat-GPT-4, is a forward-generating language model that produces text sequential
 * [A proof-of-concept integration of ChatGPT into Unity Editor](https://twitter.com/_kzr/status/1637421440646651905?lang=en), using natural language to create 3 model scene lihting, set properties and physics simulation under 1 min.
 ## Youtube
 * [GPT-4 To Refactor Legacy Codebase](https://www.youtube.com/watch?v=y_NHMGZMb14), tasks are set roughly at level Senior Fullstack developer equivalent of 5-7 years of experience, under 13 min.
+* [ChatGPT + Wolfram](https://www.youtube.com/watch?v=z5WZhCBRDpU) Machine Learning podcast about accurate computational language and natural language input, to compute expert level answers under 58 min
 ## Chrome & Edge plugins
 * [ChatGPT for Google](https://chrome.google.com/webstore/detail/chatgpt-for-google/jgjaeacdkonaoafenlfkkkmbaopkbilf) - Display ChatGPT response alongside search engine results
 * [Promptheus](https://chrome.google.com/webstore/detail/promptheus-converse-with/eipjdkbchadnamipponehljdnflolfki?hl=en-GB) - Converse with ChatGPT
