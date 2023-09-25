@@ -1,18 +1,5 @@
 # Neural Cognition
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Algorithms](#algorithms)
-    - [C#](#c)
-    - [Java](#java)
-- [Challenges](#challenges)
-- [Documentation](#documentation)
-- [Books](#books)
-- [Presentations](#presentations)
-- [Miscellaneous](#miscellaneous)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Introduction
 This repository is a dual-purpose platform: a quick-reference guide for algorithms and coding challenges, and a sandbox for Large Language Model (LLM) experimentation.
 
