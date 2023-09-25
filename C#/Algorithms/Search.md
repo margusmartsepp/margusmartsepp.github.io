@@ -926,316 +926,434 @@ code:
 ```csharp
 using System;
 
-namespace DataStructures {
+namespace DataStructures
+{
     public enum Color { Red, Black }
 
-    public class Node<T> where T : IComparable {
+    public class Node<T> where T : IComparable
+    {
         public T Value;
         public Node<T> Left;
         public Node<T> Right;
         public Node<T> Parent;
         public Color Color;
 
-        public Node (T value) {
+        public Node(T value)
+        {
             Value = value;
             Color = Color.Red;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Node<T> otherNode)
+            {
+                return Value.Equals(otherNode.Value);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 
-    public class RedBlackTree<T> where T : IComparable {
+    public class RedBlackTree<T> where T : IComparable
+    {
         private Node<T> root;
 
-        public void Insert (T value) {
-            Node<T> newNode = new Node<T> (value);
-            if (root == null) {
+        public void Insert(T value)
+        {
+            Node<T> newNode = new Node<T>(value);
+            if (root == null)
+            {
                 root = newNode;
                 root.Color = Color.Black;
-            } else {
+            }
+            else
+            {
                 Node<T> temp = root;
-                while (temp != null) {
-                    if (value.CompareTo (temp.Value) < 0) {
-                        if (temp.Left == null) {
+                while (temp != null)
+                {
+                    if (value.CompareTo(temp.Value) < 0)
+                    {
+                        if (temp.Left == null)
+                        {
                             temp.Left = newNode;
                             newNode.Parent = temp;
                             break;
-                        } else {
+                        }
+                        else
+                        {
                             temp = temp.Left;
                         }
-                    } else {
-                        if (temp.Right == null) {
+                    }
+                    else
+                    {
+                        if (temp.Right == null)
+                        {
                             temp.Right = newNode;
                             newNode.Parent = temp;
                             break;
-                        } else {
+                        }
+                        else
+                        {
                             temp = temp.Right;
                         }
                     }
                 }
-                FixTree (newNode);
+                FixTree(newNode);
             }
         }
+        private void FixTree(Node<T> current)
+        {
 
-        private void FixTree (Node<T> current) {
-            while (current.Parent != null && current.Parent.Color == Color.Red) {
-                if (current.Parent == current.Parent.Parent.Left) {
-                    Node<T> uncle = current.Parent.Parent.Right;
-                    if (uncle != null && uncle.Color == Color.Red) {
-                        current.Parent.Color = Color.Black;
-                        uncle.Color = Color.Black;
-                        current.Parent.Parent.Color = Color.Red;
-                        current = current.Parent.Parent;
-                    } else {
-                        if (current == current.Parent.Right) {
-                            current = current.Parent;
-                            RotateLeft (current);
-                        }
-                        current.Parent.Color = Color.Black;
-                        current.Parent.Parent.Color = Color.Red;
-                        RotateRight (current.Parent.Parent);
+            public void Delete(T value)
+            {
+                Node<T> nodeToDelete = FindNode(root, value);
+                if (nodeToDelete == null) return; // Return if the node to delete is not found
+
+                Node<T> x, y;
+
+                // Determine the node to be deleted (either the node itself or its successor)
+                if (nodeToDelete.Left == null || nodeToDelete.Right == null)
+                {
+                    y = nodeToDelete;
+                }
+                else
+                {
+                    y = GetSuccessor(nodeToDelete);
+                }
+
+                // Set x to either the left or right child of y, whichever is non-null
+                if (y.Left != null)
+                {
+                    x = y.Left;
+                }
+                else
+                {
+                    x = y.Right;
+                }
+
+                // Update the parent of x
+                if (x != null)
+                {
+                    x.Parent = y.Parent;
+                }
+
+                // Update the parent to point to x instead of y
+                if (y.Parent == null)
+                {
+                    root = x;
+                }
+                else
+                {
+                    if (y == y.Parent.Left)
+                    {
+                        y.Parent.Left = x;
                     }
-                } else {
-                    Node<T> uncle = current.Parent.Parent.Left;
-                    if (uncle != null && uncle.Color == Color.Red) {
-                        current.Parent.Color = Color.Black;
-                        uncle.Color = Color.Black;
-                        current.Parent.Parent.Color = Color.Red;
-                        current = current.Parent.Parent;
-                    } else {
-                        if (current == current.Parent.Left) {
-                            current = current.Parent;
-                            RotateRight (current);
-                        }
-                        current.Parent.Color = Color.Black;
-                        current.Parent.Parent.Color = Color.Red;
-                        RotateLeft (current.Parent.Parent);
+                    else
+                    {
+                        y.Parent.Right = x;
                     }
                 }
-            }
-            root.Color = Color.Black;
-        }
-        public void Delete (T value) {
-            Node<T> nodeToDelete = FindNode (root, value);
-            if (nodeToDelete == null) return;
 
-            Node<T> x, y;
-
-            if (nodeToDelete.Left == null || nodeToDelete.Right == null) {
-                y = nodeToDelete;
-            } else {
-                y = GetSuccessor (nodeToDelete);
-            }
-
-            if (y.Left != null) {
-                x = y.Left;
-            } else {
-                x = y.Right;
-            }
-
-            if (x != null) {
-                x.Parent = y.Parent;
-            }
-
-            if (y.Parent == null) {
-                root = x;
-            } else {
-                if (y == y.Parent.Left) {
-                    y.Parent.Left = x;
-                } else {
-                    y.Parent.Right = x;
+                // Copy the value from y (the node to be deleted or its successor)
+                if (y != nodeToDelete)
+                {
+                    nodeToDelete.Value = y.Value;
                 }
+
+                // Fix the tree if the color of y was black
+                if (y.Color == Color.Black)
+                {
+                    FixDelete(x);
+                }
+
+                // Transplant y with x
+                Transplant(y, x);
             }
 
-            if (y != nodeToDelete) {
-                nodeToDelete.Value = y.Value;
-            }
 
-            if (y.Color == Color.Black) {
-                FixDelete (x);
-            }
-        }
+            private void FixDelete(Node<T> x)
+            {
+                if (x == null)
+                    return;
 
-        private void FixDelete (Node<T> x) {
-            if (x == null)
-                return;
+                // While x is not the root and x.color == black
+                while (x != root && x.Color == Color.Black)
+                {
+                    if (x == x.Parent.Left)
+                    {
+                        Node<T> w = x.Parent.Right;
 
-            // While x is not the root and x.color == black
-            while (x != root && x.Color == Color.Black) {
-                if (x == x.Parent.Left) {
-                    Node<T> w = x.Parent.Right;
-
-                    // Case 1: w is red
-                    if (w.Color == Color.Red) {
-                        w.Color = Color.Black;
-                        x.Parent.Color = Color.Red;
-                        LeftRotate (x.Parent);
-                        w = x.Parent.Right;
-                    }
-
-                    // Case 2: Both of w's children are black
-                    if (w.Left.Color == Color.Black && w.Right.Color == Color.Black) {
-                        w.Color = Color.Red;
-                        x = x.Parent;
-                    } else {
-                        // Case 3: w's right child is black
-                        if (w.Right.Color == Color.Black) {
-                            w.Left.Color = Color.Black;
-                            w.Color = Color.Red;
-                            RightRotate (w);
+                        // Case 1: w is red
+                        if (w.Color == Color.Red)
+                        {
+                            w.Color = Color.Black;
+                            x.Parent.Color = Color.Red;
+                            LeftRotate(x.Parent);
                             w = x.Parent.Right;
                         }
 
-                        // Case 4: w's right child is red
-                        w.Color = x.Parent.Color;
-                        x.Parent.Color = Color.Black;
-                        w.Right.Color = Color.Black;
-                        LeftRotate (x.Parent);
-                        x = root;
-                    }
-                } else {
-                    // Same logic as above, with "Left" and "Right" swapped
-                    Node<T> w = x.Parent.Left;
-
-                    if (w.Color == Color.Red) {
-                        w.Color = Color.Black;
-                        x.Parent.Color = Color.Red;
-                        RightRotate (x.Parent);
-                        w = x.Parent.Left;
-                    }
-
-                    if (w.Right.Color == Color.Black && w.Right.Color == Color.Black) {
-                        w.Color = Color.Red;
-                        x = x.Parent;
-                    } else {
-                        if (w.Left.Color == Color.Black) {
-                            w.Right.Color = Color.Black;
+                        // Case 2: Both of w's children are black
+                        if (w.Left.Color == Color.Black && w.Right.Color == Color.Black)
+                        {
                             w.Color = Color.Red;
-                            LeftRotate (w);
+                            x = x.Parent;
+                        }
+                        else
+                        {
+                            // Case 3: w's right child is black
+                            if (w.Right.Color == Color.Black)
+                            {
+                                w.Left.Color = Color.Black;
+                                w.Color = Color.Red;
+                                RightRotate(w);
+                                w = x.Parent.Right;
+                            }
+
+                            // Case 4: w's right child is red
+                            w.Color = x.Parent.Color;
+                            x.Parent.Color = Color.Black;
+                            w.Right.Color = Color.Black;
+                            LeftRotate(x.Parent);
+                            x = root;
+                        }
+                    }
+                    else
+                    {
+                        // Same logic as above, with "Left" and "Right" swapped
+                        Node<T> w = x.Parent.Left;
+
+                        if (w.Color == Color.Red)
+                        {
+                            w.Color = Color.Black;
+                            x.Parent.Color = Color.Red;
+                            RightRotate(x.Parent);
                             w = x.Parent.Left;
                         }
 
-                        w.Color = x.Parent.Color;
-                        x.Parent.Color = Color.Black;
-                        w.Left.Color = Color.Black;
-                        RightRotate (x.Parent);
-                        x = root;
+                        if (w.Right.Color == Color.Black && w.Right.Color == Color.Black)
+                        {
+                            w.Color = Color.Red;
+                            x = x.Parent;
+                        }
+                        else
+                        {
+                            if (w.Left.Color == Color.Black)
+                            {
+                                w.Right.Color = Color.Black;
+                                w.Color = Color.Red;
+                                LeftRotate(w);
+                                w = x.Parent.Left;
+                            }
+
+                            w.Color = x.Parent.Color;
+                            x.Parent.Color = Color.Black;
+                            w.Left.Color = Color.Black;
+                            RightRotate(x.Parent);
+                            x = root;
+                        }
                     }
                 }
+
+                x.Color = Color.Black;
             }
 
-            x.Color = Color.Black;
-        }
+            private Node<T> FindNode(Node<T> current, T value)
+            {
+                if (current == null) return null;
 
-        private Node<T> FindNode (Node<T> current, T value) {
-            if (current == null) return null;
-
-            int comparison = value.CompareTo (current.Value);
-            if (comparison < 0) {
-                return FindNode (current.Left, value);
-            } else if (comparison > 0) {
-                return FindNode (current.Right, value);
-            } else {
-                return current;
+                int comparison = value.CompareTo(current.Value);
+                if (comparison < 0)
+                {
+                    return FindNode(current.Left, value);
+                }
+                else if (comparison > 0)
+                {
+                    return FindNode(current.Right, value);
+                }
+                else
+                {
+                    return current;
+                }
+                return null;
             }
-        }
 
-        private Node<T> GetSuccessor (Node<T> x) {
-            if (x.Right != null) {
-                Node<T> temp = x.Right;
-                while (temp.Left != null) {
+            private Node<T> GetSuccessor(Node<T> x)
+            {
+                if (x.Right != null)
+                {
+                    Node<T> temp = x.Right;
+                    while (temp.Left != null)
+                    {
+                        temp = temp.Left;
+                    }
+                    return temp;
+                }
+
+                Node<T> successor = x.Parent;
+                while (successor != null && x == successor.Right)
+                {
+                    x = successor;
+                    successor = successor.Parent;
+                }
+                return successor;
+            }
+
+
+            private void RotateLeft(Node<T> current)
+            {
+                Node<T> temp = current.Right;
+                current.Right = temp.Left;
+
+                if (temp.Left != null)
+                {
+                    temp.Left.Parent = current;
+                }
+
+                temp.Parent = current.Parent;
+
+                if (current.Parent == null)
+                {
+                    root = temp;
+                }
+                else if (current == current.Parent.Left)
+                {
+                    current.Parent.Left = temp;
+                }
+                else
+                {
+                    current.Parent.Right = temp;
+                }
+
+                temp.Left = current;
+                current.Parent = temp;
+            }
+
+            private void RotateRight(Node<T> current)
+            {
+                Node<T> temp = current.Left;
+                current.Left = temp.Right;
+
+                if (temp.Right != null)
+                {
+                    temp.Right.Parent = current;
+                }
+
+                temp.Parent = current.Parent;
+
+                if (current.Parent == null)
+                {
+                    root = temp;
+                }
+                else if (current == current.Parent.Right)
+                {
+                    current.Parent.Right = temp;
+                }
+                else
+                {
+                    current.Parent.Left = temp;
+                }
+
+                temp.Right = current;
+                current.Parent = temp;
+            }
+
+            private void Transplant(Node<T> u, Node<T> v)
+            {
+                if (u.Parent == null)
+                {
+                    root = v;
+                }
+                else if (u == u.Parent.Left)
+                {
+                    u.Parent.Left = v;
+                }
+                else
+                {
+                    u.Parent.Right = v;
+                }
+
+                if (v != null)
+                {
+                    v.Parent = u.Parent;
+                }
+            }
+
+            public void InOrderTraversal(Action<T> action)
+            {
+                InOrderTraversal(root, action);
+            }
+
+            private void InOrderTraversal(Node<T> node, Action<T> action)
+            {
+                if (node != null)
+                {
+                    InOrderTraversal(node.Left, action);
+                    action(node.Value);
+                    InOrderTraversal(node.Right, action);
+                }
+            }
+
+            public void PreOrderTraversal(Action<T> action)
+            {
+                PreOrderTraversal(root, action);
+            }
+
+            private void PreOrderTraversal(Node<T> node, Action<T> action)
+            {
+                if (node != null)
+                {
+                    action(node.Value);
+                    PreOrderTraversal(node.Left, action);
+                    PreOrderTraversal(node.Right, action);
+                }
+            }
+
+            public void PostOrderTraversal(Action<T> action)
+            {
+                PostOrderTraversal(root, action);
+            }
+
+
+            private void PostOrderTraversal(Node<T> node, Action<T> action)
+            {
+                if (node != null)
+                {
+                    PostOrderTraversal(node.Left, action);
+                    PostOrderTraversal(node.Right, action);
+                    action(node.Value);
+                }
+            }
+
+            public bool Contains(T value)
+            {
+                return FindNode(root, value) != null;
+            }
+
+            public T MinValue()
+            {
+                Node<T> temp = root;
+                while (temp.Left != null)
+                {
                     temp = temp.Left;
                 }
-                return temp;
+                return temp.Value;
             }
 
-            Node<T> successor = x.Parent;
-            while (successor != null && x == successor.Right) {
-                x = successor;
-                successor = successor.Parent;
-            }
-            return successor;
-        }
-
-        private void RotateLeft (Node<T> current) {
-            Node<T> temp = current.Right;
-            current.Right = temp.Left;
-
-            if (temp.Left != null) {
-                temp.Left.Parent = current;
-            }
-
-            temp.Parent = current.Parent;
-
-            if (current.Parent == null) {
-                root = temp;
-            } else if (current == current.Parent.Left) {
-                current.Parent.Left = temp;
-            } else {
-                current.Parent.Right = temp;
-            }
-
-            temp.Left = current;
-            current.Parent = temp;
-        }
-
-        private void RotateRight (Node<T> current) {
-            Node<T> temp = current.Left;
-            current.Left = temp.Right;
-
-            if (temp.Right != null) {
-                temp.Right.Parent = current;
-            }
-
-            temp.Parent = current.Parent;
-
-            if (current.Parent == null) {
-                root = temp;
-            } else if (current == current.Parent.Right) {
-                current.Parent.Right = temp;
-            } else {
-                current.Parent.Left = temp;
-            }
-
-            temp.Right = current;
-            current.Parent = temp;
-        }
-
-        private void Transplant (Node<T> u, Node<T> v) {
-            if (u.Parent == null) {
-                root = v;
-            } else if (u == u.Parent.Left) {
-                u.Parent.Left = v;
-            } else {
-                u.Parent.Right = v;
-            }
-
-            if (v != null) {
-                v.Parent = u.Parent;
+            public T MaxValue()
+            {
+                Node<T> temp = root;
+                while (temp.Right != null)
+                {
+                    temp = temp.Right;
+                }
+                return temp.Value;
             }
         }
-
-        private void InOrderTraversal (Node<T> node, Action<T> action) {
-            if (node != null) {
-                InOrderTraversal (node.Left, action);
-                action (node.Value);
-                InOrderTraversal (node.Right, action);
-            }
-        }
-
-        private void PreOrderTraversal (Node<T> node, Action<T> action) {
-            if (node != null) {
-                action (node.Value);
-                PreOrderTraversal (node.Left, action);
-                PreOrderTraversal (node.Right, action);
-            }
-        }
-
-        private void PostOrderTraversal (Node<T> node, Action<T> action) {
-            if (node != null) {
-                PostOrderTraversal (node.Left, action);
-                PostOrderTraversal (node.Right, action);
-                action (node.Value);
-            }
-        }
-    }
+    }    
 }
 ```
