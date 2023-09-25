@@ -45,7 +45,7 @@
     - If it's greater, set `high` to `midpoint - 1` and repeat from step 2.
 4. **Not Found**: If `low` exceeds `high`, the element is not in the array.
 
-** C# Code Implementation ** 
+**C# Code Implementation**
 
 Here's how you can call the Binary Search function:
 
@@ -92,14 +92,14 @@ namespace SearchingAlgorithms
 ```
 ### [Interpolation Search](#Interpolation-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Calculate Position**: Use the formula `pos = low + [ (x - arr[low]) * (high - low) / (arr[high] - arr[low]) ]` to find the position where the element might be.
 2. **Check Bounds**: Ensure that the calculated position is within the bounds of the array.
 3. **Compare and Move**: Compare the element at the calculated position with the target. If it matches, return the position. Otherwise, adjust the `low` and `high` pointers accordingly.
 4. **Repeat**: Continue the process until the element is found or the search interval is empty.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Interpolation Search function:
 
@@ -145,12 +145,12 @@ namespace SearchingAlgorithms
 ```
 ### [Exponential Search](#Exponential-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Find Range**: Start with a subarray size of 1, and double its size until the last element of the subarray is greater than the target value.
 2. **Binary Search**: Perform a binary search on the identified subarray to find the target value.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Exponential Search function:
 
@@ -206,7 +206,7 @@ namespace SearchingAlgorithms
 ```
 ### [Fibonacci Search](#Fibonacci-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialize**: Start with two Fibonacci numbers `fib1 = 0` and `fib2 = 1`.
 2. **Calculate Next Fibonacci**: Calculate the next Fibonacci number `fib = fib1 + fib2`.
@@ -218,7 +218,7 @@ namespace SearchingAlgorithms
    - If smaller, continue the search in the right sub-array.
 6. **Update Fibonacci Numbers**: Update `fib`, `fib1`, and `fib2` to set up the next iteration.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Fibonacci Search function:
 
@@ -286,14 +286,14 @@ namespace SearchingAlgorithms
 ## [Linear](#Linear)
 ### [Linear Search](#Linear-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Start at the Beginning**: Begin at the first element of the array.
 2. **Iterate**: Move through the array element by element.
 3. **Compare**: At each step, compare the current element with the target value.
 4. **Found or Not**: If a match is found, return the index of the element. If the end of the array is reached without finding the target, return -1.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Linear Search function:
 
@@ -326,13 +326,13 @@ namespace SearchingAlgorithms
 ```
 ### [Sentinel Search](#Sentinel-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Append Sentinel**: Add the target element to the end of the array. This element acts as a sentinel.
 2. **Linear Search**: Start from the beginning and move through the array to find the target element.
 3. **Check for Sentinel**: If you reach the sentinel, the element was not found in the array.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Sentinel Search function:
 
@@ -378,14 +378,14 @@ namespace SearchingAlgorithms
 ```
 ### [Sublist Search](#Sublist-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialize Pointers**: Initialize two pointers, one for the main list and one for the sublist.
 2. **Traverse Main List**: Traverse the main list. For each element, compare it with the first element of the sublist.
 3. **Compare Sublist**: If the first element matches, move both pointers across their respective lists, comparing each element.
 4. **Found or Not**: If you reach the end of the sublist, then the sublist is found in the main list. If you reach the end of the main list but not the sublist, the sublist is not in the main list.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Sublist Search function:
 
@@ -440,14 +440,14 @@ namespace SearchingAlgorithms
 ## [Hash-based](#Hash-based)
 ### [Direct Addressing](#Direct-Addressing)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Create an array, called the "direct address table," with a size equal to the range of input values.
 2. **Mapping**: Map each element in the input array to an index in the direct address table.
 3. **Storing**: Store each element at its mapped index in the direct address table.
 4. **Reconstruction**: Reconstruct the sorted array from the elements stored in the direct address table.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Direct Addressing function:
 
@@ -500,7 +500,7 @@ namespace SortingAlgorithms
 ```
 ### [Open Hashing (Separate Chaining)](#Open-Hashing)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Create an array of linked lists, each representing a bucket.
 2. **Hash Function**: Use a hash function to determine the index of the bucket where each key-value pair should be stored.
@@ -508,7 +508,7 @@ namespace SortingAlgorithms
 4. **Lookup**: To find a value, use the hash function to find the bucket and then search through the linked list.
 5. **Deletion**: To delete a key-value pair, use the hash function to find the bucket and then remove the node from the linked list.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can use the Open Hashing implementation:
 
@@ -587,14 +587,14 @@ namespace DataStructures
 ```
 ### [Closed Hashing](#Closed-Hashing)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialize Table**: Create a hash table with a predefined size.
 2. **Hash Function**: Use a hash function to map each key to an index in the hash table.
 3. **Collision Resolution**: If a collision occurs (i.e., two keys hash to the same index), resolve it using a predefined method like linear probing, quadratic probing, or double hashing.
 4. **Insert, Delete, Search**: Use the hash function and collision resolution method to perform operations like insert, delete, and search.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Closed Hashing functions:
 
@@ -667,14 +667,14 @@ namespace DataStructures
 ## [Tree-based](#Tree-based)
 ### [Binary Search Tree](#Binary-Search-Tree)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Create a root node to serve as the starting point for the tree.
 2. **Insertion**: To insert a new node, compare its value with the root. If it's less, traverse the left subtree; otherwise, traverse the right subtree. Repeat until you find an empty spot to insert the new node.
 3. **Search**: To search for a node, compare its value with the root. If it's less, traverse the left subtree; otherwise, traverse the right subtree. Repeat until you find the node or reach an empty spot.
 4. **Deletion**: To delete a node, find it first. If it has zero or one child, remove it directly. If it has two children, find the in-order successor, replace the node with it, and remove the successor.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Binary Search Tree functions:
 
@@ -788,13 +788,13 @@ namespace DataStructures
 ```
 ### [Balanced Trees: AVL (Adelson-Velsky and Landis) Tree](#AVL-Tree)
 
-** How It Works** 
+**How It Works**
 
 1. **Insertion**: Similar to a regular binary search tree, but after insertion, the tree is balanced.
 2. **Deletion**: Also similar to a regular binary search tree, but after deletion, the tree is balanced.
 3. **Balancing**: After each insert or delete operation, the balance factor of each node is checked and the tree is balanced accordingly.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can use the AVL Tree class:
 
@@ -903,7 +903,7 @@ namespace BalancedTrees
 }
 ```
 ### [Balanced Trees: Red-Black Trees](#Red-Black-Trees)
-** How It Works** 
+**How It Works**
 
 1. **Node Coloring**: Each node is either red or black.
 2. **Root Node**: The root is always black.
@@ -912,7 +912,7 @@ namespace BalancedTrees
 5. **New Insertions**: Newly inserted nodes are always red.
 6. **Balancing**: After insertion or deletion, the tree is balanced using rotations and color changes.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can use the Red-Black Tree in C#:
 
@@ -1359,14 +1359,14 @@ namespace DataStructures
 ```
 ### [B-Trees](#B-Trees)
 
-** How It Works** 
+**How It Works**
 
 1. **Node Creation**: Each node in a B-tree can contain multiple keys and children, usually determined by a fixed number `t`, known as the minimum degree of the tree.
 2. **Insertion**: When inserting a new key, if the node is full (contains `2t-1` keys), it must be split into two nodes, and the middle key is moved up to the parent node.
 3. **Deletion**: When deleting a key, if the key is in a node `N`, and `N` has at least `t` keys, then the key can be deleted directly. Otherwise, rebalancing may be necessary.
 4. **Search**: Searching for a key in a B-tree starts at the root and traverses down the tree, taking O(log n) time in the worst case.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can use the B-tree in C#:
 
@@ -1555,13 +1555,13 @@ namespace DataStructures
 ```
 ### [Ternary Search Tree](#Ternary-Search-Tree)
 
-** How It Works** 
+**How It Works**
 
 1. **Node Structure**: Each node in a Ternary Search Tree contains a character, pointers to left, equal, and right child nodes, and a boolean flag to mark the end of a string.
 2. **Insertion**: To insert a string, start from the root and compare the first character of the string with the character at the root. Based on the comparison, move to the left, equal, or right child and continue the process.
 3. **Search**: To search for a string, follow the same procedure as insertion but look for the end-of-string flag.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can use the Ternary Search Tree:
 
@@ -1660,14 +1660,14 @@ namespace DataStructures
 ## [Graph-based](#Graph-based)
 ### [Depth-First Search (DFS)](#Depth-First-Search-DFS))
 
-** How It Works** 
+**How It Works**
 
 1. **Start Node**: Choose an initial node to start the DFS.
 2. **Mark and Explore**: Mark the node as visited and explore all its unvisited neighbors.
 3. **Backtrack**: If a node has no unvisited neighbors, backtrack to the previous node.
 4. **Repeat**: Continue the process until you have visited all the nodes reachable from the initial node.
 
-** C# Code Implementation - Iterative Approach** 
+**C# Code Implementation - Iterative Approach**
 
 Here's how you can call the iterative DFS function:
 
@@ -1718,7 +1718,7 @@ namespace GraphAlgorithms
     }
 }
 ```
-** C# Code Implementation - Recursive Approach** 
+**C# Code Implementation - Recursive Approach**
 Here's how you can call the recursive DFS function:
 ```csharp
 Graph graph = new Graph(5);
@@ -1758,13 +1758,13 @@ namespace GraphAlgorithms
 ```
 ### [Breadth-First Search (BFS)](#Breadth-First-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Start from the source node and initialize all nodes as unvisited.
 2. **Queue**: Use a queue to keep track of nodes to be explored.
 3. **Exploration**: Dequeue a node, mark it as visited, and enqueue its unvisited neighbors.
 
-** C# Code Implementation - Iterative Approach** 
+**C# Code Implementation - Iterative Approach**
 
 Here's how you can call the iterative BFS function:
 
@@ -1813,7 +1813,7 @@ namespace GraphAlgorithms
 }
 ```
 
-** C# Code Implementation - Recursive Approach** 
+**C# Code Implementation - Recursive Approach**
 Here's how you can call the recursive BFS function:
 
 ```csharp
@@ -1857,7 +1857,7 @@ public static void RecursiveBFS(Graph graph, int startVertex, Queue<int> queue)
 ```
 ### [A* Search Algorithm](#A-Search-Algorithm)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Start with a list of open nodes, initially containing only the start node.
 2. **Main Loop**: While there are nodes in the open list:
@@ -1866,7 +1866,7 @@ public static void RecursiveBFS(Graph graph, int startVertex, Queue<int> queue)
     3. **Check Goal**: If this node is the goal, reconstruct the path and return it.
     4. **Expand Node**: For each neighbor of this node, calculate `g`, `h`, and `f` values and add to the open list if it is not in the closed list.
 
-** C# Code Implementation with Manhattan Distance Heuristic** 
+**C# Code Implementation with Manhattan Distance Heuristic**
 
 Here's how you can call the A* Search function:
 
@@ -2002,14 +2002,14 @@ namespace PathfindingAlgorithms
 ```
 ### [Dijkstra's Algorithm](#Dijkstras-Algorithm)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Start with a source vertex and set its distance to zero while setting the distance of all other vertices to infinity.
 2. **Priority Queue**: Use a priority queue to keep track of vertices based on their distance from the source vertex.
 3. **Relaxation**: For each vertex, consider all its adjacent vertices and calculate their tentative distances. Update the distance if a shorter path is found.
 4. **Extraction**: Remove the vertex with the smallest distance from the priority queue and repeat the process.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Dijkstra's Algorithm function:
 
@@ -2083,13 +2083,13 @@ Note: Priority queue was implemented for .Net 6.
 ```
 ### [Priority Queue Implementation](#Priority-Queue-Implementation)
 
-** How It Works** 
+**How It Works**
 
 1. **Enqueue**: Inserts an element into the queue based on its priority.
 2. **Dequeue**: Removes and returns the element with the highest priority (lowest value).
 3. **Peek**: Returns the element with the highest priority without removing it from the queue.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's the C# code snippet for a simple Priority Queue:
 
@@ -2174,13 +2174,13 @@ namespace GraphAlgorithms
 
 ### [Bloom Filters](#Bloom-Filters)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Create a bit array of `m` bits, all set to 0, and choose `k` independent hash functions.
 2. **Add Element**: To add an element, pass it through all `k` hash functions to get `k` array positions. Set the bits at these positions to 1.
 3. **Check Membership**: To check if an element is in the set, pass it through all `k` hash functions to get `k` array positions. If any of the bits at these positions is 0, the element is definitely not in the set. If all are 1, the element may be in the set.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can use the Bloom Filter:
 
@@ -2241,14 +2241,14 @@ namespace DataStructures
 ```
 ### [Locality-Sensitive Hashing (LSH)](#Locality-Sensitive-Hashing)
 
-** How It Works** 
+**How It Works**
 
 1. **Hash Functions**: Generate a set of hash functions that have the property of hashing similar items into the same or nearby buckets.
 2. **Bucketing**: Use the hash functions to partition the data into multiple buckets.
 3. **Candidate Pairs**: For a query point, only the items in the same or nearby buckets are considered as candidate nearest neighbors.
 4. **Final Check**: Perform exact distance computations for the candidate pairs to find the approximate nearest neighbors.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the LSH function:
 
@@ -2296,7 +2296,7 @@ namespace LocalitySensitiveHashing
 ```
 ### [Randomized Binary Search](#Randomized-Binary-Search)
 
-** How It Works** 
+**How It Works**
 
 1. **Initialization**: Start with the entire sorted array as the search range.
 2. **Random Pivot**: Randomly select a pivot element within the current search range.
@@ -2304,7 +2304,7 @@ namespace LocalitySensitiveHashing
 4. **Narrow Down**: Depending on the comparison, narrow down the search range to either the elements before or after the pivot.
 5. **Repeat**: Continue the process until the target element is found or the search range is empty.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Randomized Binary Search function:
 
@@ -2357,13 +2357,13 @@ namespace SearchingAlgorithms
 ## [String Matching](#String-Matching)
 ### [Rabin-Karp Algorithm](#Rabin-Karp-Algorithm)
 
-** How It Works** 
+**How It Works**
 
 1. **Preprocessing**: Compute the hash value for the pattern and for each possible substring of the text of the same length as the pattern.
 2. **Hash Comparison**: Compare the hash value of the pattern with the hash value of each substring of the text.
 3. **Verification**: If the hash values match, compare the pattern and the substring character by character to verify the match.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Rabin-Karp function:
 
@@ -2437,12 +2437,12 @@ namespace StringAlgorithms
 ```
 ### [KMP (Knuth-Morris-Pratt) Algorithm](#KMP-Algorithm)
 
-** How It Works** 
+**How It Works**
 
 1. **Preprocessing**: Generate a longest prefix suffix (LPS) array that will help in skipping characters while matching.
 2. **Matching**: Use the LPS array to match the pattern with the text efficiently.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the KMP function:
 
@@ -2525,13 +2525,13 @@ namespace StringAlgorithms
 ```
 ### [Boyer-Moore Algorithm](#Boyer-Moore-Algorithm)
 
-** How It Works** 
+**How It Works**
 
 1. **Preprocessing**: Generate the bad character and good suffix tables.
 2. **Searching**: Start from the end of the pattern and move towards the beginning.
 3. **Skip Sections**: Use the tables to skip sections of the text, resulting in fewer overall character comparisons.
 
-** C# Code Implementation** 
+**C# Code Implementation**
 
 Here's how you can call the Boyer-Moore function:
 
