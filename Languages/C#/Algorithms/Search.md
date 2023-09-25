@@ -1357,16 +1357,16 @@ namespace DataStructures
     }    
 }
 ```
-## [B-Trees](#B-Trees)
+### [B-Trees](#B-Trees)
 
-### How It Works
+** How It Works** 
 
 1. **Node Creation**: Each node in a B-tree can contain multiple keys and children, usually determined by a fixed number `t`, known as the minimum degree of the tree.
 2. **Insertion**: When inserting a new key, if the node is full (contains `2t-1` keys), it must be split into two nodes, and the middle key is moved up to the parent node.
 3. **Deletion**: When deleting a key, if the key is in a node `N`, and `N` has at least `t` keys, then the key can be deleted directly. Otherwise, rebalancing may be necessary.
 4. **Search**: Searching for a key in a B-tree starts at the root and traverses down the tree, taking O(log n) time in the worst case.
 
-### C# Code Implementation
+** C# Code Implementation** 
 
 Here's how you can use the B-tree in C#:
 
