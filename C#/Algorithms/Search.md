@@ -1357,3 +1357,816 @@ namespace DataStructures
     }    
 }
 ```
+## [B-Trees](#B-Trees)
+
+### How It Works
+
+1. **Node Creation**: Each node in a B-tree can contain multiple keys and children, usually determined by a fixed number `t`, known as the minimum degree of the tree.
+2. **Insertion**: When inserting a new key, if the node is full (contains `2t-1` keys), it must be split into two nodes, and the middle key is moved up to the parent node.
+3. **Deletion**: When deleting a key, if the key is in a node `N`, and `N` has at least `t` keys, then the key can be deleted directly. Otherwise, rebalancing may be necessary.
+4. **Search**: Searching for a key in a B-tree starts at the root and traverses down the tree, taking O(log n) time in the worst case.
+
+### C# Code Implementation
+
+Here's how you can use the B-tree in C#:
+
+```csharp
+BTree tree = new BTree(3);  // 3 is the minimum degree
+bTree.Insert(10);
+bTree.Insert(20);
+bTree.Insert(5);
+bTree.Traverse(); 
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace DataStructures
+{
+    public class BTreeNode
+    {
+        public int[] Keys { get; set; }
+        public int T { get; }
+        public BTreeNode[] Children { get; set; }
+        public int N { get; set; }
+        public bool Leaf { get; set; }
+
+        public BTreeNode(int t, bool leaf)
+        {
+            T = t;
+            Leaf = leaf;
+            Keys = new int[2 * T - 1];
+            Children = new BTreeNode[2 * T];
+            N = 0;
+        }
+    }
+
+    public class BTree
+    {
+        private BTreeNode root;
+        private readonly int t;
+
+        public BTree(int t)
+        {
+            this.t = t;
+            root = new BTreeNode(t, true);
+            root.N = 0;
+        }
+
+        public void Traverse()
+        {
+            Traverse(root);
+        }
+
+        private void Traverse(BTreeNode node)
+        {
+            int i;
+            for (i = 0; i < node.N; i++)
+            {
+                if (!node.Leaf)
+                {
+                    Traverse(node.Children[i]);
+                }
+                Console.Write($"{node.Keys[i]} ");
+            }
+
+            if (!node.Leaf)
+            {
+                Traverse(node.Children[i]);
+            }
+        }
+
+        public BTreeNode Search(int k)
+        {
+            return Search(root, k);
+        }
+
+        private BTreeNode Search(BTreeNode node, int k)
+        {
+            int i = 0;
+            while (i < node.N && k > node.Keys[i])
+            {
+                i++;
+            }
+
+            if (i < node.N && k == node.Keys[i])
+            {
+                return node;
+            }
+
+            if (node.Leaf)
+            {
+                return null;
+            }
+
+            return Search(node.Children[i], k);
+        }
+
+        public void Insert(int k)
+        {
+            var r = root;
+            if (r.N == 2 * t - 1)
+            {
+                var s = new BTreeNode(t, false);
+                s.Children[0] = r;
+                SplitChild(s, 0, r);
+                root = s;
+            }
+            InsertNonFull(root, k);
+        }
+
+        private void InsertNonFull(BTreeNode node, int k)
+        {
+            int i = node.N - 1;
+
+            if (node.Leaf)
+            {
+                while (i >= 0 && k < node.Keys[i])
+                {
+                    node.Keys[i + 1] = node.Keys[i];
+                    i--;
+                }
+
+                node.Keys[i + 1] = k;
+                node.N++;
+            }
+            else
+            {
+                while (i >= 0 && k < node.Keys[i])
+                {
+                    i--;
+                }
+
+                i++;
+
+                if (node.Children[i].N == 2 * t - 1)
+                {
+                    SplitChild(node, i, node.Children[i]);
+
+                    if (k > node.Keys[i])
+                    {
+                        i++;
+                    }
+                }
+
+                InsertNonFull(node.Children[i], k);
+            }
+        }
+
+        private void SplitChild(BTreeNode parent, int i, BTreeNode child)
+        {
+            var z = new BTreeNode(t, child.Leaf);
+            parent.Children[i + 1] = z;
+
+            for (int j = 0; j < t - 1; j++)
+            {
+                z.Keys[j] = child.Keys[j + t];
+            }
+
+            if (!child.Leaf)
+            {
+                for (int j = 0; j < t; j++)
+                {
+                    z.Children[j] = child.Children[j + t];
+                }
+            }
+
+            child.N = t - 1;
+
+            for (int j = parent.N; j >= i + 1; j--)
+            {
+                parent.Children[j + 1] = parent.Children[j];
+            }
+
+            parent.Children[i + 1] = z;
+
+            for (int j = parent.N - 1; j >= i; j--)
+            {
+                parent.Keys[j + 1] = parent.Keys[j];
+            }
+
+            parent.Keys[i] = child.Keys[t - 1];
+            parent.N++;
+        }
+    }
+}
+
+```
+### [Ternary Search Tree](#Ternary-Search-Tree)
+
+#### How It Works
+
+1. **Node Structure**: Each node in a Ternary Search Tree contains a character, pointers to left, equal, and right child nodes, and a boolean flag to mark the end of a string.
+2. **Insertion**: To insert a string, start from the root and compare the first character of the string with the character at the root. Based on the comparison, move to the left, equal, or right child and continue the process.
+3. **Search**: To search for a string, follow the same procedure as insertion but look for the end-of-string flag.
+
+#### C# Code Implementation
+
+Here's how you can use the Ternary Search Tree:
+
+```csharp
+TernarySearchTree tst = new TernarySearchTree();
+tst.Insert("apple");
+tst.Insert("app");
+bool result = tst.Search("apple");  // Should return true
+```
+code:
+```csharp
+using System;
+
+namespace DataStructures
+{
+    public class TernarySearchTree
+    {
+        private Node root;
+
+        private class Node
+        {
+            public char Character;
+            public bool IsEndOfString;
+            public Node Left, Equal, Right;
+        }
+
+        public void Insert(string word)
+        {
+            root = Insert(root, word, 0);
+        }
+
+        private Node Insert(Node node, string word, int index)
+        {
+            char ch = word[index];
+            if (node == null)
+            {
+                node = new Node { Character = ch };
+            }
+
+            if (ch < node.Character)
+            {
+                node.Left = Insert(node.Left, word, index);
+            }
+            else if (ch > node.Character)
+            {
+                node.Right = Insert(node.Right, word, index);
+            }
+            else
+            {
+                if (index < word.Length - 1)
+                {
+                    node.Equal = Insert(node.Equal, word, index + 1);
+                }
+                else
+                {
+                    node.IsEndOfString = true;
+                }
+            }
+
+            return node;
+        }
+
+        public bool Search(string word)
+        {
+            return Search(root, word, 0);
+        }
+
+        private bool Search(Node node, string word, int index)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+
+            char ch = word[index];
+            if (ch < node.Character)
+            {
+                return Search(node.Left, word, index);
+            }
+            else if (ch > node.Character)
+            {
+                return Search(node.Right, word, index);
+            }
+            else
+            {
+                if (index == word.Length - 1)
+                {
+                    return node.IsEndOfString;
+                }
+                return Search(node.Equal, word, index + 1);
+            }
+        }
+    }
+}
+```
+## [Graph-based](#Graph-based)
+### [Depth-First Search (DFS)](#Depth-First-Search-DFS))
+
+#### How It Works
+
+1. **Start Node**: Choose an initial node to start the DFS.
+2. **Mark and Explore**: Mark the node as visited and explore all its unvisited neighbors.
+3. **Backtrack**: If a node has no unvisited neighbors, backtrack to the previous node.
+4. **Repeat**: Continue the process until you have visited all the nodes reachable from the initial node.
+
+#### C# Code Implementation - Iterative Approach
+
+Here's how you can call the iterative DFS function:
+
+```csharp
+Graph graph = new Graph(5);
+// Add edges to the graph
+graph.AddEdge(0, 1);
+graph.AddEdge(0, 2);
+graph.AddEdge(1, 3);
+graph.AddEdge(1, 4);
+DFS.IterativeDFS(graph, 0);
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace GraphAlgorithms
+{
+    public static class DFS
+    {
+        public static void IterativeDFS(Graph graph, int startVertex)
+        {
+            Stack<int> stack = new Stack<int>();
+            bool[] visited = new bool[graph.Vertices];
+
+            stack.Push(startVertex);
+
+            while (stack.Count > 0)
+            {
+                int vertex = stack.Pop();
+
+                if (!visited[vertex])
+                {
+                    Console.WriteLine("Visited vertex: " + vertex);
+                    visited[vertex] = true;
+                }
+
+                foreach (var neighbor in graph.AdjacencyList[vertex])
+                {
+                    if (!visited[neighbor])
+                    {
+                        stack.Push(neighbor);
+                    }
+                }
+            }
+        }
+    }
+}
+```
+#### C# Code Implementation - Recursive Approach
+Here's how you can call the recursive DFS function:
+```csharp
+Graph graph = new Graph(5);
+// Add edges to the graph
+graph.AddEdge(0, 1);
+graph.AddEdge(0, 2);
+graph.AddEdge(1, 3);
+graph.AddEdge(1, 4);
+DFS.RecursiveDFS(graph, 0, new bool[graph.Vertices]);
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace GraphAlgorithms
+{
+    public static class DFS
+    {
+        public static void RecursiveDFS(Graph graph, int vertex, bool[] visited)
+        {
+            if (visited[vertex])
+            {
+                return;
+            }
+
+            Console.WriteLine("Visited vertex: " + vertex);
+            visited[vertex] = true;
+
+            foreach (var neighbor in graph.AdjacencyList[vertex])
+            {
+                RecursiveDFS(graph, neighbor, visited);
+            }
+        }
+    }
+}
+```
+### [Breadth-First Search (BFS)](#Breadth-First-Search)
+
+#### How It Works
+
+1. **Initialization**: Start from the source node and initialize all nodes as unvisited.
+2. **Queue**: Use a queue to keep track of nodes to be explored.
+3. **Exploration**: Dequeue a node, mark it as visited, and enqueue its unvisited neighbors.
+
+#### C# Code Implementation - Iterative Approach
+
+Here's how you can call the iterative BFS function:
+
+```csharp
+Graph graph = new Graph();
+graph.AddEdge(0, 1);
+graph.AddEdge(0, 2);
+graph.AddEdge(1, 2);
+graph.AddEdge(2, 0);
+graph.AddEdge(2, 3);
+graph.AddEdge(3, 3);
+BFS.IterativeBFS(graph, 2);
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace GraphAlgorithms
+{
+    public static class BFS
+    {
+        public static void IterativeBFS(Graph graph, int startVertex)
+        {
+            bool[] visited = new bool[graph.Vertices];
+            Queue<int> queue = new Queue<int>();
+            visited[startVertex] = true;
+            queue.Enqueue(startVertex);
+
+            while (queue.Count != 0)
+            {
+                int currentVertex = queue.Dequeue();
+                Console.WriteLine("Visited " + currentVertex);
+
+                foreach (var neighbor in graph.AdjacencyList[currentVertex])
+                {
+                    if (!visited[neighbor])
+                    {
+                        queue.Enqueue(neighbor);
+                        visited[neighbor] = true;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+#### C# Code Implementation - Recursive Approach
+Here's how you can call the recursive BFS function:
+
+```csharp
+Graph graph = new Graph();
+graph.AddEdge(0, 1);
+graph.AddEdge(0, 2);
+graph.AddEdge(1, 2);
+graph.AddEdge(2, 0);
+graph.AddEdge(2, 3);
+graph.AddEdge(3, 3);
+BFS.RecursiveBFS(graph, 2, new Queue<int>());
+```
+code:
+```csharp
+public static void RecursiveBFS(Graph graph, int startVertex, Queue<int> queue)
+{
+    bool[] visited = new bool[graph.Vertices];
+    if (queue.Count == 0)
+    {
+        queue.Enqueue(startVertex);
+        visited[startVertex] = true;
+    }
+
+    if (queue.Count != 0)
+    {
+        int currentVertex = queue.Dequeue();
+        Console.WriteLine("Visited " + currentVertex);
+
+        foreach (var neighbor in graph.AdjacencyList[currentVertex])
+        {
+            if (!visited[neighbor])
+            {
+                queue.Enqueue(neighbor);
+                visited[neighbor] = true;
+            }
+        }
+
+        RecursiveBFS(graph, queue.Dequeue(), queue);
+    }
+}
+```
+### [A* Search Algorithm](#A-Search-Algorithm)
+
+#### How It Works
+
+1. **Initialization**: Start with a list of open nodes, initially containing only the start node.
+2. **Main Loop**: While there are nodes in the open list:
+    1. **Find Lowest Cost Node**: Find the node with the lowest `f` value (`g` value + heuristic `h` value) in the open list.
+    2. **Move to Closed List**: Remove the node from the open list and add it to the closed list.
+    3. **Check Goal**: If this node is the goal, reconstruct the path and return it.
+    4. **Expand Node**: For each neighbor of this node, calculate `g`, `h`, and `f` values and add to the open list if it is not in the closed list.
+
+#### C# Code Implementation with Manhattan Distance Heuristic
+
+Here's how you can call the A* Search function:
+
+```csharp
+var start = new Node(0, 0);
+var goal = new Node(5, 5);
+var path = AStarSearch.FindPath(start, goal, Heuristic.ManhattanDistance);
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace PathfindingAlgorithms
+{
+    public static class AStarSearch
+    {
+        public static List<Node> FindPath(Node start, Node goal, Func<Node, Node, int> heuristic)
+        {
+            // Initialize open and closed lists
+            List<Node> openList = new List<Node> { start };
+            List<Node> closedList = new List<Node>();
+
+            while (openList.Count > 0)
+            {
+                // Find the node with the lowest f value
+                Node current = openList[0];
+                for (int i = 1; i < openList.Count; i++)
+                {
+                    if (openList[i].F < current.F)
+                    {
+                        current = openList[i];
+                    }
+                }
+
+                // Move current node to closed list
+                openList.Remove(current);
+                closedList.Add(current);
+
+                // Found the goal
+                if (current.Equals(goal))
+                {
+                    List<Node> path = new List<Node>();
+                    while (current != null)
+                    {
+                        path.Add(current);
+                        current = current.Parent;
+                    }
+                    path.Reverse();
+                    return path;
+                }
+
+                // Generate children
+                List<Node> children = GetChildren(current);
+
+                foreach (var child in children)
+                {
+                    // Child is on the closed list
+                    if (closedList.Contains(child))
+                    {
+                        continue;
+                    }
+
+                    // Create the f, g, and h values
+                    child.G = current.G + 1;
+                    child.H = heuristic(child, goal);
+                    child.F = child.G + child.H;
+
+                    // Child is already in open list
+                    if (openList.Contains(child))
+                    {
+                        continue;
+                    }
+
+                    // Add the child to the open list
+                    openList.Add(child);
+                }
+            }
+
+            return null; // No path found
+        }
+
+        public static List<Node> GetChildren(Node node)
+        {
+            // Generate child nodes here
+            return new List<Node>();
+        }
+
+        public enum Heuristic
+        {
+            ManhattanDistance,
+            EuclideanDistance,
+            ChebyshevDistance
+        }
+
+        public static int ManhattanDistance(Node a, Node b)
+        {
+            return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
+        }
+
+        public static int EuclideanDistance(Node a, Node b)
+        {
+            return (int)Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
+        }
+
+        public static int ChebyshevDistance(Node a, Node b)
+        {
+            return Math.Max(Math.Abs(a.X - b.X), Math.Abs(a.Y - b.Y));
+        }
+    }
+
+    public class Node : IEquatable<Node>
+    {
+        public int X { get; }
+        public int Y { get; }
+        public int F { get; set; }
+        public int G { get; set; }
+        public int H { get; set; }
+        public Node Parent { get; set; }
+
+        public Node(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public bool Equals(Node other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+    }
+}
+```
+### [Dijkstra's Algorithm](#Dijkstras-Algorithm)
+
+#### How It Works
+
+1. **Initialization**: Start with a source vertex and set its distance to zero while setting the distance of all other vertices to infinity.
+2. **Priority Queue**: Use a priority queue to keep track of vertices based on their distance from the source vertex.
+3. **Relaxation**: For each vertex, consider all its adjacent vertices and calculate their tentative distances. Update the distance if a shorter path is found.
+4. **Extraction**: Remove the vertex with the smallest distance from the priority queue and repeat the process.
+
+#### C# Code Implementation
+
+Here's how you can call the Dijkstra's Algorithm function:
+
+```csharp
+int[,] graph = {
+    { 0, 1, 4, 0, 0 },
+    { 1, 0, 4, 2, 7 },
+    { 4, 4, 0, 3, 5 },
+    { 0, 2, 3, 0, 4 },
+    { 0, 7, 5, 4, 0 }
+};
+int source = 0;
+int[] distances = DijkstraAlgorithm.CalculateDistances(graph, source);
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace GraphAlgorithms
+{
+    public static class DijkstraAlgorithm
+    {
+        public static int[] CalculateDistances(int[,] graph, int source)
+        {
+            int vertices = graph.GetLength(0);
+            int[] distances = new int[vertices];
+            bool[] visited = new bool[vertices];
+
+            for (int i = 0; i < vertices; i++)
+            {
+                distances[i] = int.MaxValue;
+            }
+            distances[source] = 0;
+
+            PriorityQueue<int> queue = new PriorityQueue<int>();
+            queue.Enqueue(source, 0);
+
+            while (queue.Count > 0)
+            {
+                int currentVertex = queue.Dequeue();
+
+                if (visited[currentVertex])
+                {
+                    continue;
+                }
+                visited[currentVertex] = true;
+
+                for (int i = 0; i < vertices; i++)
+                {
+                    int distance = graph[currentVertex, i];
+                    if (distance > 0)
+                    {
+                        int newDistance = distances[currentVertex] + distance;
+                        if (newDistance < distances[i])
+                        {
+                            distances[i] = newDistance;
+                            queue.Enqueue(i, newDistance);
+                        }
+                    }
+                }
+            }
+
+            return distances;
+        }
+    }
+}
+```
+Note: Priority queue was implemented for .Net 6. 
+```csharp
+```
+### [Priority Queue Implementation](#Priority-Queue-Implementation)
+
+#### How It Works
+
+1. **Enqueue**: Inserts an element into the queue based on its priority.
+2. **Dequeue**: Removes and returns the element with the highest priority (lowest value).
+3. **Peek**: Returns the element with the highest priority without removing it from the queue.
+
+#### C# Code Implementation
+
+Here's the C# code snippet for a simple Priority Queue:
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace GraphAlgorithms
+{
+    public class PriorityQueue<T> where T : IComparable<T>
+    {
+        private List<T> data;
+
+        public PriorityQueue()
+        {
+            this.data = new List<T>();
+        }
+
+        public void Enqueue(T item)
+        {
+            data.Add(item);
+            int childIndex = data.Count - 1;
+
+            while (childIndex > 0)
+            {
+                int parentIndex = (childIndex - 1) / 2;
+                if (data[childIndex].CompareTo(data[parentIndex]) >= 0) break;
+
+                T tmp = data[childIndex];
+                data[childIndex] = data[parentIndex];
+                data[parentIndex] = tmp;
+
+                childIndex = parentIndex;
+            }
+        }
+
+        public T Dequeue()
+        {
+            int lastIndex = data.Count - 1;
+            T frontItem = data[0];
+            data[0] = data[lastIndex];
+            data.RemoveAt(lastIndex--);
+
+            int parentIndex = 0;
+
+            while (true)
+            {
+                int childIndex = parentIndex * 2 + 1;
+                if (childIndex > lastIndex) break;
+
+                int rightChild = childIndex + 1;
+                if (rightChild <= lastIndex && data[rightChild].CompareTo(data[childIndex]) < 0)
+                    childIndex = rightChild;
+
+                if (data[parentIndex].CompareTo(data[childIndex]) <= 0) break;
+
+                T tmp = data[parentIndex];
+                data[parentIndex] = data[childIndex];
+                data[childIndex] = tmp;
+
+                parentIndex = childIndex;
+            }
+
+            return frontItem;
+        }
+
+        public int Count => data.Count;
+
+        public T Peek()
+        {
+            return data[0];
+        }
+
+        public bool IsEmpty()
+        {
+            return data.Count == 0;
+        }
+    }
+}
+```
