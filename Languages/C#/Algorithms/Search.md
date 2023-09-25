@@ -2170,3 +2170,430 @@ namespace GraphAlgorithms
     }
 }
 ```
+## [Probabilistic](#Probabilistic)
+
+### [Bloom Filters](#Bloom-Filters)
+
+#### How It Works
+
+1. **Initialization**: Create a bit array of `m` bits, all set to 0, and choose `k` independent hash functions.
+2. **Add Element**: To add an element, pass it through all `k` hash functions to get `k` array positions. Set the bits at these positions to 1.
+3. **Check Membership**: To check if an element is in the set, pass it through all `k` hash functions to get `k` array positions. If any of the bits at these positions is 0, the element is definitely not in the set. If all are 1, the element may be in the set.
+
+#### C# Code Implementation
+
+Here's how you can use the Bloom Filter:
+
+```csharp
+BloomFilter bloomFilter = new BloomFilter(1000, 3);
+bloomFilter.Add("example");
+bool contains = bloomFilter.Contains("example");
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace DataStructures
+{
+    public class BloomFilter
+    {
+        private readonly int _size;
+        private readonly int _hashCount;
+        private readonly BitArray _bitArray;
+
+        public BloomFilter(int size, int hashCount)
+        {
+            _size = size;
+            _hashCount = hashCount;
+            _bitArray = new BitArray(_size);
+        }
+
+        public void Add(string item)
+        {
+            for (int i = 0; i < _hashCount; i++)
+            {
+                int position = GetHash(item, i) % _size;
+                _bitArray.Set(position, true);
+            }
+        }
+
+        public bool Contains(string item)
+        {
+            for (int i = 0; i < _hashCount; i++)
+            {
+                int position = GetHash(item, i) % _size;
+                if (!_bitArray.Get(position))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private int GetHash(string input, int index)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(input + index);
+            return BitConverter.ToInt32(new SHA256Managed().ComputeHash(bytes), 0);
+        }
+    }
+}
+```
+### [Locality-Sensitive Hashing (LSH)](#Locality-Sensitive-Hashing)
+
+#### How It Works
+
+1. **Hash Functions**: Generate a set of hash functions that have the property of hashing similar items into the same or nearby buckets.
+2. **Bucketing**: Use the hash functions to partition the data into multiple buckets.
+3. **Candidate Pairs**: For a query point, only the items in the same or nearby buckets are considered as candidate nearest neighbors.
+4. **Final Check**: Perform exact distance computations for the candidate pairs to find the approximate nearest neighbors.
+
+#### C# Code Implementation
+
+Here's how you can call the LSH function:
+
+```csharp
+var dataPoints = new List<Vector>();
+var queryPoint = new Vector(1.0, 2.0);
+var lsh = new LSH(dataPoints);
+var nearestNeighbors = lsh.FindNearestNeighbors(queryPoint);
+```
+code
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace LocalitySensitiveHashing
+{
+    public class LSH
+    {
+        private List<Vector> dataPoints;
+
+        public LSH(List<Vector> dataPoints)
+        {
+            this.dataPoints = dataPoints;
+        }
+
+        public List<Vector> FindNearestNeighbors(Vector queryPoint)
+        {
+            // Implement LSH algorithm here
+            return new List<Vector>();
+        }
+    }
+
+    public class Vector
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        public Vector(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+}
+```
+### [Randomized Binary Search](#Randomized-Binary-Search)
+
+#### How It Works
+
+1. **Initialization**: Start with the entire sorted array as the search range.
+2. **Random Pivot**: Randomly select a pivot element within the current search range.
+3. **Compare**: Compare the target value with the pivot element.
+4. **Narrow Down**: Depending on the comparison, narrow down the search range to either the elements before or after the pivot.
+5. **Repeat**: Continue the process until the target element is found or the search range is empty.
+
+#### C# Code Implementation
+
+Here's how you can call the Randomized Binary Search function:
+
+```csharp
+int[] arr = { 2, 3, 5, 7, 9, 10, 11, 12, 14 };
+int target = 10;
+int result = RandomizedBinarySearch.Search(arr, target);
+```
+code:
+```csharp
+using System;
+
+namespace SearchingAlgorithms
+{
+    public static class RandomizedBinarySearch
+    {
+        private static readonly Random random = new Random();
+
+        public static int Search(int[] arr, int target)
+        {
+            return Search(arr, target, 0, arr.Length - 1);
+        }
+
+        private static int Search(int[] arr, int target, int low, int high)
+        {
+            if (low <= high)
+            {
+                int mid = random.Next(low, high + 1);
+
+                if (arr[mid] == target)
+                {
+                    return mid;
+                }
+                else if (arr[mid] < target)
+                {
+                    return Search(arr, target, mid + 1, high);
+                }
+                else
+                {
+                    return Search(arr, target, low, mid - 1);
+                }
+            }
+
+            return -1;  // Element not found
+        }
+    }
+}
+```
+
+## [String Matching](#String-Matching)
+### [Rabin-Karp Algorithm](#Rabin-Karp-Algorithm)
+
+#### How It Works
+
+1. **Preprocessing**: Compute the hash value for the pattern and for each possible substring of the text of the same length as the pattern.
+2. **Hash Comparison**: Compare the hash value of the pattern with the hash value of each substring of the text.
+3. **Verification**: If the hash values match, compare the pattern and the substring character by character to verify the match.
+
+#### C# Code Implementation
+
+Here's how you can call the Rabin-Karp function:
+
+```csharp
+string text = "ABABDABACDABABCABAB";
+string pattern = "ABABCABAB";
+int result = RabinKarp.Search(text, pattern);
+```
+code:
+```csharp
+using System;
+
+namespace StringAlgorithms
+{
+    public static class RabinKarp
+    {
+        const int alphabetSize = 256;  // Number of characters in the alphabet
+
+        public static int Search(string mainText, string searchPattern)
+        {
+            int primeNumber = 101;  
+            int patternLength = searchPattern.Length;
+            int textLength = mainText.Length;
+            int patternHash = 0;  // Hash value for searchPattern
+            int textHash = 0;  // Hash value for mainText
+            int hashMultiplier = 1;
+
+            // Precompute (alphabetSize^(patternLength-1)) % primeNumber
+            for (int i = 0; i < patternLength - 1; i++)
+                hashMultiplier = (hashMultiplier * alphabetSize) % primeNumber;
+
+            // Compute hash values for searchPattern and first window of mainText
+            for (int i = 0; i < patternLength; i++)
+            {
+                patternHash = (alphabetSize * patternHash + searchPattern[i]) % primeNumber;
+                textHash = (alphabetSize * textHash + mainText[i]) % primeNumber;
+            }
+
+            // Slide the pattern over the text one by one
+            for (int i = 0; i <= textLength - patternLength; i++)
+            {
+                // Check if hash values match
+                if (patternHash == textHash)
+                {
+                    // Verify characters one by one
+                    for (int j = 0; j < patternLength; j++)
+                    {
+                        if (mainText[i + j] != searchPattern[j])
+                            break;
+                    }
+
+                    if (j == patternLength)
+                        return i;
+                }
+
+                // Compute hash value for next window
+                if (i < textLength - patternLength)
+                {
+                    textHash = (alphabetSize * (textHash - mainText[i] * hashMultiplier) + mainText[i + patternLength]) % primeNumber;
+
+                    // Convert negative hash value to positive
+                    if (textHash < 0)
+                        textHash += primeNumber;
+                }
+            }
+
+            return -1;  // Pattern not found
+        }
+    }
+}
+```
+### [KMP (Knuth-Morris-Pratt) Algorithm](#KMP-Algorithm)
+
+#### How It Works
+
+1. **Preprocessing**: Generate a longest prefix suffix (LPS) array that will help in skipping characters while matching.
+2. **Matching**: Use the LPS array to match the pattern with the text efficiently.
+
+#### C# Code Implementation
+
+Here's how you can call the KMP function:
+
+```csharp
+string textToSearch = "ABABDABACDABABCABAB";
+string patternToFind = "ABABCABAB";
+int[] searchResult = KMP.SearchPattern(textToSearch, patternToFind);
+```
+code:
+```csharp
+using System;
+
+namespace StringAlgorithms
+{
+    public static class KMP
+    {
+        public static int[] SearchPattern(string textToSearch, string patternToFind)
+        {
+            int patternLength = patternToFind.Length;
+            int textLength = textToSearch.Length;
+            int[] longestPrefixSuffix = new int[patternLength];
+            int patternIndex = 0;
+
+            ComputeLongestPrefixSuffixArray(patternToFind, patternLength, longestPrefixSuffix);
+
+            int textIndex = 0;
+            while (textIndex < textLength)
+            {
+                if (patternToFind[patternIndex] == textToSearch[textIndex])
+                {
+                    patternIndex++;
+                    textIndex++;
+                }
+
+                if (patternIndex == patternLength)
+                {
+                    Console.WriteLine("Found pattern at index " + (textIndex - patternIndex));
+                    patternIndex = longestPrefixSuffix[patternIndex - 1];
+                }
+                else if (textIndex < textLength && patternToFind[patternIndex] != textToSearch[textIndex])
+                {
+                    if (patternIndex != 0)
+                        patternIndex = longestPrefixSuffix[patternIndex - 1];
+                    else
+                        textIndex = textIndex + 1;
+                }
+            }
+        }
+
+        private static void ComputeLongestPrefixSuffixArray(string patternToFind, int patternLength, int[] longestPrefixSuffix)
+        {
+            int length = 0;
+            int i = 1;
+            longestPrefixSuffix[0] = 0;
+
+            while (i < patternLength)
+            {
+                if (patternToFind[i] == patternToFind[length])
+                {
+                    length++;
+                    longestPrefixSuffix[i] = length;
+                    i++;
+                }
+                else
+                {
+                    if (length != 0)
+                    {
+                        length = longestPrefixSuffix[length - 1];
+                    }
+                    else
+                    {
+                        longestPrefixSuffix[i] = length;
+                        i++;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+### [Boyer-Moore Algorithm](#Boyer-Moore-Algorithm)
+
+#### How It Works
+
+1. **Preprocessing**: Generate the bad character and good suffix tables.
+2. **Searching**: Start from the end of the pattern and move towards the beginning.
+3. **Skip Sections**: Use the tables to skip sections of the text, resulting in fewer overall character comparisons.
+
+#### C# Code Implementation
+
+Here's how you can call the Boyer-Moore function:
+
+```csharp
+string text = "ABAAABCD";
+string pattern = "ABC";
+int position = BoyerMoore.Search(text, pattern);
+```
+code:
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace StringSearchingAlgorithms
+{
+    public static class BoyerMoore
+    {
+        public static int Search(string text, string pattern)
+        {
+            int[] badCharTable = BuildBadCharTable(pattern);
+            int textLength = text.Length;
+            int patternLength = pattern.Length;
+            int skip;
+
+            for (int i = 0; i <= textLength - patternLength; i += skip)
+            {
+                skip = 0;
+                for (int j = patternLength - 1; j >= 0; j--)
+                {
+                    if (pattern[j] != text[i + j])
+                    {
+                        skip = Math.Max(1, j - badCharTable[text[i + j]]);
+                        break;
+                    }
+                }
+
+                if (skip == 0)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        private static int[] BuildBadCharTable(string pattern)
+        {
+            const int ASCII_CHAR_COUNT = 256;
+            int[] table = new int[ASCII_CHAR_COUNT];
+
+            for (int i = 0; i < ASCII_CHAR_COUNT; ++i)
+            {
+                table[i] = -1;
+            }
+
+            for (int i = 0; i < pattern.Length; ++i)
+            {
+                table[pattern[i]] = i;
+            }
+
+            return table;
+        }
+    }
+}
+```
