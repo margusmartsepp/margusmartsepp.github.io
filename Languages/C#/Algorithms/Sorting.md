@@ -164,598 +164,118 @@ TODO: Consider utilizing generics, which allow for the creation of reusable algo
 3. **Repeat**: Continue the process for each element, ignoring the last sorted element in each iteration.
 4. **Terminate**: The algorithm terminates when no more swaps are needed, indicating that the list is sorted.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [BubbleSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/BubbleSort.cs) | [BubbleSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/BubbleSortTests.cs) |
 
-Here's how you can call the Bubble Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-BubbleSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class BubbleSort
-    {
-        public static void Sort(int[] arr)
-        {
-            int n = arr.Length;
-            bool swapped;
-
-            for (int i = 0; i < n - 1; i++)
-            {
-                swapped = false;
-
-                for (int j = 0; j < n - i - 1; j++)
-                {
-                    if (arr[j] > arr[j + 1])
-                    {
-                        // Swap arr[j] and arr[j + 1]
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-
-                        swapped = true;
-                    }
-                }
-
-                // If no two elements were swapped in the inner loop, the list is sorted
-                if (!swapped)
-                {
-                    break;
-                }
-            }
-        }
-    }
-}
-```
 ### [Insertion Sort](#Insertion-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Iterate**: Traverse from the second element to the last element in the array.
 2. **Compare and Insert**: For each element, compare it with the elements before it and insert it into its correct position by swapping.
 3. **Repeat**: Continue the process for each of the elements in the array.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [InsertionSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/InsertionSort.cs) | [InsertionSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/InsertionSortTests.cs) |
 
-Here's how you can call the Insertion Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-InsertionSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class InsertionSort
-    {
-        public static void Sort(int[] arr)
-        {
-            for (int i = 1; i < arr.Length; i++)
-            {
-                int key = arr[i];
-                int j = i - 1;
-
-                // Move elements of arr[0..i-1], that are greater than key,
-                // to one position ahead of their current position
-                while (j >= 0 && arr[j] > key)
-                {
-                    arr[j + 1] = arr[j];
-                    j = j - 1;
-                }
-                arr[j + 1] = key;
-            }
-        }
-    }
-}
-```
 ### [Selection Sort](#Selection-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Find Minimum Element**: Traverse the array to find the minimum element.
 2. **Swap**: Swap the minimum element found with the first element of the array.
 3. **Iterate**: Move the boundary of the unsorted array one element ahead and repeat steps 1 and 2 until the array is sorted.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [SelectionSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/SelectionSort.cs) | [SelectionSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/SelectionSortTests.cs) |
 
-Here's how you can call the Selection Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-SelectionSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class SelectionSort
-    {
-        public static void Sort(int[] arr)
-        {
-            int n = arr.Length;
-
-            for (int i = 0; i < n - 1; i++)
-            {
-                int minIndex = i;
-
-                for (int j = i + 1; j < n; j++)
-                {
-                    if (arr[j] < arr[minIndex])
-                    {
-                        minIndex = j;
-                    }
-                }
-
-                // Swap arr[minIndex] and arr[i]
-                int temp = arr[minIndex];
-                arr[minIndex] = arr[i];
-                arr[i] = temp;
-            }
-        }
-    }
-}
-```
 ### [Cocktail Sort](#Cocktail-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Bi-Directional Traversal**: Unlike Bubble Sort, which only traverses the list in one direction, Cocktail Sort traverses the list in both directions.
 2. **Forward Pass**: Compare adjacent elements and swap them if they are in the wrong order, moving from the beginning to the end of the list.
 3. **Backward Pass**: Similar to the forward pass, but moves from the end to the beginning of the list.
 4. **Repeat**: Continue the process of forward and backward passes until the list is sorted.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [CocktailSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/CocktailSort.cs) | [CocktailSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/CocktailSortTests.cs) |
 
-Here's how you can call the Cocktail Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-CocktailSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class CocktailSort
-    {
-        public static void Sort(int[] arr)
-        {
-            bool swapped = true;
-            int start = 0;
-            int end = arr.Length;
-
-            while (swapped)
-            {
-                // Reset the swapped flag on entering the loop,
-                // because it might be true from a previous iteration.
-                swapped = false;
-
-                // Forward pass
-                for (int i = start; i < end - 1; ++i)
-                {
-                    if (arr[i] > arr[i + 1])
-                    {
-                        int temp = arr[i];
-                        arr[i] = arr[i + 1];
-                        arr[i + 1] = temp;
-                        swapped = true;
-                    }
-                }
-
-                // If nothing moved, array is sorted.
-                if (!swapped)
-                    break;
-
-                // Otherwise, reset the swapped flag so that it can be used in the next stage.
-                swapped = false;
-
-                // Move the end point back by one, because the item at the end is in its rightful place.
-                end--;
-
-                // Backward pass
-                for (int i = end - 1; i >= start; i--)
-                {
-                    if (arr[i] > arr[i + 1])
-                    {
-                        int temp = arr[i];
-                        arr[i] = arr[i + 1];
-                        arr[i + 1] = temp;
-                        swapped = true;
-                    }
-                }
-
-                // Increment the starting point, because the last stage would have moved the next smallest number to its rightful place.
-                start++;
-            }
-        }
-    }
-}
-```
 ### [Odd-Even Sort](#Odd-Even-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Odd-Even Phase**: Compare all odd-indexed elements with their next adjacent elements and swap them if they are out of order.
 2. **Even-Odd Phase**: Compare all even-indexed elements with their next adjacent elements and swap them if they are out of order.
 3. **Repeat**: Continue alternating between the odd-even and even-odd phases until the array is sorted.
 
-#### C# Code Implementation
-
-Here's how you can call the Odd-Even Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-OddEvenSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class OddEvenSort
-    {
-        public static void Sort(int[] arr)
-        {
-            bool isSorted = false;
-
-            while (!isSorted)
-            {
-                isSorted = true;
-
-                // Odd-Even Phase
-                for (int i = 1; i <= arr.Length - 2; i += 2)
-                {
-                    if (arr[i] > arr[i + 1])
-                    {
-                        Swap(arr, i, i + 1);
-                        isSorted = false;
-                    }
-                }
-
-                // Even-Odd Phase
-                for (int i = 0; i <= arr.Length - 2; i += 2)
-                {
-                    if (arr[i] > arr[i + 1])
-                    {
-                        Swap(arr, i, i + 1);
-                        isSorted = false;
-                    }
-                }
-            }
-        }
-
-        private static void Swap(int[] arr, int i, int j)
-        {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [OddEvenSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/OddEvenSort.cs) | [OddEvenSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/OddEvenSortTests.cs) |
+   
 ### [Gnome Sort](#Gnome-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Initialize**: Start at the first element as the current element.
 2. **Compare and Swap**: Compare the current element with the next element. If the current element is greater than the next element, they are swapped.
 3. **Advance or Retreat**: If the swap was made or you're at the start of the array, move one position forward. Otherwise, move one position backward.
 4. **Iterate**: Repeat steps 2-3 until the array is sorted.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [GnomeSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/GnomeSort.cs) | [GnomeSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/GnomeSortTests.cs) |
 
-Here's how you can call the Gnome Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-GnomeSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class GnomeSort
-    {
-        public static void Sort(int[] arr)
-        {
-            int index = 0;
-            int n = arr.Length;
-
-            while (index < n)
-            {
-                if (index == 0)
-                    index++;
-                if (arr[index] >= arr[index - 1])
-                    index++;
-                else
-                {
-                    int temp = arr[index];
-                    arr[index] = arr[index - 1];
-                    arr[index - 1] = temp;
-                    index--;
-                }
-            }
-        }
-    }
-}
-```
 ### [Comb Sort](#Comb-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Initialize Gap**: Start with a large gap and reduce it by a shrink factor (commonly 1.3).
 2. **Compare and Swap**: Compare elements that are `gap` distance apart and swap them if they are in the wrong order.
 3. **Reduce Gap**: Reduce the gap and repeat the process until the gap becomes 1.
 4. **Final Pass**: Perform a final pass with a gap of 1 to ensure the array is fully sorted.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [CombSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/CombSort.cs) | [CombSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/CombSortTests.cs) |
 
-Here's how you can call the Comb Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-CombSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class CombSort
-    {
-        public static void Sort(int[] arr)
-        {
-            int n = arr.Length;
-
-            // Initialize gap
-            int gap = n;
-
-            // Initialize shrink factor
-            float shrink = 1.3f;
-
-            // Initialize sorted
-            bool sorted = false;
-
-            while (!sorted)
-            {
-                // Update the gap value for the next comb
-                gap = (int)(gap / shrink);
-                if (gap <= 1)
-                {
-                    gap = 1;
-                    sorted = true;
-                }
-
-                // Compare and swap elements with gap distance
-                for (int i = 0; i < n - gap; i++)
-                {
-                    if (arr[i] > arr[i + gap])
-                    {
-                        // Swap arr[i] and arr[i + gap]
-                        int temp = arr[i];
-                        arr[i] = arr[i + gap];
-                        arr[i + gap] = temp;
-
-                        sorted = false;
-                    }
-                }
-            }
-        }
-    }
-}
-```
 ### [Pancake Sort](#Pancake-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Find Max**: Locate the maximum element in the array.
 2. **Flip**: Use a spatula (figuratively speaking) to flip the array from the start to the maximum element, bringing the maximum element to the front.
 3. **Flip Again**: Flip the array from the start to the current length of the unsorted partition to move the maximum element to its correct position.
 4. **Repeat**: Reduce the length of the unsorted partition by one and go back to the first step, until the array is sorted.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [PancakeSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/PancakeSort.cs) | [PancakeSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/PancakeSortTests.cs) |
 
-Here's how you can call the Pancake Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-PancakeSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class PancakeSort
-    {
-        public static void Sort(int[] arr)
-        {
-            int n = arr.Length;
-
-            for (int currSize = n; currSize > 1; --currSize)
-            {
-                int maxIndex = FindMax(arr, currSize);
-
-                if (maxIndex != currSize - 1)
-                {
-                    Flip(arr, maxIndex);
-                    Flip(arr, currSize - 1);
-                }
-            }
-        }
-
-        private static int FindMax(int[] arr, int n)
-        {
-            int maxIndex = 0;
-            for (int i = 1; i < n; ++i)
-            {
-                if (arr[i] > arr[maxIndex])
-                    maxIndex = i;
-            }
-            return maxIndex;
-        }
-
-        private static void Flip(int[] arr, int i)
-        {
-            int start = 0;
-            while (start < i)
-            {
-                int temp = arr[start];
-                arr[start] = arr[i];
-                arr[i] = temp;
-                start++;
-                i--;
-            }
-        }
-    }
-}
-```
 ### [Stooge Sort](#Stooge-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Divide**: Divide the array into three parts.
 2. **Recursively Sort**: Recursively sort the first two-thirds, then the last two-thirds, and finally the first two-thirds again.
 3. **Conquer**: If the value at the start is greater than the value at the end, swap them.
 
-#### C# Code Implementation
+| Code | Tests |
+|------|-------|
+| [StoogeSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/StoogeSort.cs) | [StoogeSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/StoogeSortTests.cs) |
 
-Here's how you can call the Stooge Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-StoogeSort.Sort(arr, 0, arr.Length - 1);
-```
-code
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class StoogeSort
-    {
-        public static void Sort(int[] arr, int l, int h)
-        {
-            if (l >= h)
-                return;
-
-            // If first element is larger than the last, swap them
-            if (arr[l] > arr[h])
-            {
-                int temp = arr[l];
-                arr[l] = arr[h];
-                arr[h] = temp;
-            }
-
-            // If there are more than 2 elements in the array
-            if (h - l + 1 > 2)
-            {
-                int t = (h - l + 1) / 3;
-
-                // Recursively sort the first two-thirds, last two-thirds, and first two-thirds again
-                Sort(arr, l, h - t);
-                Sort(arr, l + t, h);
-                Sort(arr, l, h - t);
-            }
-        }
-    }
-}
-```
 ### [Bead Sort](#Bead-Sort)
 
-#### How It Works
+**How It Works**
 
 1. **Initialization**: Create a set of bins, each representing a digit in the numbers to be sorted.
 2. **Drop Beads**: For each number, drop a bead in each bin corresponding to the value of that digit.
 3. **Count Beads**: Count the number of beads in each bin, from top to bottom, to obtain the sorted numbers.
 
-#### C# Code Implementation
-
-Here's how you can call the Bead Sort function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-BeadSort.Sort(arr);
-```
-code:
-```csharp
-using System;
-
-namespace SortingAlgorithms
-{
-    public static class BeadSort
-    {
-        public static void Sort(int[] arr)
-        {
-            int max = arr[0];
-            for (int i = 1; i < arr.Length; i++)
-            {
-                if (arr[i] > max)
-                {
-                    max = arr[i];
-                }
-            }
-
-            int[][] grid = new int[arr.Length][];
-            for (int i = 0; i < arr.Length; i++)
-            {
-                grid[i] = new int[max];
-            }
-
-            // Drop the beads
-            for (int i = 0; i < arr.Length; i++)
-            {
-                for (int j = 0; j < arr[i]; j++)
-                {
-                    grid[i][j] = 1;
-                }
-            }
-
-            // Count the beads
-            for (int i = 0; i < max; i++)
-            {
-                int beads = 0;
-                for (int j = 0; j < arr.Length; j++)
-                {
-                    beads += grid[j][i];
-                    grid[j][i] = 0;
-                }
-
-                // Move the beads to the bottom
-                for (int j = arr.Length - beads; j < arr.Length; j++)
-                {
-                    grid[j][i] = 1;
-                }
-            }
-
-            // Convert the grid back to the array
-            for (int i = 0; i < arr.Length; i++)
-            {
-                int beads = 0;
-                for (int j = 0; j < max; j++)
-                {
-                    beads += grid[i][j];
-                }
-                arr[i] = beads;
-            }
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [BeadSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SortingAlgorithms/BeadSort.cs) | [BeadSort](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SortingAlgorithms.Tests/BeadSortTests.cs) |
