@@ -27,12 +27,8 @@
 | [String Matching](#String-Matching) | [KMP](#KMP) | \(O(n), O(n), O(n)\) | \(O(1)\) | Average-Case Time Complexity, Data Sensitivity (No) |
 | [String Matching](#String-Matching) | [Boyer-Moore](#Boyer-Moore) | \(O(n), O(n), O(n)\) | \(O(1)\) | Average-Case Time Complexity, Data Sensitivity (No) |
 
-
-
-
 ---
 ## [Divide and Conquer](#Divide-and-Conquer)
-
 ### [Binary Search](#Binary-Search)
 
 **How It Works**
@@ -45,51 +41,9 @@
     - If it's greater, set `high` to `midpoint - 1` and repeat from step 2.
 4. **Not Found**: If `low` exceeds `high`, the element is not in the array.
 
-**C# Code Implementation**
-
-Here's how you can call the Binary Search function:
-
-```csharp
-int[] arr = { 2, 3, 5, 7, 9, 10, 11, 12, 14 };
-int target = 10;
-int result = BinarySearch.Search(arr, target);
-```
-code:
-```csharp
-using System;
-
-namespace SearchingAlgorithms
-{
-    public static class BinarySearch
-    {
-        public static int Search(int[] arr, int target)
-        {
-            int low = 0;
-            int high = arr.Length - 1;
-
-            while (low <= high)
-            {
-                int mid = low + (high - low) / 2;
-
-                if (arr[mid] == target)
-                {
-                    return mid;
-                }
-                else if (arr[mid] < target)
-                {
-                    low = mid + 1;
-                }
-                else
-                {
-                    high = mid - 1;
-                }
-            }
-
-            return -1;  // Element not found
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [BinarySearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/BinarySearch.cs) | [BinarySearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/BinarySearchTests.cs) |
 ### [Interpolation Search](#Interpolation-Search)
 
 **How It Works**
@@ -99,50 +53,9 @@ namespace SearchingAlgorithms
 3. **Compare and Move**: Compare the element at the calculated position with the target. If it matches, return the position. Otherwise, adjust the `low` and `high` pointers accordingly.
 4. **Repeat**: Continue the process until the element is found or the search interval is empty.
 
-**C# Code Implementation**
-
-Here's how you can call the Interpolation Search function:
-
-```csharp
-int[] arr = { 2, 3, 5, 7, 9, 10, 11, 12, 14 };
-int x = 10;
-int index = InterpolationSearch.Search(arr, x);
-```
-code:
-```csharp
-using System;
-
-namespace SearchingAlgorithms
-{
-    public static class InterpolationSearch
-    {
-        public static int Search(int[] arr, int x)
-        {
-            int low = 0, high = arr.Length - 1;
-
-            while (low <= high && x >= arr[low] && x <= arr[high])
-            {
-                if (low == high)
-                {
-                    if (arr[low] == x) return low;
-                    return -1;
-                }
-
-                int pos = low + ((x - arr[low]) * (high - low)) / (arr[high] - arr[low]);
-
-                if (arr[pos] == x)
-                    return pos;
-
-                if (arr[pos] < x)
-                    low = pos + 1;
-                else
-                    high = pos - 1;
-            }
-            return -1;
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [InterpolationSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/InterpolationSearch.cs) | [InterpolationSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/InterpolationSearchTests.cs) |
 ### [Exponential Search](#Exponential-Search)
 
 **How It Works**
@@ -150,60 +63,9 @@ namespace SearchingAlgorithms
 1. **Find Range**: Start with a subarray size of 1, and double its size until the last element of the subarray is greater than the target value.
 2. **Binary Search**: Perform a binary search on the identified subarray to find the target value.
 
-**C# Code Implementation**
-
-Here's how you can call the Exponential Search function:
-
-```csharp
-int[] arr = { 2, 3, 4, 10, 40 };
-int target = 10;
-int result = ExponentialSearch.Search(arr, target);
-```
-code:
-```csharp
-using System;
-
-namespace SearchingAlgorithms
-{
-    public static class ExponentialSearch
-    {
-        public static int Search(int[] arr, int target)
-        {
-            int n = arr.Length;
-
-            // Base case: check if target is at index 0
-            if (arr[0] == target)
-                return 0;
-
-            // Find the range for binary search
-            int i = 1;
-            while (i < n && arr[i] <= target)
-                i *= 2;
-
-            // Call binary search for the found range
-            return BinarySearch(arr, i / 2, Math.Min(i, n - 1), target);
-        }
-
-        private static int BinarySearch(int[] arr, int left, int right, int target)
-        {
-            while (left <= right)
-            {
-                int mid = left + (right - left) / 2;
-
-                if (arr[mid] == target)
-                    return mid;
-
-                if (arr[mid] < target)
-                    left = mid + 1;
-                else
-                    right = mid - 1;
-            }
-
-            return -1;
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [ExponentialSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/ExponentialSearch.cs) | [ExponentialSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/ExponentialSearchTests.cs) |
 ### [Fibonacci Search](#Fibonacci-Search)
 
 **How It Works**
@@ -218,71 +80,10 @@ namespace SearchingAlgorithms
    - If smaller, continue the search in the right sub-array.
 6. **Update Fibonacci Numbers**: Update `fib`, `fib1`, and `fib2` to set up the next iteration.
 
-**C# Code Implementation**
+| Code | Tests |
+|------|-------|
+| [FibonacciSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/FibonacciSearch.cs) | [FibonacciSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/FibonacciSearchTests.cs) |
 
-Here's how you can call the Fibonacci Search function:
-
-```csharp
-int[] arr = { 2, 3, 5, 7, 9, 10, 14, 15, 17, 19, 22, 24, 27, 30, 32 };
-int x = 17;
-int index = FibonacciSearch.Search(arr, x);
-```
-code:
-```csharp
-using System;
-
-namespace SearchingAlgorithms
-{
-    public static class FibonacciSearch
-    {
-        public static int Search(int[] arr, int x)
-        {
-            int fib1 = 0;
-            int fib2 = 1;
-            int fib = fib1 + fib2;
-
-            while (fib < arr.Length)
-            {
-                fib1 = fib2;
-                fib2 = fib;
-                fib = fib1 + fib2;
-            }
-
-            int offset = -1;
-
-            while (fib > 1)
-            {
-                int i = Math.Min(offset + fib1, arr.Length - 1);
-
-                if (arr[i] < x)
-                {
-                    fib = fib2;
-                    fib2 = fib1;
-                    fib1 = fib - fib2;
-                    offset = i;
-                }
-                else if (arr[i] > x)
-                {
-                    fib = fib1;
-                    fib2 = fib2 - fib1;
-                    fib1 = fib - fib2;
-                }
-                else
-                {
-                    return i;
-                }
-            }
-
-            if (fib1 == 1 && arr[offset + 1] == x)
-            {
-                return offset + 1;
-            }
-
-            return -1;
-        }
-    }
-}
-```
 ## [Linear](#Linear)
 ### [Linear Search](#Linear-Search)
 
@@ -293,37 +94,9 @@ namespace SearchingAlgorithms
 3. **Compare**: At each step, compare the current element with the target value.
 4. **Found or Not**: If a match is found, return the index of the element. If the end of the array is reached without finding the target, return -1.
 
-**C# Code Implementation**
-
-Here's how you can call the Linear Search function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-int target = 11;
-int result = LinearSearch.Search(arr, target);
-```
-code:
-```csharp
-using System;
-
-namespace SearchingAlgorithms
-{
-    public static class LinearSearch
-    {
-        public static int Search(int[] arr, int target)
-        {
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] == target)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [LinearSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/LinearSearch.cs) | [LinearSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/LinearSearchTests.cs) |
 ### [Sentinel Search](#Sentinel-Search)
 
 **How It Works**
@@ -332,50 +105,9 @@ namespace SearchingAlgorithms
 2. **Linear Search**: Start from the beginning and move through the array to find the target element.
 3. **Check for Sentinel**: If you reach the sentinel, the element was not found in the array.
 
-**C# Code Implementation**
-
-Here's how you can call the Sentinel Search function:
-
-```csharp
-int[] arr = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
-int target = 11;
-int index = SentinelSearch.Search(arr, target);
-```
-code:
-```csharp
-using System;
-
-namespace SearchingAlgorithms
-{
-    public static class SentinelSearch
-    {
-        public static int Search(int[] arr, int target)
-        {
-            // Append the target as a sentinel at the end of the array
-            int last = arr[arr.Length - 1];
-            arr[arr.Length - 1] = target;
-
-            int i = 0;
-            while (arr[i] != target)
-            {
-                i++;
-            }
-
-            // Restore the last element
-            arr[arr.Length - 1] = last;
-
-            // Element found, return its index
-            if (i < arr.Length - 1 || arr[arr.Length - 1] == target)
-            {
-                return i;
-            }
-
-            // Element not found
-            return -1;
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [SentinelSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/SentinelSearch.cs) | [SentinelSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/SentinelSearchTests.cs) |
 ### [Sublist Search](#Sublist-Search)
 
 **How It Works**
@@ -385,58 +117,9 @@ namespace SearchingAlgorithms
 3. **Compare Sublist**: If the first element matches, move both pointers across their respective lists, comparing each element.
 4. **Found or Not**: If you reach the end of the sublist, then the sublist is found in the main list. If you reach the end of the main list but not the sublist, the sublist is not in the main list.
 
-**C# Code Implementation**
-
-Here's how you can call the Sublist Search function:
-
-```csharp
-LinkedList<int> mainList = new LinkedList<int>(new int[] { 1, 2, 3, 4, 5 });
-LinkedList<int> subList = new LinkedList<int>(new int[] { 3, 4 });
-bool isSublist = SublistSearch.IsSublist(mainList, subList);
-```
-code:
-```csharp
-using System;
-using System.Collections.Generic;
-
-namespace SearchingAlgorithms
-{
-    public static class SublistSearch
-    {
-        public static bool IsSublist(LinkedList<int> mainList, LinkedList<int> subList)
-        {
-            LinkedListNode<int> mainCurrent = mainList.First;
-            LinkedListNode<int> subCurrent = subList.First;
-
-            while (mainCurrent != null)
-            {
-                LinkedListNode<int> tempMain = mainCurrent;
-
-                while (subCurrent != null)
-                {
-                    if (tempMain == null || tempMain.Value != subCurrent.Value)
-                    {
-                        break;
-                    }
-
-                    tempMain = tempMain.Next;
-                    subCurrent = subCurrent.Next;
-                }
-
-                if (subCurrent == null)
-                {
-                    return true;
-                }
-
-                subCurrent = subList.First;
-                mainCurrent = mainCurrent.Next;
-            }
-
-            return false;
-        }
-    }
-}
-```
+| Code | Tests |
+|------|-------|
+| [SublistSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Code/SearchingAlgorithms/SublistSearch.cs) | [SublistSearch](https://github.com/margusmartsepp/margusmartsepp.github.io/blob/master/Languages/C%23/Tests/SearchingAlgorithms.Tests/SublistSearchTests.cs) |
 ## [Hash-based](#Hash-based)
 ### [Direct Addressing](#Direct-Addressing)
 
@@ -2171,7 +1854,6 @@ namespace GraphAlgorithms
 }
 ```
 ## [Probabilistic](#Probabilistic)
-
 ### [Bloom Filters](#Bloom-Filters)
 
 **How It Works**
@@ -2353,7 +2035,6 @@ namespace SearchingAlgorithms
     }
 }
 ```
-
 ## [String Matching](#String-Matching)
 ### [Rabin-Karp Algorithm](#Rabin-Karp-Algorithm)
 
