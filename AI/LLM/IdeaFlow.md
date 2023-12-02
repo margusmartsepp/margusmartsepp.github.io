@@ -80,3 +80,132 @@ IdeaFlow v0.0.3 is an enhanced user-centric instruction language designed for pr
 4. Output Generation: Formulates detailed, nuanced, and narrative-style response.
 5. Output Assessment: Auditor reviews for depth, narrative style effectiveness, and user preference alignment.
 6. User Interaction: Presents response and Auditor feedback, tailored to user preferences.
+
+
+# IdeaFlow Language Specification v0.0.4
+
+## Overview
+IdeaFlow v0.0.4 continues to refine the user-centric instruction language, emphasizing adaptability and enhanced user interaction.
+
+## New Features in v0.0.4
+- **Dynamic Command Creation**: Users, Auditors, and the LLM can create new commands as needed.
+- **Command Repository**: A repository for newly created commands, allowing for continuous expansion.
+
+## Known Commands
+Certainly, here are the full definitions for all commands in IdeaFlow v0.0.4 with parent items:
+
+### AggregateIdeaData
+- **Parents**: #EvaluateAndIdentify
+- **Functionality**: Aggregates data related to ideas for summary and analysis.
+- **Request Parameters**: Data set of ideas.
+- **Response**: Aggregated data summary.
+
+### AnalyzeConflictingIdeas
+- **Parents**: #EvaluateAndIdentify
+- **Functionality**: Analyzes and highlights differences and conflicts between various ideas.
+- **Request Parameters**: Set of ideas for analysis.
+- **Response**: Analysis report outlining conflicts.
+
+### EvaluateIdeaQuality
+- **Parents**: #EvaluateAndIdentify
+- **Functionality**: Assesses the overall quality of ideas based on established criteria.
+- **Request Parameters**: Ideas to be evaluated, evaluation criteria.
+- **Response**: Quality assessment results.
+
+### EvaluateSourceReliability
+- **Parents**: #EvaluateAndIdentify
+- **Functionality**: Determines the reliability and credibility of different idea sources.
+- **Request Parameters**: Sources to be evaluated.
+- **Response**: Reliability ratings for each source.
+
+### IdentifyIdeaRisks
+- **Parents**: #EvaluateAndIdentify
+- **Functionality**: Identifies potential risks or downsides associated with specific ideas.
+- **Request Parameters**: Ideas for risk assessment.
+- **Response**: Risk profile for each idea.
+
+### FilterIdeas
+- **Parents**: #FilterAndSort
+- **Functionality**: Filters ideas based on predicates in various operational contexts.
+- **Request Parameters**: Predicates, Data Source.
+- **Response**: Filtered list of ideas.
+
+### SortIdeas
+- **Parents**: #FilterAndSort
+- **Functionality**: Sorts a collection of ideas based on specified attributes.
+- **Request Parameters**: Ideas to be sorted, sorting attributes.
+- **Response**: Sorted list of ideas.
+
+### GenerateIdeaSummary
+- **Parents**: #GenerateAndPredict
+- **Functionality**: Creates summarized overviews of selected ideas.
+- **Request Parameters**: Ideas to summarize.
+- **Response**: Concise summaries of ideas.
+
+### PredictIdeaEvolution
+- **Parents**: #GenerateAndPredict
+- **Functionality**: Forecasts potential changes or developments in ideas over time.
+- **Request Parameters**: Ideas for prediction, time frame.
+- **Response**: Predictions on idea evolution.
+
+### RecommendStrategicApproach
+- **Parents**: #RecommendAndSelect
+- **Functionality**: Suggests strategic approaches based on comprehensive analysis.
+- **Request Parameters**: Context for strategy recommendation.
+- **Response**: Recommended strategies.
+
+### SelectOptimalIdea
+- **Parents**: #RecommendAndSelect
+- **Functionality**: Chooses the most appropriate idea based on specific criteria.
+- **Request Parameters**: Set of ideas, selection criteria.
+- **Response**: The selected optimal idea.
+
+### AssessRiskLevels
+- **Parents**: #RiskManagement
+- **Functionality**: Evaluates the levels of risk associated with different ideas.
+- **Request Parameters**: Ideas for risk level assessment.
+- **Response**: Risk level assessment for each idea.
+
+### CalculateRiskRewardBalance
+- **Parents**: #RiskManagement
+- **Functionality**: Analyzes the balance between potential risks and rewards of pursuing specific ideas.
+- **Request Parameters**: Ideas for risk-reward analysis.
+- **Response**: Risk-reward balance analysis.
+
+### SetIdeaProximityPreference
+- **Parents**: #SetAndCompare
+- **Functionality**: Sets preferences for idea sourcing based on proximity.
+- **Request Parameters**: Proximity preferences.
+- **Response**: Adjusted preferences for idea sourcing.
+
+### CompareIdeaAlignment
+- **Parents**: #SetAndCompare
+- **Functionality**: Measures the alignment of ideas with specific decision criteria.
+- **Request Parameters**: Ideas, criteria for alignment.
+- **Response**: Alignment scores.
+
+### LocateRelevantIdeas
+- **Parents**: #SetAndCompare
+- **Functionality**: Identifies ideas that are relevant to specific criteria or contexts.
+- **Request Parameters**: Criteria for relevance.
+- **Response**: List of relevant ideas.
+
+## Workflow Enhancement
+- **User Input Processing**: Improved handling of diverse inputs.
+- **Command Integration**: Seamless integration of newly created commands into the workflow.
+- **Enhanced Auditor Feedback**: More detailed feedback from the Auditor, including suggestions for new commands.
+
+## Auditor Module (v1.0.3)
+- **Dynamic Command Assessment**: Reviews and integrates newly created commands.
+- **Feedback Loop**: Incorporates user and system feedback for continuous improvement.
+
+## Changes (diff) from v0.0.3 to v0.0.4
+1. Introduction of dynamic command creation.
+2. Establishment of a command repository.
+3. Workflow enhancements for better integration of new commands.
+4. Auditor module updates for dynamic command assessment.
+
+## Future Directions
+- Focus on expanding the command set and refining user interaction based on evolving needs and feedback.
+
+IdeaFlow v0.0.4 represents a step forward in making the language more adaptable and responsive to user needs and system evolution.
