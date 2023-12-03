@@ -209,3 +209,323 @@ Certainly, here are the full definitions for all commands in IdeaFlow v0.0.4 wit
 - Focus on expanding the command set and refining user interaction based on evolving needs and feedback.
 
 IdeaFlow v0.0.4 represents a step forward in making the language more adaptable and responsive to user needs and system evolution.
+
+# IdeaFlow Language Specification v0.0.5
+
+## Overview
+IdeaFlow v0.0.5 commands were converted into JSON format. Each command will be structured with its name, description, parameters, and expected response. 
+
+## Known Commands
+
+1. **AggregateIdeaData**
+   ```json
+   {
+     "name": "AggregateIdeaData",
+     "description": "Aggregates data related to ideas for summary and analysis.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "DataSetOfIdeas": {
+           "type": "array",
+           "description": "Data set of ideas."
+         }
+       },
+       "required": ["DataSetOfIdeas"]
+     }
+   }
+   ```
+
+2. **AnalyzeConflictingIdeas**
+   ```json
+   {
+     "name": "AnalyzeConflictingIdeas",
+     "description": "Analyzes and highlights differences and conflicts between various ideas.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "SetOfIdeas": {
+           "type": "array",
+           "description": "Set of ideas for analysis."
+         }
+       },
+       "required": ["SetOfIdeas"]
+     }
+   }
+   ```
+
+3. **EvaluateIdeaQuality**
+   ```json
+   {
+     "name": "EvaluateIdeaQuality",
+     "description": "Assesses the overall quality of ideas based on established criteria.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "IdeasToBeEvaluated": {
+           "type": "array",
+           "description": "Ideas to be evaluated."
+         },
+         "EvaluationCriteria": {
+           "type": "object",
+           "description": "Evaluation criteria."
+         }
+       },
+       "required": ["IdeasToBeEvaluated", "EvaluationCriteria"]
+     }
+   }
+   ```
+
+4. **EvaluateSourceReliability**
+   ```json
+   {
+     "name": "EvaluateSourceReliability",
+     "description": "Determines the reliability and credibility of different idea sources.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "SourcesToBeEvaluated": {
+           "type": "array",
+           "description": "Sources to be evaluated."
+         }
+       },
+       "required": ["SourcesToBeEvaluated"]
+     }
+   }
+   ```
+
+5. **IdentifyIdeaRisks**
+   ```json
+   {
+     "name": "IdentifyIdeaRisks",
+     "description": "Identifies potential risks or downsides associated with specific ideas.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "IdeasForRiskAssessment": {
+           "type": "array",
+           "description": "Ideas for risk assessment."
+         }
+       },
+       "required": ["IdeasForRiskAssessment"]
+     }
+   }
+   ```
+   
+6. **FilterIdeas**
+   ```json
+   {
+     "name": "FilterIdeas",
+     "description": "Filters ideas based on predicates in various operational contexts.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "Predicates": {
+           "type": "object",
+           "description": "Predicates for filtering."
+         },
+         "DataSource": {
+           "type": "array",
+           "description": "Data Source containing ideas."
+         }
+       },
+       "required": ["Predicates", "DataSource"]
+     }
+   }
+   ```
+
+7. **SortIdeas**
+   ```json
+   {
+     "name": "SortIdeas",
+     "description": "Sorts a collection of ideas based on specified attributes.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "IdeasToBeSorted": {
+           "type": "array",
+           "description": "Ideas to be sorted."
+         },
+         "SortingAttributes": {
+           "type": "object",
+           "description": "Sorting attributes."
+         }
+       },
+       "required": ["IdeasToBeSorted", "SortingAttributes"]
+     }
+   }
+   ```
+
+8. **GenerateIdeaSummary**
+   ```json
+   {
+     "name": "GenerateIdeaSummary",
+     "description": "Creates summarized overviews of selected ideas.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "IdeasToSummarize": {
+           "type": "array",
+           "description": "Ideas to summarize."
+         }
+       },
+       "required": ["IdeasToSummarize"]
+     }
+   }
+   ```
+
+9. **PredictIdeaEvolution**
+   ```json
+   {
+     "name": "PredictIdeaEvolution",
+     "description": "Forecasts potential changes or developments in ideas over time.",
+     "parameters": {
+       "type": "object",
+       "properties": {
+         "IdeasForPrediction": {
+           "type": "array",
+           "description": "Ideas for prediction."
+         },
+         "TimeFrame": {
+           "type": "string",
+           "description": "Time frame for prediction."
+         }
+       },
+       "required": ["IdeasForPrediction", "TimeFrame"]
+     }
+   }
+   ```
+
+10. **RecommendStrategicApproach**
+    ```json
+    {
+      "name": "RecommendStrategicApproach",
+      "description": "Suggests strategic approaches based on comprehensive analysis.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ContextForStrategyRecommendation": {
+            "type": "object",
+            "description": "Context for strategy recommendation."
+          }
+        },
+        "required": ["ContextForStrategyRecommendation"]
+      }
+    }
+    ```
+
+11. **SelectOptimalIdea**
+    ```json
+    {
+      "name": "SelectOptimalIdea",
+      "description": "Chooses the most appropriate idea based on specific criteria.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "SetOfIdeas": {
+            "type": "array",
+            "description": "Set of ideas."
+          },
+          "SelectionCriteria": {
+            "type": "object",
+            "description": "Selection criteria."
+          }
+        },
+        "required": ["SetOfIdeas", "SelectionCriteria"]
+      }
+    }
+    ```
+
+12. **AssessRiskLevels**
+    ```json
+    {
+      "name": "AssessRiskLevels",
+      "description": "Evaluates the levels of risk associated with different ideas.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "IdeasForRiskLevelAssessment": {
+            "type": "array",
+            "description": "Ideas for risk level assessment."
+          }
+        },
+        "required": ["IdeasForRiskLevelAssessment"]
+      }
+    }
+    ```
+
+13. **CalculateRiskRewardBalance**
+    ```json
+    {
+      "name": "CalculateRiskRewardBalance",
+      "description": "Analyzes the balance between potential risks and rewards of pursuing specific ideas.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "IdeasForRiskRewardAnalysis": {
+            "type": "array",
+            "description": "Ideas for risk-reward analysis."
+          }
+        },
+        "required": ["IdeasForRiskRewardAnalysis"]
+      }
+    }
+    ```
+
+14. **SetIdeaProximityPreference**
+    ```json
+    {
+      "name": "SetIdeaProximityPreference",
+      "description": "Sets preferences for idea sourcing based on proximity.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ProximityPreferences": {
+            "type": "object",
+            "description": "Proximity preferences."
+          }
+        },
+        "required": ["ProximityPreferences"]
+      }
+    }
+    ```
+
+15. **CompareIdeaAlignment**
+    ```json
+    {
+      "name": "CompareIdeaAlignment",
+      "description": "Measures the alignment of ideas with specific decision criteria.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "Ideas": {
+            "type": "array",
+            "description": "Ideas to compare."
+          },
+          "CriteriaForAlignment": {
+            "type": "object",
+            "description": "Criteria for alignment."
+          }
+        },
+        "required": ["Ideas", "CriteriaForAlignment"]
+      }
+    }
+    ```
+
+16. **LocateRelevantIdeas**
+    ```json
+    {
+      "name": "LocateRelevantIdeas",
+      "description": "Identifies ideas that are relevant to specific criteria or contexts.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "CriteriaForRelevance": {
+            "type": "object",
+            "description": "Criteria for relevance."
+          }
+        },
+        "required": ["CriteriaForRelevance"]
+      }
+    }
+    ```
+
