@@ -218,7 +218,7 @@ IdeaFlow v0.0.5 commands were converted into JSON format. Each command will be s
 ## Known Commands
 
 1. **AggregateIdeaData**
-   ```json
+   ```json linenums="1"
    {
      "name": "AggregateIdeaData",
      "description": "Aggregates data related to ideas for summary and analysis.",
@@ -528,4 +528,117 @@ IdeaFlow v0.0.5 commands were converted into JSON format. Each command will be s
       }
     }
     ```
+# IdeaFlow Language Specification v0.0.6
 
+**Introduction:**
+IdeaFlow v0.0.6 represents an evolution in the language used for structuring and managing workflows within a product development context. This version focuses on refining the language for clarity, precision, and efficiency, ensuring that even non-technical stakeholders can understand the workflow processes.
+
+**Key Learnings and Advancements:**
+
+1. **Enhanced Readability:**
+   - Inline Comments: The use of inline comments following function calls has been emphasized for better readability and understanding. These comments explain the purpose of each function succinctly, allowing users who may not be familiar with code to grasp the workflow easily.
+
+2. **Efficient Error Handling:**
+   - Structured Error Handling: Improved error handling mechanisms with explanatory inline comments have been implemented. This makes the workflow more robust and user-friendly, providing clear guidance in case of issues like incorrect data formats or unexpected runtime errors.
+
+3. **Function Naming Conventions:**
+   - Self-Explanatory Function Names: The emphasis on descriptive and intuitive function names has been maintained. This approach ensures that the function's purpose is clearly understood, reducing reliance on extensive documentation.
+
+4. **Workflow Structure and Documentation:**
+   - Comprehensive Docstrings: Detailed docstrings at the beginning of functions provide essential information about the function's purpose, inputs, outputs, and potential error scenarios. This serves as an integral part of the documentation, enhancing user understanding.
+
+5. **Adherence to Clean Code Principles:**
+   - Avoidance of Redundant Comments and Empty Lines: Following clean coding practices, unnecessary comments and empty lines have been eliminated, streamlining the code for maintenance and scalability.
+
+6. **Workflow Flexibility and Adaptability:**
+   - Customizable Workflows: The workflow design accommodates different types of inputs and can be adapted to various product development contexts, demonstrating flexibility and scalability.
+
+7. **Enhanced Troubleshooting Assistance:**
+   - The workflow includes mechanisms for troubleshooting and handling unexpected scenarios, making it more reliable and user-friendly for all stakeholders.
+
+8. **Integration of Feedback:**
+   - The updated workflow incorporates stakeholder feedback more effectively, ensuring that the product development process remains aligned with evolving requirements and insights.
+
+**Conclusion:**
+IdeaFlow v0.0.6 represents a significant step towards making complex workflows more accessible, reliable, and efficient. By focusing on clarity, error handling, and adherence to clean coding principles, this version enhances the user experience for both technical and non-technical stakeholders in the product development process.
+
+---
+
+This specification provides an overview of the advancements and philosophies embedded in the IdeaFlow language as of version 0.0.6, highlighting its continued evolution towards efficiency, readability, and user-centric design.
+### IdeaFlow Language Specification v0.0.6 - User Scenario with Alex
+
+**User Scenario:**
+- **User**: Alex, Product Manager at a tech company.
+- **Challenge**: Alex is looking for a systematic method to develop a new software product that aligns with current market trends and company goals.
+- **Input**: Alex queries, "InfoFlow: How can I systematically approach the development of a new software product, ensuring that all potential ideas are thoroughly evaluated and aligned with market trends and company goals?"
+
+**Auditor Review and Plan Generation:**
+- The Auditor reviews Alex's input to understand the requirements, accuracy, precision, etc.
+- A plan is created in the form of pseudocode for `AFI_ProductDevelopmentWorkflow`, designed to address the specific needs outlined by Alex.
+```python
+def AFI_ProductDevelopmentWorkflow(market_data, company_goals, initial_ideas=None):
+    """
+    Executes a comprehensive workflow for product development from idea generation to final plan formulation.
+
+    This function orchestrates the entire product development process, leveraging various AFI functions
+    to process data, evaluate ideas, and formulate a strategic plan. It's designed to adapt to different inputs
+    and provides structured error handling for troubleshooting.
+
+    Args:
+        market_data: Market data and trends relevant to product development.
+        company_goals: Company's strategic goals and criteria for product development.
+        initial_ideas (optional): An initial set of product ideas to start with.
+
+    Returns:
+        A detailed and strategically sound product development plan.
+
+    Raises:
+        ValueError: If inputs are not in the expected format or are missing critical information.
+        RuntimeError: If an error occurs during the processing stages.
+    """
+    try:
+        ideas = generateIdeaSummary(initial_ideas)  # Generating a wide range of initial product ideas.
+        ideas = filterIdeas(ideas, market_data)  # Filtering ideas to retain only those relevant to the market.
+        ideas = sortIdeasByFeasibility(ideas)  # Sorting ideas based on their feasibility and practicality.
+        quality_assessment = evaluateIdeaQuality(ideas, company_goals)  # Evaluating the quality of each idea against the company's criteria.
+        risk_profiles = identifyRisksInIdeas(ideas)  # Identifying potential risks associated with each idea.
+        aggregated_data = aggregateDataForAnalysis(ideas, risk_profiles)  # Aggregating idea data for comprehensive analysis.
+        market_analysis = analyzeMarketTrends(aggregated_data)  # Analyzing market trends to understand their impact on ideas.
+        proximity_preferences = setMarketProximityPreferences(market_analysis)  # Setting proximity preferences based on market analysis.
+        opportunities = locateMarketOpportunities(proximity_preferences)  # Locating market opportunities relevant to the generated ideas.
+        source_reliability = evaluateMarketDataSources(opportunities)  # Evaluating the reliability of sources providing market data.
+        idea_evolution = predictFutureOfIdeas(ideas, source_reliability)  # Predicting how the ideas might evolve in the future market context.
+        risk_levels = assessRiskLevelsInIdeas(idea_evolution)  # Assessing the levels of risk associated with each idea.
+        risk_reward_balance = calculateRiskRewardBalance(risk_levels)  # Calculating the balance between potential risks and rewards of each idea.
+        optimal_idea = selectTheOptimalIdea(risk_reward_balance)  # Selecting the most promising idea based on risk-reward analysis.
+        strategies = recommendStrategiesForIdeas(optimal_idea, company_goals)  # Recommending strategic approaches for the selected idea.
+        alignment_scores = compareIdeaAlignmentWithGoals(strategies, company_goals)  # Comparing how well the ideas align with the company's long-term goals.
+        idea_summaries = summarizeIdeasForStakeholders(alignment_scores)  # Summarizing the selected ideas for presentation to stakeholders.
+        updated_workflow = updateWorkflowWithFeedback(idea_summaries)  # Updating the workflow based on stakeholder feedback.
+        final_risk_assessment = assessFinalRiskLevels(updated_workflow)  # Conducting a final risk assessment of the chosen ideas.
+        final_plan = finalizeProductDevelopmentPlan(final_risk_assessment)  # Finalizing the product development plan based on comprehensive analysis.
+
+        return final_plan
+
+    except ValueError as ve:
+        handleValueError(ve)  # Handling errors related to incorrect data formats or missing information.
+    except RuntimeError as re:
+        handleRuntimeError(re)  # Handling runtime errors that may occur during the processing stages.
+```
+- Alex is asked to provide `market_data`, `company_goals`, and `initial_ideas`. Examples for each category are requested to ensure the workflow is tailored to the specific context of his project. Examples:
+  1. **Market Data**: Trends in software technology, such as the rise of AI and cloud computing.
+  2. **Company Goals**: Objectives such as leading innovation in AI technology or expanding market share in cloud-based solutions.
+  3. **Initial Ideas**: Concepts like developing an AI-driven analytics tool or a cloud-based project management platform.
+- Once Alex provides the necessary information, or if it's already available in the context, the Auditor reviews the output of the workflow.
+- The workflow is processed with the given data to simulate a response.
+
+**Simulated Response to Alex:**
+- With the input provided, a detailed workflow is executed, and a response is simulated, showcasing how Alex's software product development can be methodically approached.
+
+  **Simulated Outcome**:
+  - A comprehensive plan is generated, focusing on key aspects such as market analysis, idea evaluation, risk assessment, and alignment with company goals.
+  - The plan includes steps like idea generation and filtering, market trend analysis, feasibility studies, and strategic planning for product development and marketing.
+  - A final product development strategy is outlined, which includes innovative approaches tailored to the latest market trends and company objectives.
+
+**Conclusion:**
+Through the IdeaFlow v0.0.6 framework, Alex receives a structured and actionable plan in the form of `AFI_ProductDevelopmentWorkflow`, enabling a systematic approach to software product development. The plan is designed to ensure thorough evaluation of ideas and their alignment with market trends and company goals, demonstrating the practical application of IdeaFlow in complex project planning scenarios.
